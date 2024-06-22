@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2144.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript中的变量 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>JavaScript中的变量</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p><code>变量， 是编程语言的核心，也是编程语言的灵魂。那么JavaScript中的变量是怎么回事？</code></p> <h3 id="1-写在开始的废话">1 写在开始的废话</h3> <p>之前我写过一篇JavaScript中的四兄弟，介绍了JavaScript中声明变量的四种方式<code>var</code>,<code>function</code>,<code>let</code>和<code>const</code>。我就知道那个时候我就挖了一个坑，这篇文章我们详细一些。</p> <h3 id="2-导言">2 导言</h3> <p>JavaScript中的变量可以在两个维度进行分类，<strong>①域， ②可变性</strong></p> <table> <thead> <tr> <th>域</th> <th>可变性</th> </tr> </thead> <tbody> <tr> <td>全局</td> <td>值可变量</td> </tr> <tr> <td>局部</td> <td>常量</td> </tr> </tbody> </table> <h3 id="21-域作用域">2.1 域（作用域）</h3> <p>什么是域？ 可访问、操作一个变量的区域（范围）。有顶层域，也叫全局域，也有局部域，局部域可在函数和{}内产生。在全局域内创建的变量就是全局变量，以此类推，在局部域内创建的变量</p> <p><strong>作用域是在定义的时候产生的</strong></p> <pre><code class="language-javascript"> var name = 'jianyanzhi';   function say() {     var name = 'jianyanzhi-say';     console.log(name);     name = 'say-end-name';     console.log('say-end-name:', name);  }  say();  console.log(name);</code></pre> <p>上面这段代码哪些是全局变量哪些是局部变量呢？我们来分析一下。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2c433929920157695ec77a0063942f3a.jpg" alt="JavaScript中的变量"></p> <p>图中，红框的部分就是全局域，在全局域中，我们创建了<code>name</code>和<code>say</code>两个变量。再缩小范围，绿框的部分就是由函数<code>say</code>创建的局部域，在<code>say</code>中只创建了<code>name</code>这个变量，所以绿色下划线的<code>name</code>变量就是局部变量。而函数<code>say</code>中第三行又把<code>name</code>这个变量重新赋值，此时操作的是局部变量。</p> <pre><code class="language-javascript"> var allowVar = 'jianyanzhi', allow = true;  if (allow) {      function allowFunction () {          console.log('allow-say')      }      let allowLet = 'allowLet';      const allowConst = 'allowConst';      var allowVar = 'allowVar';      console.log('allow', allowFunction);      console.log('allow', allowLet);      console.log('allow', allowConst);      console.log('allow', allowVar);  } console.log('global', allowFunction); console.log('global', allowVar); console.log('global', allowLet); console.log('global', allowConst);</code></pre> <p>同样的问题，哪些是局部变量，哪些又是全局变量？我们来分析下；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/31b5ad8c40633243f3df7e9feb811d96.jpg" alt="JavaScript中的变量"></p> <p>代码执行的结果是什么？</p> <pre><code class="language-javascript">allow "function allowFunction () {console.log('allow-say')}" allow "allowLet" allow "allowConst" allow "allowVar" global "function allowFunction () {console.log('allow-say')}" global "allowVar" ReferenceError allowConst is not defined // global "allowConst" ReferenceError allowLet is not defined //  global "allowLet"</code></pre> <p>为什么会产生这样的结果？</p> <ol> <li><code>if</code>条件语句中由<code>var</code>和<code>function</code>创建的变量，会自动归到<code>if</code>语句所属的域中 因此我们看到global的输出中，<code>var</code>和<code>function</code>的输出和allow的输出是一致的。不只是<code>if</code>语句，还有单纯的{}也是,比如<code>{ var a = 1; function aFn() {} }</code>;</li> <li><code>var</code>和<code>function</code>创建局部变量的时候，只能在<code>function</code>中创建有效，<code>var</code>是无法在{}块级作用域中创建局部变量的;</li> <li><code>let</code>和<code>const</code>创建的变量则属于声明时所在的域,包括函数和{}。</li> </ol> <p><strong>全局变量和局部变量的使用</strong></p> <ol> <li> <p>全局变量作为持久性变量使用，全程有效，而不是拿来存储某个临时的值，谨慎修改</p> </li> <li> <p>全局变量和局部变量存在同名的情况下，根据就近原则，优先使用局部变量，要防止污染全局变量</p> </li> </ol> <h3 id="22-可变性">2.2 可变性</h3> <p>根据值的可变性来分类，可变的是变量，不可变的是常量。变量可后续随意更改，值是动态的，而常量一旦确定则无法修改，值是恒定、静态的。</p> <pre><code class="language-javascript">var date = '2022-01-01'; const codeLang = 'JavaScript'; const articleData = { title: 'JavaScript中的变量', author: '简言之' };  date = '2022-04-04'; // success  codeLang = 'Java'; // TypeError: Assignment to constant variable  articleData = { title: 'haha', author: '简言之' } // TypeError: Assignment to constant variable articleData['title'] = 'haha';  // success</code></pre> <p>创建了两个常量和一个变量。变量<code>date</code>后续可以随意更改，更改有效。<br /> 常量就无法更改了，<code>codeLang</code>和<code>articleData</code>在修改的时候抛出了类型错误。表示它们都是常量，无法更改。可为什么后面把<code>title</code>改为<code>haha</code>的时候就更改成功了？因为<strong>常量保存的是变量的值，这个值可以是一个普通值也可以是一个内存地址值，只要确保这个值是恒定的，其他由你使劲造</strong>。</p> <p><strong>变量与常量的使用</strong></p> <ol> <li> <p>根据编码逻辑来适当使用常量，虽然变量可满足所有要求，但是合适使用常量可以增强代码的语义性</p> </li> <li> <p>上述案例中的<code>articleData</code>通过访问属性并修改值这种方式谨慎使用，修改的属性过多时，还是键值对合并之后保存到一个新常量中较为妥当</p> </li> </ol> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2143.htm">RequestBody多个参数Map实现以及前端json传参方式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2145.htm">Node.js躬行记（17）——UmiJS版本升级</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

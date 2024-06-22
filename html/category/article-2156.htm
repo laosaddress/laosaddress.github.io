@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2156.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue妙用ref父组件访问子组件中的值和调用子组件的方法 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue妙用ref父组件访问子组件中的值和调用子组件的方法</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>vue --ref用法</h1> <h2>按钮控制弹框显示的两种写法</h2> <p><strong>1, 法一</strong></p> <pre><code class="language-html">&lt;child-dialog :visible="visible"&gt;&lt;/child-dialog&gt; // 在data里面定义visible &lt;div @click="visible = true"&gt;按钮&lt;/div&gt;</code></pre> <p><strong>2, 法二</strong></p> <pre><code class="language-html">&lt;child-dialog ref="childDia" @childConfirm="childConfirm"&gt;&lt;/child-dialog&gt; &lt;div @click="$refs.childDia.showAlert()"&gt;按钮&lt;/div&gt; // childConfirm,子组件传值 // showAlert(),子组件里的方法</code></pre> <p><strong>注解: ref 有三种用法：</strong>&nbsp;  </p> <ul> <li> <p>1、ref 加在普通的 DOM 元素上使用,引用this.ref.name 指向的就是 DOM 元素  </p> </li> <li> <p>2、ref 加在子组件上,用this.ref.name 获取到的是组件实例,可以使用组件的所有方法   </p> </li> <li> <p>3、当 v-for 用于元素或组件的时候,引用信息将是包含 DOM 节点或组件实例的数组</p> </li> <li> <p>4、ref 需要在dom渲染完成后才会有,在使用的时候确保dom已经渲染完成,。比如在生命周期 mounted(){} 钩子中调用,或者在 this.$nextTick(()=&gt;{}) 中调用</p> </li> <li> <p>5、如果ref 是循环出来的,有多个重名,那么ref的值会是一个数组,此时要拿到单个的ref 只需要循环就可以了</p> <p> <img fetchpriority="high" decoding="async" alt="" height="440" src="http://img.555519.xyz/uploads/20221231/303afcdfe3fcff566545da579fc58690.jpg"></p> <p><img decoding="async" alt="" height="765" src="http://img.555519.xyz/uploads/20221231/8019549fc02c5dff830190d7efd14a66.jpg"></p> </li> </ul> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2155.htm">Docker拉取镜像失败报错Error response from daemon: Get https://registry-1.docker.io解决办法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2157.htm">Vue组件之间传值/调用方法的几种方式</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

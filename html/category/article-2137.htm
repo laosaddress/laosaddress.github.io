@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2137.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MKL库矩阵乘法(cblas_dgemm) - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>MKL库矩阵乘法(cblas_dgemm)</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>MKL库中基本线性代数子程序，<strong>BLAS(Basic Linear Algebra Subprograms)库</strong>，是一个API标淮，用以规范发布基础线性代数操作的数值库（如向量或矩阵乘法）。其中<strong>CBLAS</strong>是<strong>BLAS</strong>的<em>C语言</em>接口。</p> <p>库中前缀用来区分所支持处理的数据类型。</p> <table> <thead> <tr> <th>前缀</th> <th>描述</th> <th>函数名系列</th> <th>描述</th> </tr> </thead> <tbody> <tr> <td>s-</td> <td>实数、单精度</td> <td>ge...</td> <td>一般矩阵</td> </tr> <tr> <td>c-</td> <td>复数、单精度</td> <td>sy...</td> <td>对称矩阵</td> </tr> <tr> <td>d-</td> <td>实数、双精度</td> <td>he...</td> <td>Hermitian矩阵</td> </tr> <tr> <td>z-</td> <td>复数、双精度</td> <td>tr...</td> <td>三角矩阵</td> </tr> </tbody> </table> <p><strong>基本矩阵、向量操作</strong></p> <table> <thead> <tr> <th>函数（采用常规的前缀为d的接口）</th> <th>描述</th> </tr> </thead> <tbody> <tr> <td>cblas_dasum</td> <td>向量元素值模的总和</td> </tr> <tr> <td>cblas_daxpy</td> <td>缩放向量</td> </tr> <tr> <td>cblas_dcopy</td> <td>复制向量</td> </tr> <tr> <td>cblas_ddot</td> <td>向量点积</td> </tr> <tr> <td>cblas_dswap</td> <td>交换两向量</td> </tr> <tr> <td>cblas_dgemv</td> <td>常规矩阵×向量</td> </tr> </tbody> </table> <p>重点介绍矩阵的乘法运算。</p> <p>此示例是利用Intel 的MKL库函数完成计算矩阵（乘法）运算，计算式为：</p> <div class="math display">\[C=\alpha*A*B+\beta*C<br /> \]</div> <p>其通过调整<span class="math inline">\(A、B、C\)</span>矩阵及其系数，同样可以完成矩阵的加减；如若只需矩阵<span class="math inline">\(A\)</span>与<span class="math inline">\(B\)</span>的乘积，设置<span class="math inline">\(\alpha=1,\beta=0\)</span>即可。</p> <p>其中<span class="math inline">\(A\)</span>为<span class="math inline">\(m\times k\)</span>维矩阵，<span class="math inline">\(B\)</span>为<span class="math inline">\(k\times n\)</span>维矩阵，<span class="math inline">\(C\)</span>为<span class="math inline">\(m\times n\)</span>维矩阵。</p> <p>使用的函数为<strong>cblas_dgemm</strong>(Double precision GEneric Matrix Multiplication)，完成一般的矩阵乘法。</p> <h2 id="1-cblas_dgemm参数详解">1 cblas_dgemm参数详解</h2> <pre><code class="language-C++">fun cblas_dgemm(Layout,		//指定行优先(CblasRowMajor,C)或列优先(CblasColMajor,Fortran)数据排序                TransA,		//指定是否转置矩阵A                TransB,		//指定是否转置矩阵B                M,		//矩阵A和C的行数                N,		//矩阵B和C的列数                K,		//矩阵A的列，B的行                alpha,		//矩阵A和B乘积的比例因子                A,		//A矩阵                lda,		//矩阵A的第一维的大小                B,		//B矩阵                ldb,		//矩阵B的第一维的大小                beta,		//矩阵C的比例因子                C,		//(input/output) 矩阵C                ldc		//矩阵C的第一维的大小                )</code></pre> <h2 id="2-定义待处理矩阵">2 定义待处理矩阵</h2> <pre><code class="language-c++">#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include "mkl.h"		// 调用mkl头文件  #define min(x,y) (((x) &lt; (y)) ? (x) : (y))</code></pre> <pre><code class="language-C++">double* A, * B, * C;		//声明三个矩阵变量，并分配内存 int m, n, k, i, j;			//声明矩阵的维度，其中 double alpha, beta;  m = 2000, k = 200, n = 1000; alpha = 1.0; beta = 0.0;  A = (double*)mkl_malloc(m * k * sizeof(double), 64);	//按照矩阵维度分配内存 B = (double*)mkl_malloc(k * n * sizeof(double), 64);	//mkl_malloc用法与malloc相似，64表示64位 C = (double*)mkl_malloc(m * n * sizeof(double), 64); if (A == NULL || B == NULL || C == NULL) {		//判空      mkl_free(A);				     mkl_free(B);     mkl_free(C);     return 1; }  for (i = 0; i &lt; (m * k); i++) {		//赋值     A[i] = (double)(i + 1); }  for (i = 0; i &lt; (k * n); i++) {     B[i] = (double)(-i - 1); }  for (i = 0; i &lt; (m * n); i++) {     C[i] = 0.0; }</code></pre> <p>其中<span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>矩阵设置为：</p> <div class="math display">\[\begin{array}{l}<br /> A = \left[ {\begin{array}{*{20}{c}}<br /> {1.0}&amp;{2.0}&amp; \cdots &amp;{1000.0}\\<br /> {1001.0}&amp;{1002.0}&amp; \cdots &amp;{2000.0}\\<br />  \vdots &amp; \vdots &amp; \ddots &amp; \cdots \\<br /> {999001.0}&amp;{999002.0}&amp; \cdots &amp;{1000000.0}<br /> \end{array}} \right]  \space<br /> B = \left[ {\begin{array}{*{20}{c}}<br /> {-1.0}&amp;{-2.0}&amp; \cdots &amp;{-1000.0}\\<br /> {-1001.0}&amp;{-1002.0}&amp; \cdots &amp;{-2000.0}\\<br />  \vdots &amp; \vdots &amp; \ddots &amp; \cdots \\<br /> {-999001.0}&amp;{-999002.0}&amp; \cdots &amp;{-1000000.0}<br /> \end{array}} \right]<br /> \end{array}<br /> \]</div> <p><span class="math inline">\(C\)</span>矩阵为全0。</p> <h2 id="3-执行矩阵乘法">3 执行矩阵乘法</h2> <p>回到例子中，对照上面的参数，将C矩阵用A与B的矩阵乘法表示：</p> <pre><code class="language-c++">cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, alpha, A, k, B, n, beta, C, n);</code></pre> <p>执行后的得到结果如下：</p> <div align="center"><img decoding="async" src="https://img2022.cnblogs.com/blog/1602810/202204/1602810-20220421184623670-346312151.png" alt="MKL库矩阵乘法(cblas_dgemm)" style="zoom: 67%"/></div> <h2 id="完整代码">完整代码</h2> <pre><code class="language-C++">#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include "mkl.h"  #define min(x,y) (((x) &lt; (y)) ? (x) : (y))  int main() {     double* A, * B, * C;     int m, n, k, i, j;     double alpha, beta;       m = 2000, k = 200, n = 1000;      alpha = 1.0; beta = 0.0;      A = (double*)mkl_malloc(m * k * sizeof(double), 64);     B = (double*)mkl_malloc(k * n * sizeof(double), 64);     C = (double*)mkl_malloc(m * n * sizeof(double), 64);     if (A == NULL || B == NULL || C == NULL) {          mkl_free(A);         mkl_free(B);         mkl_free(C);         return 1;     }       for (i = 0; i &lt; (m * k); i++) {         A[i] = (double)(i + 1);     }      for (i = 0; i &lt; (k * n); i++) {         B[i] = (double)(-i - 1);     }      for (i = 0; i &lt; (m * n); i++) {         C[i] = 0.0;     }      cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,         m, n, k, alpha, A, k, B, n, beta, C, n);       for (i = 0; i &lt; min(m, 6); i++) {         for (j = 0; j &lt; min(k, 6); j++) {             printf("%12.0f", A[j + i * k]);         }         printf("\n");     }      for (i = 0; i &lt; min(k, 6); i++) {         for (j = 0; j &lt; min(n, 6); j++) {             printf("%12.0f", B[j + i * n]);         }         printf("\n");     }      for (i = 0; i &lt; min(m, 6); i++) {         for (j = 0; j &lt; min(n, 6); j++) {             printf("%12.5G", C[j + i * n]);         }         printf("\n");     }      mkl_free(A);     mkl_free(B);     mkl_free(C);      return 0; }</code></pre> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2136.htm">Visual Studio App Center 中的 Bug 跟踪服务</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2138.htm">IDEA SpringBoot-Mybatis-plus 实现增删改查(CRUD)</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2054.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue extend+promise封装全局弹窗组件_vue.js_ - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue extend+promise封装全局弹窗组件_vue.js_</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>本文实例为大家分享了vue + element ui实现锚点定位的具体代码，供大家参考，具体内容如下</p> <p>因为项目没有引入第三方UI库，所以所有的公共组件都需要自己封装<br />现在需要一个全局的弹窗，要有promise异步处理</p> <p>实现后的效果</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/38eb8aaf84c9d2a0d0efb9564c362b0a.jpg"></p> <div class="ay1code"> <pre class="brush:xhtml;">// components/confirm文件  &lt;template&gt;    &lt;div class="popup-wrap" v-if="showPopup"&gt;      &lt;div class="popup-center"&gt;        &lt;div class="popup-content"&gt;          &lt;div class="popup-close" @click="close"&gt;&lt;/div&gt;          &lt;div class="title"&gt;{{ title }}&lt;/div&gt;          &lt;div class="describe"&gt;{{ content }}&lt;/div&gt;          &lt;div class="btn"&gt;            &lt;div :class="['btn-right', active == 'cancal' ? 'active' : '']" @click="handleClick('cancal')"&gt;{{cancelBtnText}}&lt;/div&gt;            &lt;div :class="['btn-right', active == 'yes' ? 'active' : '']" @click="handleClick('yes')"&gt;{{yesBtnText}}&lt;/div&gt;          &lt;/div&gt;        &lt;/div&gt;      &lt;/div&gt;    &lt;/div&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    data() {      return {        showPopup: false,        title: "", //标题        content: "", //提示文字        yesBtnText: "", //确定按钮        cancelBtnText: "", //取消按钮        promiseStatus: null,        active: "",      };    },    watch: {},    props: {},    mounted () {      this.confirm()    },    methods: {      confirm() {        this.showPopup = true;        return new Promise((resolve, reject) =&gt; {          this.promiseStatus = { resolve, reject };        });      },      handleClick(e) {        this.active = e;        if (e == "yes") {          this.promiseStatus &amp;&amp; this.promiseStatus.resolve();        } else {          this.promiseStatus &amp;&amp; this.promiseStatus.reject();        }        this.showPopup = false      },      close() {        this.showPopup = false         this.promiseStatus &amp;&amp; this.promiseStatus.reject();        // this.$emit("close");      },    },  };  &lt;/script&gt;  &lt;style lang="less" scoped&gt;  .popup-wrap {    width: 100%;    height: 100%;    background-color: rgba(0, 0, 0, 0.6);    position: fixed;    top: 0rem;    left: 0rem;    right: 0rem;    bottom: 0rem;    z-index: 9999;    display: flex;    align-items: center;    justify-content: center;    .popup-center {      width: 990px;      height: 413px;      background-size: 990px 413px;      display: flex;      align-items: center;      justify-content: center;      .popup-content {        position: absolute;        width: 970px;        height: 393px;        background: linear-gradient(          180deg,          rgba(5, 20, 39, 0.9) 0%,          rgba(3, 17, 33, 0.9) 54%,          rgba(1, 33, 74, 0.9) 100%        );        .popup-close {          cursor: pointer;          position: relative;          top: 45px;          left: 900px;          width: 26px;          height: 26px;          border: 1px solid #fff;          background-size: 100% 100%;        }        .title {          text-align: center;          margin-top: 50px;          font-size: 40px;          font-family: PingFangSC-Semibold, PingFang SC;          font-weight: 600;          color: #258df9;          line-height: 56px;          background: linear-gradient(180deg, #afebff 0%, #ffffff 100%);          -webkit-background-clip: text;          -webkit-text-fill-color: transparent;        }        .describe {          text-align: center;          margin-top: 30px;          font-size: 28px;          font-family: PingFangSC-Regular, PingFang SC;          font-weight: 400;          color: #a4bace;          line-height: 40px;        }      }    }    .btn {      width: 540px;      height: 76px;      margin: 0 auto;      margin-top: 45px;      display: flex;      align-items: center;      justify-content: space-between;      .btn-right {        cursor: pointer;        width: 200px;        height: 76px;        border: 2px solid #a4bace;        font-size: 30px;        font-family: PingFangSC-Regular, PingFang SC;        font-weight: 400;        color: #a4bace;        line-height: 76px;        text-align: center;        &amp;.active {          border: 2px solid #258df9;          background: rgba(37, 141, 249, 0.3);          color: #afebff;        }      }    }  }  &lt;/style&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">// js文件，这个文件看你们自己吧，写在哪里都可以  // utils/confirm.js  import Confirm from '@/components/confirm.vue'  import Vue from "vue";  const ConfirmBox = Vue.extend(Confirm);  /* @使用方法 this.$confirm进行调用   * this.$confirm("此操作将永久删除该文件, 是否继续？", "确定执行删除操作吗", {        cancelBtnText: "取消",        yesBtnText: "确认执行",      })      .then(() =&gt; {        console.log("点击了确认按钮");      })      .catch(() =&gt; {        console.log("点击了取消按钮cancel");      });   */    Confirm.install = (content, title, options) =&gt; {      if (typeof title === 'object') {        options = title;        title = '';      } else if (title === undefined) {        title = '';      }          options = Object.assign({        title: title,        content: content,      }, options);          let instance = new ConfirmBox({        data: options      }).$mount();      document.body.appendChild(instance.$el);      return instance.confirm();    };</pre> </div> <div class="ay1code"> <pre class="brush:js;">// mine.js 在根路径进行挂载  import "@/util/confirm" // 引入js  import Confirm from '@/components/confirm'  //Confirm组件  Vue.config.productionTip = false //阻止启动生产消息，常用作指令  消息提示的环境配置，设置为开发环境或者生产环境  Vue.prototype.$confirm = Confirm.install; //Confirm组</pre> </div> <div class="ay1code"> <pre class="brush:xhtml;">// 使用   // home.vue  &lt;template&gt;      &lt;div @click="handleClick"&gt;点击&lt;/div&gt;  &lt;/template&gt;    &lt;script&gt;  export.default = {      data () {},      methdos: {          handleClick () {              this.$confirm("此操作将永久删除该文件, 是否继续？", "确定执行删除操作吗", {                  cancelBtnText: "取消",                  yesBtnText: "确认执行",                })                .then(() =&gt; {                  console.log("点击了确认按钮");                })                .catch(() =&gt; {                  console.log("点击了取消按钮cancel");                });          }      }  }  &lt;/script&gt;</pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2053.htm">shiro的过滤器和权限控制</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2055.htm">C++ 程序编译过程</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

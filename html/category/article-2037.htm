@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2037.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@FeignClient注解的接口，用@Autowired可能获取不到实例 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>@FeignClient注解的接口，用@Autowired可能获取不到实例</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>背景：</p> <p>Spring-Boot&nbsp;2.0.8.RELEASE</p> <p>Spring-Cloud&nbsp;2.0.4.RELEASE</p> <p>OpenFeign&nbsp;2.0.4.RELEASE</p> <p>JDK 1.8</p> <p>启动类：</p> <pre><code class="language-java">package com.xxx.tfb;  import java.sql.SQLException;  import org.apache.commons.logging.Log; import org.apache.commons.logging.LogFactory; import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication; import org.h2.tools.Server; import org.mybatis.spring.annotation.MapperScan; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker; import org.springframework.cloud.netflix.eureka.EnableEurekaClient; import org.springframework.cloud.netflix.hystrix.EnableHystrix; import org.springframework.cloud.openfeign.EnableFeignClients; import org.springframework.context.annotation.ComponentScan; import org.springframework.context.annotation.FilterType;  import com.xxx.framework.config.SecondDataSourceConfiguration;  import springfox.documentation.swagger2.annotations.EnableSwagger2;  @EnableEurekaClient @EnableFeignClients(basePackages="com.xxx") @EnableCircuitBreaker @EnableProcessApplication @EnableHystrix @SpringBootApplication @EnableSwagger2 @MapperScan(basePackages = { "com.xxx.**.mapper" }) @MapperScan(basePackages = { "com.xxx.**.oramapper" }) @ComponentScan(excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {SecondDataSourceConfiguration.class})}) @ComponentScan(basePackages = { "com.xxx.framework","com.xxx.workflow", 		"com.xxx.tradeengine","com.xxx.component", 		"com.xxx.controller", "com.xxx.bizservice", 		"com.xxx.rpc","com.xxx.dto.rpc", 		"com.xxx.fallbackservice","com.xxx.helper" }) @SuppressWarnings("all") public class TfbOrBizServiceApplication  { 	private static Log log=LogFactory.getLog(TfbOrBizServiceApplication.class); 	 	public static void main(String[] args) { 		SpringApplication.run(TfbOrBizServiceApplication.class, args); 	} }</code></pre> <p>Feign客户端：</p> <pre><code class="language-java">package com.xxx.rpc;  import java.util.List;  import org.springframework.cloud.openfeign.FeignClient; import org.springframework.web.bind.annotation.RequestBody; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestMethod;  import com.xxx.dto.tfb.function.UnitBizRequestDto; import com.xxx.dto.tfb.function.UnitBizResponseDto; import com.xxx.framework.dto.PaginationDto; import com.xxx.framework.web.controller.PageRequestDto; import com.xxx.framework.web.controller.ResponseDto;  @FeignClient(value = "tfb-biz-common-service-app", path="/tfb-biz-common-service-app") public interface CommonBizRpc { 	 	/** 	 * 获取交易日期 	 */ 	@RequestMapping(value = "/leftQuery/queryAcctDate", method = RequestMethod.POST) 	public ResponseDto&lt;String&gt; queryAcctDate(); }</code></pre> <p>使用的地方：</p> <pre><code class="language-java">package com.xxx.tfb.component.or;  import org.springframework.context.annotation.DependsOn; import org.springframework.stereotype.Component;  import com.xxx.TradeDto; import com.xxx.bizenum.tfb.CommonEnum; import com.xxx.framework.utils.SpringContextUtil; import com.xxx.rpc.CommonBizRpc; import com.xxx.tradeengine.dto.DataContext; import com.xxx.tradeengine.parser.TradeComponent;  @Component @DependsOn("springContextUtil") public class OrOpenFxccDataInitComponentImpl implements TradeComponent { 	//公共交易服务 	CommonBizRpc commonBizRpc = SpringContextUtil.getBean("commonBizRpc"); 			 	@Override 	public void exec(DataContext dataContext) { 		//交易日期 		orDto.setTxDt(commonBizRpc.queryAcctDate().getData()); 	}  }</code></pre> <p>SpringContextUtil工具类：</p> <pre><code class="language-java"> @Component public class SpringContextUtil implements ApplicationContextAware { 	private static ApplicationContext applicationContext; // Spring应用上下文环境       	/** 	 * 实现ApplicationContextAware接口的回调方法，设置上下文环境 	 *  	 * @param applicationContext @ 	 */ 	@Override 	public void setApplicationContext(ApplicationContext applicationContext) { 		SpringContextUtil.applicationContext = applicationContext; 	}  	/** 	 * 获取对象 	 *  	 * @param name 	 * @return Object 一个以所给名字注册的bean的实例 @ 	 */ 	@SuppressWarnings("unchecked") 	public static &lt;T&gt; T getBean(String name) { 		return (T) applicationContext.getBean(name); 	}  }</code></pre> <p>这样的配置，应用启动的时候报错了：</p> <pre><code>Constructor in com.xxx.tfb.component.or.OrOpenFxccDataInitComponentImpl required a bean named 'commonBizRpc' that could not be found.  Action:  Consider defining a bean named 'commonBizRpc' in your configuration.</code></pre> <p>报错的意思是不存在name为commonBizRpc的实例。已经在@EnableFeignClients(basePackages="com.xxx")配置了basePackages，而且可以确定该@FeignClient已经被扫描到了。</p> <p>为什么提示找不到呢？</p> <p>分析下源码：</p> <p>@EnableFeignClients 注解：</p> <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) @Documented @Import(FeignClientsRegistrar.class) public @interface EnableFeignClients {<!-- --></code></pre> <p>注意上面导入的FeignClientsRegistrar类，该类实现了将@FeignClient注解的接口加入到Spring管理的容器里：</p> <pre><code class="language-java">	@Override 	public void registerBeanDefinitions(AnnotationMetadata metadata, 			BeanDefinitionRegistry registry) { 		registerDefaultConfiguration(metadata, registry); 		registerFeignClients(metadata, registry); 	} public void registerFeignClients(AnnotationMetadata metadata, 			BeanDefinitionRegistry registry) { 		ClassPathScanningCandidateComponentProvider scanner = getScanner(); 		scanner.setResourceLoader(this.resourceLoader);  		Set&lt;String&gt; basePackages;  		Map&lt;String, Object&gt; attrs = metadata 				.getAnnotationAttributes(EnableFeignClients.class.getName()); 		AnnotationTypeFilter annotationTypeFilter = new AnnotationTypeFilter( 				FeignClient.class); 		final Class&lt;?&gt;[] clients = attrs == null ? null 				: (Class&lt;?&gt;[]) attrs.get("clients"); 		if (clients == null || clients.length == 0) { 			scanner.addIncludeFilter(annotationTypeFilter); 			basePackages = getBasePackages(metadata); 		} 		else { 			final Set&lt;String&gt; clientClasses = new HashSet&lt;&gt;(); 			basePackages = new HashSet&lt;&gt;(); 			for (Class&lt;?&gt; clazz : clients) { 				basePackages.add(ClassUtils.getPackageName(clazz)); 				clientClasses.add(clazz.getCanonicalName()); 			} 			AbstractClassTestingTypeFilter filter = new AbstractClassTestingTypeFilter() { 				@Override 				protected boolean match(ClassMetadata metadata) { 					String cleaned = metadata.getClassName().replaceAll("\\$", "."); 					return clientClasses.contains(cleaned); 				} 			}; 			scanner.addIncludeFilter( 					new AllTypeFilter(Arrays.asList(filter, annotationTypeFilter))); 		}  		for (String basePackage : basePackages) { 			Set&lt;BeanDefinition&gt; candidateComponents = scanner 					.findCandidateComponents(basePackage); 			for (BeanDefinition candidateComponent : candidateComponents) { 				if (candidateComponent instanceof AnnotatedBeanDefinition) { 					// verify annotated class is an interface 					AnnotatedBeanDefinition beanDefinition = (AnnotatedBeanDefinition) candidateComponent; 					AnnotationMetadata annotationMetadata = beanDefinition.getMetadata(); 					Assert.isTrue(annotationMetadata.isInterface(), 							"@FeignClient can only be specified on an interface");  					Map&lt;String, Object&gt; attributes = annotationMetadata 							.getAnnotationAttributes( 									FeignClient.class.getCanonicalName());  					String name = getClientName(attributes); 					registerClientConfiguration(registry, name, 							attributes.get("configuration"));  					registerFeignClient(registry, annotationMetadata, attributes); 				} 			} 		} 	}  private void registerFeignClient(BeanDefinitionRegistry registry, 			AnnotationMetadata annotationMetadata, Map&lt;String, Object&gt; attributes) { 		String className = annotationMetadata.getClassName(); 		BeanDefinitionBuilder definition = BeanDefinitionBuilder 				.genericBeanDefinition(FeignClientFactoryBean.class); 		validate(attributes); 		definition.addPropertyValue("url", getUrl(attributes)); 		definition.addPropertyValue("path", getPath(attributes)); 		String name = getName(attributes); 		definition.addPropertyValue("name", name);         // className为带有包路径的类名 		definition.addPropertyValue("type", className); 		definition.addPropertyValue("decode404", attributes.get("decode404")); 		definition.addPropertyValue("fallback", attributes.get("fallback")); 		definition.addPropertyValue("fallbackFactory", attributes.get("fallbackFactory")); 		definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);          // 默认的别名         // 这里的name是服务方的名称，本示例为注册到Eureka里的服务名 		String alias = name + "FeignClient"; 		AbstractBeanDefinition beanDefinition = definition.getBeanDefinition();  		boolean primary = (Boolean)attributes.get("primary"); // has a default, won't be null  		beanDefinition.setPrimary(primary);          // 如果注解里加了qualifier，别名就使用qualifier里的名称 		String qualifier = getQualifier(attributes); 		if (StringUtils.hasText(qualifier)) { 			alias = qualifier; 		}  		BeanDefinitionHolder holder = new BeanDefinitionHolder(beanDefinition, className, 				new String[] { alias }); 		BeanDefinitionReaderUtils.registerBeanDefinition(holder, registry); 	}</code></pre> <p>注意上面的registerFeignClients方法，交给Spring容器管理的实例的name默认是className，即带有包路径的name，本次示例为"com.xxx.rpc.CommonBizRpc"，默认的别名：<br /> &nbsp; &nbsp; &nbsp; &nbsp; // 这里的name是服务方的名称，本示例为注册到Eureka里的服务名，tfb-biz-common-service-appFeignClient<br /> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;String alias = name + "FeignClient";</p> <p> &nbsp; &nbsp; &nbsp; &nbsp; // 如果注解里加了qualifier，别名就使用qualifier里的名称<br /> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;String qualifier = getQualifier(attributes);<br /> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (StringUtils.hasText(qualifier)) {<!-- --><br /> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;alias = qualifier;<br /> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}</p> <p>这样在注入的时候，要么使用的name是com.xxx.rpc.CommonBizRpc而不能是CommonBizRpc，或tfb-biz-common-service-appFeignClient（如果该服务注册多个客户端，可能会报错），或使用CommonBizRpc.class</p> <p>SpringContextUtil.getBean();</p> <p>@AutoWired也一样</p> <p>为了方便使用，建议在每个@FeignClient里配置上qualifier，修改后的代码如下：</p> <pre><code class="language-java">package com.xxx.rpc;   import org.springframework.cloud.openfeign.FeignClient; import org.springframework.web.bind.annotation.RequestBody; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestMethod;   @FeignClient(value = "tfb-biz-common-service-app", path="/tfb-biz-common-service-app", qualifier="commonBizRpc") public interface CommonBizRpc { 	 	/** 	 * 获取交易日期 	 */ 	@RequestMapping(value = "/leftQuery/queryAcctDate", method = RequestMethod.POST) 	public ResponseDto&lt;String&gt; queryAcctDate(); }</code></pre> <p>注意事项：</p> <p>1.@EnableFeignClients(basePackages="com.xxx") 如果不配置basePackages的话，那么默认只会扫描当前启动类包及其子包的@FeignClient注解</p> <p>2.@FeignClient里的path最好写上，而且是服务端的contextPath(value = "tfb-biz-common-service-app", path="/tfb-biz-common-service-app", qualifier="commonBizRpc")</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2036.htm">CUDA02 &#8211; 访存优化和Unified Memory</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2038.htm">判断数A中是否存在一棵同构于B的子树</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2104.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Redis内存淘汰机制 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Redis内存淘汰机制</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h5><a id="_0" rel="nofollow"></a>为什么有淘汰机制？</h5> <p>redis 基于内存，而内存是有容量的，肯定会要考虑存储空间不够的问题。</p> <h5><a id="_3" rel="nofollow"></a>有什么过期策略？</h5> <p>定时删除：key过期了就删掉 定时任务一直监控。 CPU很忙要一直看着<br /> 定期删除：一段时间后随机抽查key，过期了就删除。<br /> 惰性删除：用到某个key，去检查是否过期，过期删除。内存很忙，不去查询就一直占着空间。</p> <p>所以一般是 定期+惰性 来达到一定程度的清理。</p> <p>如果不去查询，又没有抽查到，岂不是不完美让过期的key删除，还是会存在空间不足，于是淘汰机制强制处理。</p> <p>可以理解为，<mark>淘汰机制是 在一定程度过期策略上 处理空间还是不能有效解决的前提下，进行淘汰机制来让redis 保持运行</mark>。</p> <p>有一篇较详细文章可以细品。 这里只把概念思路介绍。<br /> https://blog.csdn.net/a745233700/article/details/85413179</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2103.htm">Python3利用Qt5实现简易的五子棋游戏_python</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2105.htm">Spring 源码（2）Spring IOC 容器 前戏准备工作</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2052.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>C# 扩展方法简介 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>C# 扩展方法简介</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>C# 中提供一个非常实用的供能，扩展方法（Extension method），通过扩展方法，我们可以对已有类型做自己想做的相关扩展。</p> <p>扩展方法是通过额外的静态方法扩展现有的类型。</p> <p>&nbsp;</p> <p>扩展方法是在一个静态类中定义的，并且扩展方法也要是静态方法，并且扩展方法的第一个参数为要扩展的类型，必须附加一个this关键字。</p> <p>&nbsp;</p> <p>来看一个简单的扩展方法：</p> <pre><code class="language-html">namespace MethodExtend {     static class ExtendMethodTest     {         public static void testExtendMethod(this int i)         {             Console.WriteLine("Extend Method Test");         }          public static void testExtendMethod(this int i, int index)         {             Console.WriteLine(-index);         }          public static void testExten2(this int i)         {             Console.WriteLine("extend method test");         }     } }</code></pre> <p> &nbsp;</p> <p>上面这个类中的三个方法都是扩展方法，this int i表明要扩展的类型为int类型。this 修饰的是 int ,表明这个扩展方法是扩展的int 类型。</p> <p>&nbsp;</p> <p>下面看一下扩展方法的引用：</p> <pre><code class="language-html">using System; using System.Collections.Generic; using System.Linq; using System.Text;  namespace MethodExtend {     class Program     {         static void Main(string[] args)         {             int age = 25;             age.testExtendMethod();              Console.WriteLine("///");             int t = 6;             t.testExtendMethod(t);                 }     } }</code></pre> <p> C#编译器会自动检测当前在作用域中的所有static类，找出为一个给定的类型定义的扩展方法。</p> <p>如果你自己写的扩展方法的命名空间不在当前命名空间中， 只要自己添加相对应的命名空间就可以了。</p> <p>&nbsp;</p> <p>如果扩展方法包含参数，就可以在要扩展的类型（即第一个参数）以后顺序的添加扩展方法对应的参数既可，在调用的时候填写相应参数，不过请记住，第一个参数为要扩展的类型，在填写实参的时候并没有这个参数。</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2051.htm">ViewPager倒序并分页功能的显示</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2053.htm">shiro的过滤器和权限控制</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2187.htm" title="Window系统，MySQL服务器如何设置开机启动和关闭">Window系统，MySQL服务器如何设置开机启动和关闭</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

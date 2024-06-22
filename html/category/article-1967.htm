@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1967.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>springboot接口如何控制版本？ - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>springboot接口如何控制版本？</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>dubbo有一套自己的版本控制策略，消费者根据服务提供者的version进行配置，最终实现版本控制，在springboot中又如何实现？</p> <p>springboot中控制版本，其实很简单粗暴，不同版本的接口，可以直接写两个接口，接口uri不一样，不就OK了吗？但是为了让同一个项目组的同学都能按照一定的版本规则写接口，我们需要稍微做点加工。<br /> 简单粗暴版：<br /><strong>/api/query/studentInfo1<br /> /api/query/studentInfo2</strong></p> <p>规范版：<br /><span style="color:#494949;"><strong>/v1/api/query/studentInfo<br /> /v2/api/query/studentInfo</strong></span></p> <p>具体实现：</p> <p>需要继承RequestMappingHandlerMapping类，重写org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#registerHandlerMethod方法。RequestMappingHandlerMapping是根据类或方法上的 @RequestMapping 来生成 RequestMappingInfo 的实例，负责根据用户请求（uri）匹配找到Handler即处理器（controller层加了RequestMapping注解的方法）。</p> <pre><code class="language-java">package com.cn.dl.springbootdemo.annotation;  import org.springframework.core.annotation.AliasFor;  import java.lang.annotation.ElementType; import java.lang.annotation.Retention; import java.lang.annotation.RetentionPolicy; import java.lang.annotation.Target;  /**  * @author yanshao  * @date 2022/8/11 10:31 上午  */ @Target({ElementType.METHOD, ElementType.TYPE}) @Retention(RetentionPolicy.RUNTIME) public @interface ApiVersion {      @AliasFor("path")     String[] value() default {};      @AliasFor("value")     String[] path() default {};  } </code></pre> <p><span style="color:#fe2c24;">这块代码有较详细的注释，最后自己debug跟一下spring源码</span></p> <pre><code class="language-java">package com.cn.dl.springbootdemo.handler;  import com.cn.dl.springbootdemo.annotation.ApiVersion; import org.springframework.core.annotation.AnnotationUtils; import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition; import org.springframework.web.servlet.mvc.method.RequestMappingInfo; import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;  import java.lang.reflect.Method; import java.util.Objects;  /**  * @author yanshao  * @date 2022/8/11 10:32 上午  */ public class ApiVersionHandlerMapping extends RequestMappingHandlerMapping {      @Override     protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mappingInfo) {         //类上加了ApiVersion注解         ApiVersion apiVersion = AnnotationUtils.findAnnotation(method.getDeclaringClass(), ApiVersion.class);          //可同时指定多个版本，类似于org.springframework.web.bind.annotation.RequestMapping.value的paths         String[] urlPatterns = Objects.isNull(apiVersion) ? new String[0] : apiVersion.value();          //api版本urlPatterns         PatternsRequestCondition apiVersionPattern = new PatternsRequestCondition(urlPatterns);          //当前未增加版本的paths，例如：/api/query/studentInfo         PatternsRequestCondition curtPattern = mappingInfo.getPatternsCondition();          //加版本号增加到curtPath之前，例如：/v1 + /api/query/studentInfo -&gt; /v1/api/query/studentInfo         PatternsRequestCondition updatedFinalPattern = apiVersionPattern.combine(curtPattern);          //构建新的RequestMappingInfo         mappingInfo = new RequestMappingInfo(                 mappingInfo.getName(),                 updatedFinalPattern,                 mappingInfo.getMethodsCondition(),                 mappingInfo.getParamsCondition(),                 mappingInfo.getHeadersCondition(),                 mappingInfo.getConsumesCondition(),                 mappingInfo.getProducesCondition(),                 mappingInfo.getCustomCondition()         );         super.registerHandlerMethod(handler, method, mappingInfo);     } } </code></pre> <pre><code class="language-java">package com.cn.dl.springbootdemo.handler;  import org.springframework.boot.SpringBootConfiguration; import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations; import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;  /**  * @author yanshao  * @date 2022/8/11 10:36 上午  */ @SpringBootConfiguration public class MvcMappingConfig implements WebMvcRegistrations {      //注册ApiVersionHandlerMapping组件     @Override     public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {         return new ApiVersionHandlerMapping();     } } </code></pre> <pre><code class="language-java">package com.cn.dl.springbootdemo.controller;  import com.alibaba.fastjson.JSONObject; import com.cn.dl.springbootdemo.annotation.ApiVersion; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author yanshao  * @date 2022/8/11 10:37 上午  */ @RestController @ApiVersion("v1") @RequestMapping("/api/") public class StudentController {      @GetMapping(value = "/query/studentInfo")     public JSONObject studentInfo(){         JSONObject result = new JSONObject();         result.put("name","yanshao");         result.put("age",27);         result.put("apiVersion","v1");         return result;     } } </code></pre> <pre><code class="language-java">package com.cn.dl.springbootdemo.controller;  import com.alibaba.fastjson.JSONObject; import com.cn.dl.springbootdemo.annotation.ApiVersion; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author yanshao  * @date 2022/8/11 10:37 上午  */ @RestController @ApiVersion("v2") @RequestMapping("/api/") public class StudentControllerV2 {      @GetMapping(value = "/query/studentInfo")     public JSONObject studentInfo(){         JSONObject result = new JSONObject();         result.put("name","yanshao");         result.put("age",27);         result.put("apiVersion","v2");         return result;     } } </code></pre> <p>效果：</p> <p><img fetchpriority="high" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads/20230119/e899a9d840d1d23ea2f6b2e1f89d1bb8.jpg"></p> <p><img decoding="async" alt="" height="662" src="http://img.555519.xyz/uploads/20230119/d9fb869e77823c4a8c1d9f9b7a42fee3.jpg"></p> <p>&nbsp;不知道大家发现一个缺陷了吗？为了搞一个不同版本的接口，还得重新写一个类，是不是ApiVersion注解可以放在方法上？这需要修改一下ApiVersionHandlerMapping，就可以支持同一个Controller中不同版本的接口了。</p> <pre><code class="language-java">package com.cn.dl.springbootdemo.handler;  import com.cn.dl.springbootdemo.annotation.ApiVersion; import org.springframework.core.annotation.AnnotationUtils; import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition; import org.springframework.web.servlet.mvc.method.RequestMappingInfo; import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;  import java.lang.reflect.Method; import java.util.Objects;  /**  * @author yanshao  * @date 2022/8/11 10:32 上午  */ public class ApiVersionHandlerMapping extends RequestMappingHandlerMapping {      @Override     protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mappingInfo) {         //类上加了ApiVersion注解 //        ApiVersion apiVersionClass = AnnotationUtils.findAnnotation(method.getDeclaringClass(), ApiVersion.class);          //方法上加了ApiVersion注解         ApiVersion apiVersionMethod = AnnotationUtils.findAnnotation(method, ApiVersion.class);          //可同时指定多个版本，类似于org.springframework.web.bind.annotation.RequestMapping.value的paths         String[] urlPatterns = Objects.isNull(apiVersionMethod) ? new String[0] : apiVersionMethod.value();          //api版本urlPatterns         PatternsRequestCondition apiVersionPattern = new PatternsRequestCondition(urlPatterns);          //当前未增加版本的paths，例如：/api/query/studentInfo //        PatternsRequestCondition curtPattern = mappingInfo.getPatternsCondition();          //加版本号增加到curtPath之前，例如：/v1 + /api/query/studentInfo -&gt; /v1/api/query/studentInfo         PatternsRequestCondition updatedFinalPattern = apiVersionPattern.combine(mappingInfo.getPatternsCondition());          //构建新的RequestMappingInfo         mappingInfo = new RequestMappingInfo(                 mappingInfo.getName(),                 updatedFinalPattern,                 mappingInfo.getMethodsCondition(),                 mappingInfo.getParamsCondition(),                 mappingInfo.getHeadersCondition(),                 mappingInfo.getConsumesCondition(),                 mappingInfo.getProducesCondition(),                 mappingInfo.getCustomCondition()         );         super.registerHandlerMethod(handler, method, mappingInfo);     } } </code></pre> <pre><code class="language-java">package com.cn.dl.springbootdemo.controller;  import com.alibaba.fastjson.JSONObject; import com.cn.dl.springbootdemo.annotation.ApiVersion; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author yanshao  * @date 2022/8/11 10:37 上午  */ @RestController @RequestMapping("/api/") public class StudentController {      @ApiVersion("v1")     @GetMapping(value = "/query/studentInfo")     public JSONObject studentInfoV1(){         JSONObject result = new JSONObject();         result.put("name","yanshao");         result.put("age",27);         result.put("apiVersion","v1");         return result;     }      @ApiVersion("v2")     @GetMapping(value = "/query/studentInfo")     public JSONObject studentInfoV2(){         JSONObject result = new JSONObject();         result.put("name","yanshao");         result.put("age",27);         result.put("apiVersion","v2");         return result;     } } </code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>下一个：<a href="/html/category/article-1968.htm">c语言之字符串旋转</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

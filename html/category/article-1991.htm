@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1991.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Springboot 设置过滤器以及重复读取request里的body - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Springboot 设置过滤器以及重复读取request里的body</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>需求：request的content-type为applciation/json，进入controller之前需要把body中的参数取出来做一次处理，然后和hearder中的另一个参数做对比。</p> <p>思路：加一个过滤器，在过滤器中取出参数做处理，然后比较</p> <p>注意：body里的数据用流来读取，只能读取一次</p> <h3>HttpServletRequest的输入流只能读取一次的原因</h3> <p>我们先来看看为什么HttpServletRequest的输入流只能读一次，当我们调用<code>getInputStream()</code>方法获取输入流时得到的是一个InputStream对象，而实际类型是ServletInputStream，它继承于InputStream。</p> <p>InputStream的<code>read()</code>方法内部有一个postion，标志当前流被读取到的位置，每读取一次，该标志就会移动一次，如果读到最后，<code>read()</code>会返回-1，表示已经读取完了。如果想要重新读取则需要调用<code>reset()</code>方法，position就会移动到上次调用mark的位置，mark默认是0，所以就能从头再读了。调用<code>reset()</code>方法的前提是已经重写了<code>reset()</code>方法，当然能否reset也是有条件的，它取决于<code>markSupported()</code>方法是否返回true。</p> <p>InputStream默认不实现<code>reset()</code>，并且<code>markSupported()</code>默认也是返回false，这一点查看其源码便知：<br /><img decoding="async" alt="解决HttpServletRequest的输入流只能读取一次的问题" class="has" src="http://img.555519.xyz/uploads/20230109/89183b9744eec4d350798ae11fb290ff.jpg"></p> <p>我们再来看看ServletInputStream，可以看到该类没有重写<code>mark()</code>，<code>reset()</code>以及<code>markSupported()</code>方法：<br /><img decoding="async" alt="解决HttpServletRequest的输入流只能读取一次的问题" class="has" src="http://img.555519.xyz/uploads/20230109/c20b44b2179e32861ea90ddf2430d5c5.jpg"></p> <p>综上，InputStream默认不实现reset的相关方法，而ServletInputStream也没有重写reset的相关方法，这样就无法重复读取流，这就是我们从request对象中获取的输入流就只能读取一次的原因。</p> <h2><strong>重复读取body中数据的方法</strong></h2> <p>这个自定义的requestWrapper继承了HttpServletRequestWrapper&nbsp;，HttpServletRequestWrapper 是一个ServletRequest的包装类同时也是ServletRequest的实现类。在这个自定义的requestWrapper里，<strong>用一个String做缓存，在构造方法里先把request的body中的数据缓存起来，然后重写了getInputStream，返回这个缓存的body，而不是从流中读取。</strong>这样，在需要多次读取body的地方，只需要在过滤器中把原来的request换成这个自定义的request，然后把这个自定义的带缓存功能的request传到后续的过滤器链中。</p> <pre class="has"><code class="language-java">public class BodyReaderRequestWrapper extends HttpServletRequestWrapper {     private final String body;      /**      *      * @param request      */     public BodyReaderRequestWrapper(HttpServletRequest request) throws IOException{         super(request);         StringBuilder sb = new StringBuilder();         InputStream ins = request.getInputStream();         BufferedReader isr = null;         try{             if(ins != null){                 isr = new BufferedReader(new InputStreamReader(ins));                 char[] charBuffer = new char[128];                 int readCount = 0;                 while((readCount = isr.read(charBuffer)) != -1){                     sb.append(charBuffer,0,readCount);                 }             }else{                 sb.append("");             }         }catch (IOException e){             throw e;         }finally {             if(isr != null) {                 isr.close();             }         }          sb.toString();         body = sb.toString();     }      @Override     public BufferedReader getReader() throws IOException {         return new BufferedReader(new InputStreamReader(this.getInputStream()));     }      @Override     public ServletInputStream getInputStream() throws IOException {         final ByteArrayInputStream byteArrayIns = new ByteArrayInputStream(body.getBytes());         ServletInputStream servletIns = new ServletInputStream() {             @Override             public boolean isFinished() {                 return false;             }              @Override             public boolean isReady() {                 return false;             }              @Override             public void setReadListener(ReadListener readListener) {              }              @Override             public int read() throws IOException {                 return byteArrayIns.read();             }         };         return  servletIns;     } }</code></pre> <h3><strong>springboot的过滤器：</strong></h3> <p><strong>2个注解：</strong></p> <p><strong>@WebFilter（过滤器上）</strong></p> <p><strong>@ServletComponentScan （加在启动类上,支持servlet components扫描（为了webfilter）)</strong></p> <pre class="has"><code>@Order(999) // 序号越低，优先级越高 // 加上WebFilter即可成为过滤器 @WebFilter(filterName="myFilter", urlPatterns="/api/workorder/service/selfAppeal") public class ExternalFilter implements Filter  {      private final static Logger logger = LoggerFactory.getLogger(ExternalFilter.class);          @Override     public void init(FilterConfig filterConfig) throws ServletException {         logger.info("filter init");     }       @Override     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)             throws IOException, ServletException {         ResponseObject object = new ResponseObject();         HttpServletRequest req = (HttpServletRequest)servletRequest;         HttpServletResponse res = (HttpServletResponse)servletResponse;         // 一个request的包装类，初始化时缓存了body,重写了getInputStream返回缓存的body，实现重复读取body         BodyReaderRequestWrapper requestWrapper  = new BodyReaderRequestWrapper(req);         String requestURI = requestWrapper.getRequestURI();         System.out.println("---------------------&gt;过滤器：请求地址" + requestURI);         String md5 = requestWrapper.getHeader("md5")  ;                 if (md5 == null || !md5.toLowerCase().equals(MD5.md5(ReqGetBody.getBody(requestWrapper)).toLowerCase())) {             object.setStatus(501);             object.setStatusText("数据md5校验失败");             render(object, res);             return;         }         // 这里传递下去的就是自定义的request了，所以后续的Controller才能重复读取到body里的参数         filterChain.doFilter(requestWrapper, res);     }       @Override     public void destroy() {       }      /**      * @Title: render      * @Description: 发送Response      * @param object     * @param response void     * @author MasterYi     * @date 2020年1月15日上午10:48:45     */      private void render(ResponseObject object, HttpServletResponse response) {         response.setContentType("application/json;charset=UTF-8");         try {             response.setStatus(200);             response.getWriter().write(JSONObject.toJSON(object).toString());         } catch (IOException e) {             logger.error("ExternalFilter写入response异常");         }     } }</code></pre> <p>上面的getBody的代码（从body中取值的具体操作）</p> <pre class="has"><code class="language-java">public class ReqGetBody {     static public String getBody(HttpServletRequest request) {         try {             ServletInputStream in = request.getInputStream();             String body;             body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));                          return body;         } catch (IOException e) {             e.printStackTrace();             return "";         }     } }</code></pre> <p>&nbsp;</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1990.htm">Vue 引入外部css样式两种方式 import 和link ； mixin.js的使用</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1992.htm">Swagger在SpringBoot中的的一些详细配置</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

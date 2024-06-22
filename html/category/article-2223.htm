@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2223.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Python实现数据透视表 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Python实现数据透视表</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>用Python里的Pandas可以实现，虽然感觉Excel更方便</p> <h3> <a id="1groupby__agg_1" rel="nofollow"></a>1.groupby + agg</h3> <p><strong>不够直观，不好看</strong><br /> 对贷款年份，贷款种类创建数据透视</p> <pre><code class="prism language-python">train_data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>agg<span class="token punctuation">(</span>d_roat <span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> <span class="token string">'mean'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/c2e1012f638001b58c9d7944e8b63ec1.jpg" alt="Python实现数据透视表"></p> <h3> <a id="2_crosstab_9" rel="nofollow"></a>2. crosstab</h3> <pre><code class="prism language-python">pandas<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>index<span class="token punctuation">,</span> columns<span class="token punctuation">,</span>values<span class="token punctuation">,</span> rownames<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> colnames<span class="token punctuation">,</span>  				aggfunc<span class="token punctuation">,</span> margins<span class="token punctuation">,</span> margins_name<span class="token punctuation">,</span> dropna<span class="token punctuation">,</span> normalize<span class="token punctuation">)</span> </code></pre> <p>主要用到的参数：<br /> index：选哪个变量做数据透视表的行<br /> columns：选哪个变量做数据透视表的列<br /> values：要聚合的值<br /> aggfunc：使用的聚合函数<br /> margins：是否添加汇总列/行<br /> margins_name：汇总行/列的名字</p> <h4> <a id="_22" rel="nofollow"></a>例子</h4> <p>对贷款年份，贷款种类创建数据透视</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'loan_id'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token string">'count'</span><span class="token punctuation">,</span>margins <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> margins_name <span class="token operator">=</span> <span class="token string">'合计'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/526309472bc88f0faec4c841a9f08fc9.jpg" alt="Python实现数据透视表"><br /> 可以直接看出交叉组合之后违约比例</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token string">'mean'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/45232ccc289a401e59139116678d6649.jpg" alt="Python实现数据透视表"></p> <h3> <a id="3groupby__pivot_33" rel="nofollow"></a>3.groupby + pivot</h3> <pre><code class="prism language-python">train_data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> as_index <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pivot<span class="token punctuation">(</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/4dbc21cbed7a933470130fbd950d9af7.jpg" alt="Python实现数据透视表"></p> <h3> <a id="pivot_table_39" rel="nofollow"></a>pivot_table</h3> <pre><code class="prism language-python">pandas<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>data<span class="token punctuation">,</span> values<span class="token punctuation">,</span> index<span class="token punctuation">,</span> columns<span class="token punctuation">,</span> aggfunc<span class="token punctuation">,</span> fill_value<span class="token punctuation">,</span>  					margins<span class="token punctuation">,</span> dropna<span class="token punctuation">,</span> margins_name<span class="token punctuation">,</span> observed<span class="token punctuation">,</span> sort<span class="token punctuation">)</span> </code></pre> <p>常用参数与crosstab一致</p> <h4> <a id="_46" rel="nofollow"></a>例子</h4> <p>实现同样的数据透视表</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 			  values<span class="token operator">=</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  			  aggfunc<span class="token operator">=</span><span class="token string">'count'</span><span class="token punctuation">,</span>  margins <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> margins_name <span class="token operator">=</span> <span class="token string">'合计'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/75ea8975f6f634ccfb727a9f164d8219.jpg" alt="Python实现数据透视表"></p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 			   values<span class="token operator">=</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  			   aggfunc<span class="token operator">=</span><span class="token string">'mean'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/ffa5a0da5a789491f48cfdd1052a473c.jpg" alt="Python实现数据透视表"></p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2222.htm">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2224.htm">杨氏矩阵详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

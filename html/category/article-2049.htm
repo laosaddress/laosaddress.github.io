@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2049.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Redis和Mysql如何保证数据一致性 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Redis和Mysql如何保证数据一致性</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<blockquote> <p>今天分享一道一线互联网公司高频面试题。<br /> “Redis和Mysql如何保证数据一致性”。<br /> 这个问题难倒了不少工作5年以上的程序员，难的不是问题本身，而是解决这个问题的思维模式。<br /> 下面来看看普通人和高手对于这个问题的回答。</p> </blockquote> <h1 id="普通人">普通人：</h1> <p>嗯....</p> <p>Redis和Mysql的数据一致性保证是吧？我想想。</p> <p>嗯 ， 就是，Mysql的数据发生变化以后，可以同步修改Redis里面的数据。</p> <h1 id="高手">高手：</h1> <p>一般情况下，Redis用来实现应用和数据库之间读操作的缓存层，主要目的是减少数据库IO，还可以提升数据的IO性能。</p> <p>这是它的整体架构。</p> <p>当应用程序需要去读取某个数据的时候，首先会先尝试去Redis里面加载，如果命中就直接返回。如果没有命中，就从数据库查询，查询到数据后再把这个数据缓存到Redis里面。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d41ffe75e6d8b9a9b13475d1d0e09a1a.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>在这样一个架构中，会出现一个问题，就是一份数据，同时保存在数据库和Redis里面，当数据发生变化的时候，需要同时更新Redis和Mysql，由于更新是有先后顺序的，并且它不像Mysql中的多表事务操作，可以满足ACID特性。所以就会出现数据一致性问题。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/70d15acd0600919a3ddcff51f115984e.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>在这种情况下，能够选择的方法只有几种。</p> <ol> <li>先更新数据库，再更新缓存</li> <li>先删除缓存，再更新数据库</li> </ol> <p>如果先更新数据库，再更新缓存，如果缓存更新失败，就会导致数据库和Redis中的数据不一致。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b147dd0cc3dadbe59468dfe99703e407.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>如果是先删除缓存，再更新数据库，理想情况是应用下次访问Redis的时候，发现Redis里面的数据是空的，就从数据库加载保存到Redis里面，那么数据是一致的。但是在极端情况下，由于删除Redis和更新数据库这两个操作并不是原子的，所以这个过程如果有其他线程来访问，还是会存在数据不一致问题。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f2b3104d8c8b9109d0c86e42202431bd.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>所以，如果需要在极端情况下仍然保证Redis和Mysql的数据一致性，就只能采用最终一致性方案。</p> <p>比如基于RocketMQ的可靠性消息通信，来实现最终一致性。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6a8f76c9761b2497dbde94bb50a4fb56.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>还可以直接通过Canal组件，监控Mysql中binlog的日志，把更新后的数据同步到Redis里面。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6791d527ad19d973b5fc2120b79183e5.jpg" alt="Redis和Mysql如何保证数据一致性"></p> <p>因为这里是基于最终一致性来实现的，如果业务场景不能接受数据的短期不一致性，那就不能使用这个方案来做。</p> <p>以上就是我对这个问题的理解。</p> <h1 id="总结">总结</h1> <p>在面试的时候，面试官喜欢问各种没有场景化的纯粹的技术问题，比如说：“你这个最终一致性方案”还是会存在数据不一致的问题啊？那怎么解决？</p> <p>先不用慌，技术是为业务服务的，所以不同的业务场景，对于技术的选择和方案的设计都是不同的，所以这个时候，可以反问面试官，具体的业务场景是什么？</p> <p>一定要知道的是，一个技术方案不可能cover住所有的场景，明白了吗？</p> <p>本期的普通人VS高手面试系列就到这里结束了，喜欢的朋友记得点赞收藏。</p> <p>另外，最近从评论区收到的面试问题，都有点太泛了，比如：说一下mongoDB啊，说一下kafka啊、说一下并发啊，这些问题都是要几个小时才能彻底说清楚，建议大家提具体一点的问题。</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2048.htm">JS中URL参数的编解码</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2050.htm">【TypeScript】TypeScript 与 JavaScript 有何不同？</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

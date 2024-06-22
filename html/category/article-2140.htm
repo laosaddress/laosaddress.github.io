@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2140.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>服务器使用Nginx部署Springboot项目（jar包） - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>服务器使用Nginx部署Springboot项目（jar包）</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>部署SpringBoot项目到后台Nginx实现多项目反向代理</h3> <ul> <li><a href="#1javajar_2" rel="nofollow">1,将java项目打成jar包</a></li> <li> <ul> <li><a href="#2_6" rel="nofollow">2.准备工具</a></li> <li><a href="#3jar_11" rel="nofollow">3.将jar包传入服务器</a></li> <li><a href="#3Xshelljar_14" rel="nofollow">3.使用Xshell运行jar包</a></li> <li><a href="#4nginx_22" rel="nofollow">4.下载安装nginx</a></li> <li><a href="#5nginxconf_25" rel="nofollow">5.配置nginx.conf</a></li> <li><a href="#6_94" rel="nofollow">6通过域名访问(成功)</a></li> </ul> </li> </ul> </div> <h1><a id="1javajar_2" rel="nofollow"></a>1,将java项目打成jar包</h1> <p>这里我用到的是maven工具<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/c8e74bdf1784af159b4f8cd530968fcf.jpg" alt="服务器使用Nginx部署Springboot项目（jar包）"><br /> 这里有两个项目，打包完成后一个为demo.jar,另一个为jst.jar</p> <h2><a id="2_6" rel="nofollow"></a>2.准备工具</h2> <p>1.<strong>服务器</strong><br /> 2.<strong>域名(注：经过备案)</strong><br /> 3.<strong>Xshell用于连接服务器</strong><br /> 4.<strong>WinScp（注:视图工具，用于传输jar）</strong></p> <h2><a id="3jar_11" rel="nofollow"></a>3.将jar包传入服务器</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/1da6041422957407e1dae04db4242ca5.jpg" alt="服务器使用Nginx部署Springboot项目（jar包）"><br /><strong>直接拖动即可</strong></p> <h2><a id="3Xshelljar_14" rel="nofollow"></a>3.使用Xshell运行jar包</h2> <p>注：（服务器的java环境以及maven环境，各位请自行配置，这里不做描述。）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/f44cbb5daa08d023d4febab87f07423b.jpg" alt="服务器使用Nginx部署Springboot项目（jar包）"><br /><strong>cd到jar包路径下执行：nohup java -jar demo.jar &gt;temp.txt &amp;</strong><br /><strong>执行启动完两个jar包后使用ip与端口号访问接口</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/bc2c4e59a39c2f787cc2249f680f34f5.jpg" alt="服务器使用Nginx部署Springboot项目（jar包）"><br /><strong>（注:测试接口）</strong></p> <h2><a id="4nginx_22" rel="nofollow"></a>4.下载安装nginx</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zhuanlan.zhihu.com/p/85973013"  rel="nofollow">安装教程</a></p> <h2><a id="5nginxconf_25" rel="nofollow"></a>5.配置nginx.conf</h2> <p>**(注：*********<strong>代表服务器地址)</strong></p> <pre><code class="prism language-java">http<span class="token punctuation">{<!-- --></span>     include       mime<span class="token punctuation">.</span>types<span class="token punctuation">;</span>     default_type  application<span class="token operator">/</span>octet<span class="token operator">-</span>stream<span class="token punctuation">;</span>      #log_format  main<span class="token string">'$remote_addr - $remote_user [$time_local] "$request" '</span>     #<span class="token string">'$status $body_bytes_sent "$http_referer" '</span>     #<span class="token string">'"$http_user_agent" "$http_x_forwarded_for"'</span><span class="token punctuation">;</span>      #access_log  logs<span class="token operator">/</span>access<span class="token punctuation">.</span>log  main<span class="token punctuation">;</span>      sendfile        on<span class="token punctuation">;</span>     #tcp_nopush     on<span class="token punctuation">;</span>      #keepalive_timeout<span class="token number">0</span><span class="token punctuation">;</span>     keepalive_timeout<span class="token number">65</span><span class="token punctuation">;</span>      #gzip  on<span class="token punctuation">;</span>       server<span class="token punctuation">{<!-- --></span>      #监听的端口号         listen<span class="token number">80</span><span class="token punctuation">;</span>         #设置访问的二级域名         server_name  demo<span class="token punctuation">.</span>eysource<span class="token punctuation">.</span>com<span class="token punctuation">;</span>          #charset koi8<span class="token operator">-</span>r<span class="token punctuation">;</span>          #access_log  logs<span class="token operator">/</span>host<span class="token punctuation">.</span>access<span class="token punctuation">.</span>log  main<span class="token punctuation">;</span>          location<span class="token operator">/</span><span class="token punctuation">{<!-- --></span>         #配置访问的项目路径（注<span class="token operator">:</span>这里重点）        proxy_pass  http<span class="token operator">:</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">:</span><span class="token number">9091</span><span class="token operator">/</span>         # root html<span class="token punctuation">;</span>        # index index<span class="token punctuation">.</span>html index<span class="token punctuation">.</span>htm<span class="token punctuation">;</span>         proxy_set_header           Host $host<span class="token punctuation">;</span>         proxy_set_header  X<span class="token operator">-</span>Real<span class="token operator">-</span>IP  $remote_addr<span class="token punctuation">;</span>         proxy_set_header           X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For       $proxy_add_x_forwarded_for<span class="token punctuation">;</span>         client_max_body_size<span class="token number">100</span>m<span class="token punctuation">;</span>         root   html<span class="token punctuation">;</span>         index  index<span class="token punctuation">.</span>html index<span class="token punctuation">.</span>htm<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span>    server<span class="token punctuation">{<!-- --></span>      #监听的端口号         listen<span class="token number">80</span><span class="token punctuation">;</span>         #设置访问的二级域名         server_name  aaa<span class="token punctuation">.</span>eysource<span class="token punctuation">.</span>com<span class="token punctuation">;</span>          #charset koi8<span class="token operator">-</span>r<span class="token punctuation">;</span>          #access_log  logs<span class="token operator">/</span>host<span class="token punctuation">.</span>access<span class="token punctuation">.</span>log  main<span class="token punctuation">;</span>          location<span class="token operator">/</span><span class="token punctuation">{<!-- --></span>         #配置访问的项目路径（注<span class="token operator">:</span>这里重点）        proxy_pass  http<span class="token operator">:</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">:</span><span class="token number">8080</span><span class="token operator">/</span>         # root html<span class="token punctuation">;</span>        # index index<span class="token punctuation">.</span>html index<span class="token punctuation">.</span>htm<span class="token punctuation">;</span>         proxy_set_header           Host $host<span class="token punctuation">;</span>         proxy_set_header  X<span class="token operator">-</span>Real<span class="token operator">-</span>IP  $remote_addr<span class="token punctuation">;</span>         proxy_set_header           X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For       $proxy_add_x_forwarded_for<span class="token punctuation">;</span>         client_max_body_size<span class="token number">100</span>m<span class="token punctuation">;</span>         root   html<span class="token punctuation">;</span>         index  index<span class="token punctuation">.</span>html index<span class="token punctuation">.</span>htm<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h2><a id="6_94" rel="nofollow"></a>6通过域名访问(成功)</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/a980c7d56baf8de03355b45e47479006.jpg" alt="服务器使用Nginx部署Springboot项目（jar包）"></p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2139.htm">python神经网络使用Keras构建RNN训练_python</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2141.htm">使用maven命令直接打包war项目</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2029.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>深度学习（PyTorch）——TensorBoard的使用方法与技巧 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>深度学习（PyTorch）——TensorBoard的使用方法与技巧</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>B站UP主“我是土堆”视频内容</p> <p>安装TensorBoard，如下：</p> <p><img fetchpriority="high" decoding="async" alt="" height="241" src="http://img.555519.xyz/uploads/20230217/92ea3eeab5f882f424f7aebd69b3ec5f.jpg"></p> <p>TensorBoard涉及的类是SummaryWriter（from torch.utils.tensorboard import SummaryWriter）</p> <p>&nbsp;pycharm中查看一个类的内容可以按住ctrl如何鼠标点击相应的类，如下图所示</p> <p><img decoding="async" alt="" height="482" src="http://img.555519.xyz/uploads/20230217/8ea108ce7b321a4fd568bdf15ef14abb.jpg"></p> <p>&nbsp;<img decoding="async" alt="" height="319" src="http://img.555519.xyz/uploads/20230217/755baca4c5c7a1c100ef656a8ae3ad85.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="456" src="http://img.555519.xyz/uploads/20230217/416da5e2b25ae6f3d81a4ded04c19b7f.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="352" src="http://img.555519.xyz/uploads/20230217/44dd7dded29f636a8476bbe0569c62e0.jpg"></p> <p>&nbsp;writer=SummaryWriter("logs")表示将对应的事件存储到logs文件夹下面</p> <p>add_scalar的用法：参数1、tag是图表的标题，参数2、scalar_value是需要保存的数值，对应于坐标轴的纵轴，参数3、global_step对应于坐标轴的横轴</p> <p><img loading="lazy" decoding="async" alt="" height="326" src="http://img.555519.xyz/uploads/20230217/4881992e889110d005da4379c9933f7b.jpg"></p> <p>实战一如下：</p> <p><img loading="lazy" decoding="async" alt="" height="309" src="http://img.555519.xyz/uploads/20230217/4cbc930a5cf76f6cb5447d7b7264cfba.jpg"></p> <p>&nbsp;如何打开事件文件logs？</p> <p>在pycharm编译平台下面选择terminal，输入tensorboard --logdir=logs，如下图所示</p> <p><img loading="lazy" decoding="async" alt="" height="289" src="http://img.555519.xyz/uploads/20230217/f59f39f6acc6f2f99f010b91428afe62.jpg">&nbsp;更实用的输入指令是指定端口，输入tensorboard --logdir=logs --port=6007，可以避免与其他人的端口一样，从而避免冲突，如下图所示</p> <p><img loading="lazy" decoding="async" alt="" height="210" src="http://img.555519.xyz/uploads/20230217/55023f84bbb90f51f21f193cc32ee65a.jpg">&nbsp;结果如下图所示：</p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="450" src="http://img.555519.xyz/uploads/20230217/b7b758dbe434cf233c912283f40ca280.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="429" src="http://img.555519.xyz/uploads/20230217/c59a3a02439e158dd635b4650c35e425.jpg"></p> <p>遇到的问题，连续运行两次不同的数据，不修改add_scalar的参数tag图表的标题，会出现下面情况，上一个事件与当前事件冲突了</p> <p><img loading="lazy" decoding="async" alt="" height="486" src="http://img.555519.xyz/uploads/20230217/e4d4a7c6ac0744f08089a56c881c165e.jpg"></p> <p>&nbsp;解决方法：输出logs下面的所有子文件，然后重新运行就可以了</p> <p><img loading="lazy" decoding="async" alt="" height="436" src="http://img.555519.xyz/uploads/20230217/c1a4eefc8ceb799d613b96a9c385f93d.jpg"></p> <p>实战二如下：</p> <p>add_image的用法：参数1、tag是图表的标题，参数2、img_tensor是图像的数据，对应于坐标轴的纵轴，参数3、global_step对应于坐标轴的横轴</p> <p><img loading="lazy" decoding="async" alt="" height="437" src="http://img.555519.xyz/uploads/20230217/79d30a366a707ad3fdbf694cc8e9153f.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="448" src="http://img.555519.xyz/uploads/20230217/c717b7f98482599ed5342f0d53bfd8bb.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="145" src="http://img.555519.xyz/uploads/20230217/38d79744e26b5ed68bb7c680ea480fa2.jpg"></p> <p>&nbsp;程序如下：</p> <pre><code class="hljs">from torch.utils.tensorboard import SummaryWriter import numpy as np from PIL import Image  writer=SummaryWriter("logs") image_path = "data/train/ants_image/0013035.jpg" img_PIL = Image.open(image_path) img_array = np.array(img_PIL)  writer.add_image("test",img_array,1,dataformats='HWC') for i in range(100):     writer.add_scalar("y=2x",3*i,i)  writer.close()</code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2028.htm">Spring Cloud Gateway系列 配置Gateway详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2030.htm">在vue项目中配置使用svg</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

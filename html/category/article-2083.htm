@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2083.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>记一次 Nuxt 3 在 Windows 下的打包问题 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>记一次 Nuxt 3 在 Windows 下的打包问题</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h3 id="0-背景">0. 背景</h3> <p>之前用 Nuxt 3 写了公司的官网，包括了样式、字体图标、图片、视频等，其中样式和字体图标放在了<code>assets/styles</code> 和<code>assets/fonts</code> 目录下，而图片和视频则放在了<code>public/images</code> 和<code>public/videos</code> 目录下。</p> <h3 id="1-起因">1. 起因</h3> <p>在不改变任何<code>nuxt.config.ts</code> 打包配置的情况下，直接执行<code>npm run build</code>，会生成一个<code>.output</code> 目录，结构如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d5298ba9fd107b6357ad83ad1a2d0cf1.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>我们再展开<code>_nuxt</code> 文件夹，结构如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7564338203de1449ccba94010afa7f77.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>这里有个问题就是<code>.output/public/</code> 下和<code>.output/public/_nuxt/</code> 下都有<code>images</code> 和<code>videos</code> 文件夹，而且里面的内容完全一样，这就造成了<mark>发布包体积变大</mark>。</p> <h3 id="2-经过">2. 经过</h3> <p>然后查阅了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://v3.nuxtjs.org/docs/directory-structure/nuxt.config"  target="_blank" rel="nofollow">官网的配置文档</a>，发现<code>app.buildAssetsDir</code> 可以改变静态资源的输出路径（默认值也的确是<code>_nuxt</code>），于是将其改成<code>/</code> 后再次打包，然而并没有任何变化 ????‍。在仔细看了两遍文档无果后，只能撸起袖子从代码入手，最后在<code>.output/server/chunks/render.mjs</code> 里发现代码关心的其实是下面的三个配置</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/377fb8ff5253e0ea57c910d2b486632e.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>因此应该调整的是<code>assetsPath</code>，而不是文档上写的<code>buildAssetsDir</code>。</p> <p>改完再次打包，发现已成功将<code>_nuxt</code> 里的内容移到了外面，见下图</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bb8fd476fa13b573694947494a477297.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>接着<code>npm start</code> 启动项目，不出所料的出现了问题 ????，大大的 404 欢迎我</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/dfafc208c333444ccef3b5f47ada0798.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>继续查代码，发现在<code>.output/server/chunks/static.mjs</code> 里有这么一段代码</p> <pre><code class="language-javascript">if (!asset) {   if (id.startsWith(PUBLIC_PATH) &amp;&amp; !id.startsWith(STATIC_ASSETS_BASE)) {     throw createError({       statusMessage: "Cannot find static asset " + id,       statusCode: 404     });   }   return }</code></pre> <p>偏偏我们现在的<code>PUBLIC_PATH</code> 是<code>/</code>，这样一来所有不是静态资源且以<code>/</code> 开头的请求都被拦截到 404 去了 ????‍。</p> <p>手工注释掉这段代码，重启服务，再次刷新页面，ok 了。</p> <p>原以为到这里就结束了，但又发现所有<code>.mjs</code> 的请求又都变成了 404</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/701d23084dcb9fd9519fbccf942975f8.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>这种批量出问题的，估摸着又是哪里的配置有问题。</p> <p>再次查看文档，比对代码，发现有个<code>vite.base</code> 的配置默认是指向<code>_nuxt</code> 的，赶紧改成<code>/</code>。</p> <p>再次 build，重启服务，刷新页面，成了！</p> <hr/> <h3 id="3-写在最后">3. 写在最后</h3> <p>这次排查经历告诉我 ... nuxt 3 真的还没有达到生产环境使用的标准，而且我之前有次在 Linux 下 build，出来的结果和 Windows 下还不一样，这个就以后再讨论了。</p> <p>拜拜，下次见。</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2082.htm">一篇文章带你彻底吃透Spring</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2084.htm">Android 白天黑夜模式切换适配及引起的Activity销毁重启解决</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

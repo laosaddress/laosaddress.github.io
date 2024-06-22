@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2207.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>详解盒子模型和div布局 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>详解盒子模型和div布局</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/2ac13ada3ab23a8f5a5f0d24784e4614.jpg" alt="详解盒子模型和div布局"></p> <p><span style="font-size:12px">background的覆盖范围是content区域加上padding区域加上border区域(border-color:transparent设置透明后可以看到)。</span></p> <p><span style="font-size:12px">许多浏览器都有自己默认的margin和padding值，我们可以通过将元素的margin和padding设置为0来覆盖原本的浏览器样式。</span></p> <pre><code class="language-html">* {   margin: 0;   padding: 0; }</code></pre> <p></p> <p><span style="font-size:24px"><strong>float：</strong></span></p> <p>当一个div容器里没有内容且不指明width时，他的宽度默认100%，但是当为这个div设置float：left时，width值变为0.</p> <p><strong><span style="font-size:14px">对于兄弟级别的div：</span></strong></p> <p>1.每个div原本都是独占一行的</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/7a2b95dd68c097b63bf01d0afd444b40.jpg" alt="详解盒子模型和div布局"><br /> 2.但是当前一个节点的div设置float:left;时，后div将出现在第一个div的下面。原因：第一个div漂浮起来了(float),它原本的位置就空出来了，于是第二个div就占据了第一个的位置，所以他们的状态是一种重叠的状态。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/de4a04462e35c154a3abd0a967b072ae.jpg" alt="详解盒子模型和div布局"></p> <p>3.当所有兄弟级别的div都设置float:left;时，每个div就失去了独占一排的状态，可以并排存在。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/9ff1678b703b9a36f90c78320e8826a9.jpg" alt="详解盒子模型和div布局"></p> <p><strong><span style="font-size:14px">对于父子级别的div：</span></strong></p> <p>1.如果不指定父元素的高度，则父元素的高度为0，因为子元素漂浮起来，并没有把父元素撑开</p> <pre><code class="language-html">&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt; 	&lt;meta charset="UTF-8"&gt; 	&lt;title&gt;Document&lt;/title&gt; &lt;style&gt;      #father{      	width: 250px;      	background:purple;      }      #child1{      	width: 100px;         height: 100px;      	background: orange;      	float: left;      }      #child2{      	background: green;      	width: 200px;      	height: 200px;      	float:left;      } &lt;/style&gt; &lt;/head&gt;     &lt;body&gt;          &lt;div id = "father"&gt;             &lt;div id = "child1"&gt;&lt;/div&gt;             &lt;div id = "child2"&gt;&lt;/div&gt;          &lt;/div&gt;        &lt;/body&gt; &lt;/html&gt;</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/7a2b95dd68c097b63bf01d0afd444b40.jpg" alt="详解盒子模型和div布局"></p> <p>2.如果指定了父元素的高度，则父元素保持原高度不变.同理，子元素浮动并不能撑开父元素。</p> <p>浮动子元素在父容器内的排列规则：浮动元素优先排一列，若宽度溢出父容器则另起一行排列。若竖排列子元素合高度若大于父元素高度，则向下溢出。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/ba32eb03fdd37e58b75ba43c5e087649.jpg" alt="详解盒子模型和div布局"></p> <p>3..如果子元素没有浮动效果且父元素高度没有指定大小，则父元素会被撑开</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/1d7ebb0f6108717b05951b6993e8cf83.jpg" alt="详解盒子模型和div布局"></p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2206.htm">c++语法拾遗，一些细节与特性</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2208.htm">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

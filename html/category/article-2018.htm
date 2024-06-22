@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2018.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>css本文在背景之上,css实现文字在背景图片之上 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>css本文在背景之上,css实现文字在背景图片之上</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>效果：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220604/a4567d4f3d153a0e574f9725a4cb2ec7.jpg" alt="css本文在背景之上,css实现文字在背景图片之上"></p> <div class="imgs"> <div class="background"> <p align="center"> </div> <div class="front"> <div> <p>非常感谢！</p> <p>您已投票：{<!-- -->{item.votetime}}</p> </div> <p style="color:#999999;">抱歉，您未完成投票~</p> </div> </div> <pre><code class="Bash"><xmp>data() { return { imgsrc1:require('@/common/imgs/yitoupiao.png'),  imgsrc2:require('@/common/imgs/weiwancheng.png'),  }  },</xmp></code></pre> <p>外面大的div：设置宽高；</p> <p>背景图片：1)如果是铺满则宽高都设置100%，2)如果只占一个部分可设置定位。重点：z-index一定要比文字的层级低，否则会被遮住；</p> <p>文字：根据需求放置位置可定位可不定位，重点z-index设置高于图片；</p> <pre><code class="Bash"><xmp>.imgs { background: #fff;  position: relative;  width: 100%;  height: 250px;  color: #195541;  .background{ // width:100%;  // height:100%; /**宽高100%是为了图片铺满屏幕 */  // z-index:-1;  z-index:1;  position: absolute;  width: 250px;  height: 100%;  right: 20px;  bottom: 0px;  }  .front{ z-index:2;  position: absolute;  text-align: center;  top: 39%;  left: 25%;  font-weight: normal;  line-height: 40px;  font-size: 28px;  }  }</xmp></code></pre> <p>开发过程中遇到一个bug：就是我一开始设置的背景图片z-index为-1，导致在h5上，背景图片一会儿能显示一会儿没法显示，后来改为正数1，才解决了这个问题。</p> <p>到此这篇关于css实现文字在背景图片之上的文章就介绍到这了,更多相关css文字在背景图片上内容请搜索萬仟网以前的文章或继续浏览下面的相关文章，希望大家以后多多支持萬仟网！</p> </div> </div> <p></p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2017.htm">HTML页面的加载顺序</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2019.htm">springBoot过滤器、拦截器配置使用</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

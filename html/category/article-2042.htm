@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2042.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue组件跨层级通信详解 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Vue组件跨层级通信详解</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <p>正常组件间通信<br />　　父-&gt;子组件 是通过属性传递<br />　　子-&gt;父组件 是通过this.$emit()传递<br />　　this.$emit()返回的是this,如果需要一些值 可使用callback方式传递</p> <p><span style="font-family:'宋体';font-size:16px;"><strong>provide 和 inject</strong></span></p> <p><span style="font-size:12px;color:#888888;">　　这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，</span><br /><span style="font-size:12px;color:#888888;">　　不论组件层次有多深，并在起上下游关系成立的时间里始终生效。</span><br /><span style="font-size:12px;color:#888888;">　　provide 和 inject 绑定并不是可响应的。这是刻意为之的。</span><br /><span style="font-size:12px;color:#888888;">　　然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</span></p> <p><strong>provide提供数据,多层子组件 向上层寻找,只要找到 就不在向上层寻找了.</strong><br /><strong>　　inject 向子组件注入数据</strong></p> <p>使用方式</p> <p>第一种方式(传递对象,使用字符串数组接收)</p> <div class="cnblogs_code"> <pre><span style="color:#008000;">//</span><span style="color:#008000;"> 父级组件提供 'foo'</span><span style="color:#0000ff;">var</span> Provider =<span style="color:#000000;"> { provide: { foo:</span>'bar'<span style="color:#000000;"> },</span><span style="color:#008000;">//</span><span style="color:#008000;"> ...</span><span style="color:#000000;">}</span><span style="color:#008000;">//</span><span style="color:#008000;"> 子组件注入 'foo'</span><span style="color:#0000ff;">var</span> Child =<span style="color:#000000;"> { inject: [</span>'foo'<span style="color:#000000;">], created () { console.log(</span><span style="color:#0000ff;">this</span>.foo)<span style="color:#008000;">//</span><span style="color:#008000;"> =&gt; "bar"</span><span style="color:#000000;">}</span><span style="color:#008000;">//</span><span style="color:#008000;"> ...</span> }</pre> </div> <p>第二种方式(传递返回对象的函数, 使用对象接收)</p> <div class="cnblogs_code"> <pre><span style="color:#000000;">provide() {</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> {</span><span style="color:#008000;">//</span><span style="color:#008000;"> 2.6.0 版本之前 通常传递this. 但这样的话 会传递很多用不到的属性</span><span style="color:#000000;">theme: { color:</span>'xxx'<span style="color:#008000;">//</span><span style="color:#008000;">如果传入可响应的数据,这里的属性还是可响应的</span><span style="color:#000000;">} }; } inject: {</span><span style="color:#008000;">//</span><span style="color:#008000;">这里可以换成其它名字</span><span style="color:#000000;">theme: { from:</span>"theme",<span style="color:#008000;">//</span><span style="color:#008000;"> 数据来源</span><span style="color:#0000ff;">default</span>: () =&gt; ({})<span style="color:#008000;">//</span><span style="color:#008000;">降级情况下使用的 value</span><span style="color:#008000;"> //</span><span style="color:#008000;">可以是 普通值</span><span style="color:#008000;"> //</span><span style="color:#008000;">可以是 对非原始值使用一个工厂方法</span><span style="color:#000000;">} }</span><span style="color:#008000;">//</span><span style="color:#008000;">正常子组件</span><span style="color:#0000ff;">this</span>.theme<span style="color:#008000;">//</span><span style="color:#008000;">即可访问</span><span style="color:#008000;"> //</span><span style="color:#008000;">子组件是函数式组件的使用方式</span> injections.theme.color</pre> </div> <p>Vue.observable( object )<br />让一个对象可响应。Vue 内部会用它来处理 data 函数返回的对象。<br />可以作为最小化的跨组件状态存储器，用于简单的场景</p> <p>提供数据可改为</p> <div class="cnblogs_code"> <pre><span style="color:#000000;">provide() {</span><span style="color:#008000;">//</span><span style="color:#008000;">这时提供的theme 则为可响应的数据</span><span style="color:#0000ff;">this</span>.theme =<span style="color:#000000;"> Vue.observable({ color:</span>"blue"<span style="color:#000000;"> });</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> { theme:</span><span style="color:#0000ff;">this</span><span style="color:#000000;">.theme }; },</span></pre> </div> </div> <p>转载于:https://www.cnblogs.com/LChenglong/p/11468899.html</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2041.htm">Golang-Channel原理解析</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2043.htm">以字符串的升序排列单词-JavaScript</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

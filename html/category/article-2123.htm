@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2123.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>python学习记录（文件操作） - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>python学习记录（文件操作）</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li> <ul> <li><a href="#1open__3" rel="nofollow">1.**open()** 函数用于打开一个文件</a></li> <li><a href="#2fileObjectseekoffset_whence__15" rel="nofollow">2.**fileObject.seek(offset[, whence])** 方法用于移动文件读取指针到指定位置</a></li> <li><a href="#3file_40" rel="nofollow">3.file对象常见函数</a></li> <li><a href="#4_42" rel="nofollow">4.文件读取时常见的格式错误</a></li> <li><a href="#5font_colorred__utf83font_59" rel="nofollow">5.<font color="red">注意：utf-8中，一个汉字占3个字节</font></a></li> <li><a href="#6_73" rel="nofollow">6.接受输入并保存为新文件</a></li> <li><a href="#7txt_97" rel="nofollow">7.txt文件比较</a></li> </ul> </li> </ul> </div> <h2><a id="1open__3" rel="nofollow"></a>1.<strong>open()</strong> 函数用于打开一个文件</h2> <p>创建一个 file 对象，相关的方法才可以调用它进行读写。<br /> open(name[, mode[, buffering]])<br /> 参数说明：</p> <p>name : 一个包含了你要访问的文件名称的字符串值。</p> <p>mode : mode 决定了打开文件的模式：只读，写入，追加等。所有可取值见如下的完全列表。这个参数是非强制的，默认文件访问模式为只读®。</p> <p>buffering : 如果 buffering 的值被设为 0，就不会有寄存。如果 buffering 的值取 1，访问文件时会寄存行。如果将 buffering 的值设为大于 1 的整数，表明了这就是的寄存区的缓冲大小。如果取负值，寄存区的缓冲大小则为系统默认。<br /><font color="red">注意：w、w+会覆盖已经存在的文件</font><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/29579f422cac3a80c3f4cf6cab1cf248.jpg" alt="python学习记录（文件操作）"></p> <h2><a id="2fileObjectseekoffset_whence__15" rel="nofollow"></a>2.<strong>fileObject.seek(offset[, whence])</strong> 方法用于移动文件读取指针到指定位置</h2> <p>参数:<br /> offset – 开始的偏移量，也就是代表需要移动偏移的字节数<br /> whence：可选，默认值为 0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。<br /> 打开文件的模式有：</p> <p>r ，只读模式【默认】<br /> w，只写模式【不可读；不存在则创建；存在则清空内容；】<br /> x， 只写模式【不可读；不存在则创建，存在则报错】<br /> a， 追加模式【可读； 不存在则创建；存在则只追加内容；】</p> <p>“+” 表示可以同时读写某个文件<br /> r+， 读写【可读，可写,不会创建不存在的文件，从顶部开始写 会覆盖之前此位置的内容】<br /> w+，写读【可读，可写，不存在则创建；存在则<strong>清空内容</strong>；】<br /> x+ ，写读【可读，可写，不存在则创建，存在则<strong>报错</strong>】<br /> a+， 写读【可读，可写，不存在则创建；存在则<strong>只追加内容</strong>；】</p> <p>"b"表示以<font color="red">二进制</font>的方式操作<br /> rb 或 r+b<br /> wb 或 w+b<br /> xb 或 w+b<br /> ab 或 a+b</p> <p>**r+解释：**运行之前是两行五五开牛逼，运行后按顺序覆盖写入，第二行的牛逼依旧存在，并未覆盖<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/4d7862e94821a7b48c027fbd20b9a597.jpg" alt="python学习记录（文件操作）"></p> <h2><a id="3file_40" rel="nofollow"></a>3.file对象常见函数</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/22b841baffc20bac0c76891548e2bc79.jpg" alt="python学习记录（文件操作）"></p> <h2><a id="4_42" rel="nofollow"></a>4.文件读取时常见的格式错误</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/83512979c764b8be805c8299adb175e6.jpg" alt="python学习记录（文件操作）"><br /> 原因：<br /> 读取文件中有中文<br /> 解决办法：<br /> 打开文件时以utf-8格式打开</p> <pre><code class="prism language-python">f<span class="token operator">=</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'C:/Desktop/PY/wuwukai.txt'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> `` each_line 为f中的每一行 ```python<span class="token keyword">for</span> each_line<span class="token keyword">in</span> f<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>each_line<span class="token punctuation">)</span></code></pre> <h2><a id="5font_colorred__utf83font_59" rel="nofollow"></a>5.<font color="red">注意：utf-8中，一个汉字占3个字节</font></h2> <pre><code class="prism language-python">原文：你们可能不知道只用<span class="token number">20</span>万赢到<span class="token number">578</span>万是什么概念 f<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#read(4) 读了四个汉字</span><span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>tell<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment"># 此时的位置为12 即‘不’字的开头</span> f<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment">#0123 即们字开头 如输入1或2则会报错</span><span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> ————————————————————下方为输出结果———————————————————— 你们可能<span class="token number">12</span> 们可能不</code></pre> <h2><a id="6_73" rel="nofollow"></a>6.接受输入并保存为新文件</h2> <pre><code class="prism language-python"><span class="token keyword">import</span> os<span class="token punctuation">.</span>path<span class="token keyword">def</span><span class="token function">file_write</span><span class="token punctuation">(</span>file_name<span class="token punctuation">)</span><span class="token punctuation">:</span>     f<span class="token operator">=</span><span class="token builtin">open</span><span class="token punctuation">(</span>file_name<span class="token operator">+</span><span class="token string">'.txt'</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'请输入内容[单独树立\':w\'保存退出]：'</span><span class="token punctuation">)</span><span class="token keyword">while</span><span class="token boolean">True</span><span class="token punctuation">:</span>         write_some<span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">if</span> write_some<span class="token operator">!=</span><span class="token punctuation">(</span><span class="token string">':w'</span><span class="token operator">|</span><span class="token string">'：w'</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#不区分中英</span>             f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'%s\n'</span><span class="token operator">%</span> write_some<span class="token punctuation">)</span><span class="token keyword">else</span><span class="token punctuation">:</span><span class="token keyword">break</span>          f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>  file_name<span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'请输入文件名:'</span><span class="token punctuation">)</span><span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>file_name<span class="token operator">+</span><span class="token string">'.txt'</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#判断是否本地是否存在同名文件</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'请注意，若该文件夹中存在同名文件，请重新命名'</span><span class="token punctuation">)</span><span class="token keyword">else</span><span class="token punctuation">:</span>     file_write<span class="token punctuation">(</span>file_name<span class="token punctuation">)</span></code></pre> <h2><a id="7txt_97" rel="nofollow"></a>7.txt文件比较</h2> <pre><code class="prism language-python"><span class="token keyword">def</span><span class="token function">file_compare</span><span class="token punctuation">(</span>file1<span class="token punctuation">,</span>file2<span class="token punctuation">)</span><span class="token punctuation">:</span>     f1<span class="token operator">=</span><span class="token builtin">open</span><span class="token punctuation">(</span>file1<span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>     f2<span class="token operator">=</span><span class="token builtin">open</span><span class="token punctuation">(</span>file2<span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>     count<span class="token operator">=</span><span class="token number">0</span><span class="token comment">#统计行数</span>     different<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token comment">#统计不一样的数量</span><span class="token keyword">for</span> line1<span class="token keyword">in</span> f1<span class="token punctuation">:</span>         line2<span class="token operator">=</span> f2<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>         count<span class="token operator">+=</span><span class="token number">1</span><span class="token keyword">if</span> line1<span class="token operator">!=</span> line2<span class="token punctuation">:</span>             different<span class="token punctuation">.</span>append<span class="token punctuation">(</span>count<span class="token punctuation">)</span>      f1<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>     f2<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">return</span> different  file1<span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'请输入第一个文件名:'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'.txt'</span> file2<span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'请输入第二个文件名:'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'.txt'</span><span class="token comment">#也该核查是否存在该文件</span><span class="token keyword">while</span> file1<span class="token operator">==</span>file2<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'该两文件为同一文件，请重新输入第二个文件名:'</span><span class="token punctuation">)</span>     file2<span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'请输入第二个文件名:'</span><span class="token punctuation">)</span> different<span class="token operator">=</span> file_compare<span class="token punctuation">(</span>file1<span class="token punctuation">,</span>file2<span class="token punctuation">)</span><span class="token keyword">if</span><span class="token builtin">len</span><span class="token punctuation">(</span>different<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'两个文件一样'</span><span class="token punctuation">)</span><span class="token keyword">else</span><span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'两个文件共用[%d]处不同：'</span><span class="token operator">%</span><span class="token builtin">len</span><span class="token punctuation">(</span>different<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">for</span> each<span class="token keyword">in</span> different<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'第%d行不一样'</span><span class="token operator">%</span> each<span class="token punctuation">)</span></code></pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2122.htm">Flutter之Decoration（编写圆角竖线）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2124.htm">Golang开发gRPC服务详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

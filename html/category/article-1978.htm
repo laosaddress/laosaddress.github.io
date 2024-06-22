@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1978.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Java之LocalDate,LocalTime，LocalDateTime等时间 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Java之LocalDate,LocalTime，LocalDateTime等时间</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>一、介绍</p> <ul> <li> <p>LocalDate：是一个不可变的日期时间对象，代表一个日期，通常被视为年-月-日；此类是不可变的并且是线程安全的。</p> </li> <li> <p>LocalTime：是一个不可变的日期时间对象，代表一个时间，通常被视为时分秒。时间以纳秒精度表示；此类是不可变的并且是线程安全的。</p> </li> <li> <p>LocalDateTime：是一个不变的日期时间对象，代表一个日期时间，通常被视为年-月-日-时-分-秒。也可以访问其他日期和时间字段，例如，一年中的某天，一周中的某天和一周中的某周。时间以纳秒精度表示；此类是不可变的并且是线程安全的。</p> </li> </ul> <p>二、具体例子如下：</p> <p>1.获取当前时间</p> <pre><code>public static void main(String[] args) { //获取当前时间 LocalDateTime localDateTime = LocalDateTime.now(); System.out.println("本地当前日期时间："+localDateTime); System.out.println(); //设置时区为美国纽约 System.out.println("美国当前日期时间："+LocalDateTime.now(ZoneId.of("America/New_York"))); System.out.println();}</code></pre> <p>2.获取当前时间毫秒数/时间戳</p> <pre><code>public static void main(String[] args) {   //获取当前时间   LocalDateTime localDateTime = LocalDateTime.now();   System.out.println("本地当前日期时间："+localDateTime);      long millisecond = localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();   System.out.println("获取时间戳："+millisecond/1000);   System.out.println("获取毫秒数："+millisecond);   System.out.println(); }</code></pre> <p>3.获取年，月，日或者星期几</p> <pre><code>public static void main(String[] args) {   //获取当前时间   LocalDateTime  localDateTime = LocalDateTime.now();   System.out.println("本地当前日期时间："+localDateTime);      //获取年、月、日、星期几   int year = localDateTime.getYear();   System.out.println("获取年份（第一种方式）："+year);   year = localDateTime.get(ChronoField.YEAR);   System.out.println("获取年份（第二种方式）："+year);   System.out.println();       int month = localDateTime.getMonthValue();   System.out.println("获取月份（第一种方式）："+month);   month = localDateTime.getMonth().getValue();   System.out.println("获取月份（第二种方式）："+month);   month = localDateTime.get(ChronoField.MONTH_OF_YEAR);   System.out.println("获取月份（第三种方式）："+month);   System.out.println();      int dayOfWeek = localDateTime.getDayOfWeek().getValue();   System.out.println("获取星期几(第一种方式)："+dayOfWeek);   dayOfWeek = localDateTime.get(ChronoField.DAY_OF_WEEK);   System.out.println("获取星期几(第二种方式)："+dayOfWeek);   System.out.println();      int dayOfMonth = localDateTime.getDayOfMonth();   System.out.println("获取本月当日(第一种方式)："+dayOfMonth);   dayOfMonth = localDateTime.get(ChronoField.DAY_OF_MONTH);   System.out.println("获取本月当日(第二种方式)："+dayOfMonth);   System.out.println();      int dayOfYear = localDateTime.getDayOfYear();   System.out.println("获取本年当日(第一种方式)："+dayOfYear);   dayOfYear = localDateTime.get(ChronoField.DAY_OF_YEAR);   System.out.println("获取本年当日(第二种方式)："+dayOfYear);    }</code></pre> <p>4.日期时间与字符串相互转换</p> <pre><code>private static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss"; private static final String YYYYMMDD_HH_MM_SS = "yyyy/MM/dd HH:mm:ss";  public static void main(String[] args) { //获取当前时间 LocalDateTime  localDateTime = LocalDateTime.now(); System.out.println("本地当前日期时间："+localDateTime); //日期与字符串相互转换 //日期转字符串 String dateTimeStr = localDateTime.format(DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS)); System.out.println("日期时间格式化成字符串后："+dateTimeStr); //字符串转日期 String convertTime = "2020/12/12 12:12:12"; LocalDateTime convertLocalDateTime = LocalDateTime.parse(convertTime,DateTimeFormatter.ofPattern(YYYYMMDD_HH_MM_SS)); System.out.println("由字符串转换成的日期时间为："+convertLocalDateTime); }</code></pre> <p>5.Date与LocalDateTime相互转换</p> <pre><code>private static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss"; private static final String YYYYMMDD_HH_MM_SS = "yyyy/MM/dd HH:mm:ss";  public static void main(String[] args) { //获取当前时间 LocalDateTime  localDateTime = LocalDateTime.now(); System.out.println("本地当前日期时间："+localDateTime); //Date转换成LocalDateTime Date date = new Date(); LocalDateTime  date2LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(); System.out.println("Date转换成LocalDateTime后&gt;&gt;&gt;&gt;"+date2LocalDateTime);    //LocalDateTime转换成Date Date localDateTime2Date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()); System.out.println("LocalDateTime转换成Date后&gt;&gt;&gt;&gt;"+localDateTime2Date); System.out.println("格式化一下&gt;&gt;&gt;&gt;"+FastDateFormat.getInstance(YYYY_MM_DD_HH_MM_SS).format(localDateTime2Date)); }</code></pre> <p>6.获取偏移日期时间</p> <div> <pre><code>public static void main(String[] args) { //获取当前时间 LocalDateTime localDateTime = LocalDateTime.now(ZoneId.systemDefault()); System.out.println("本地当前日期时间："+localDateTime); //获取偏移时间 //偏移天(正数：往后偏移；负数：往过去时间偏移) System.out.println("明日此时："+localDateTime.plusDays(1)); System.out.println("明日此时1："+localDateTime.minusDays(-1)); System.out.println("前天此时："+localDateTime.plusDays(-2)); //偏移时 System.out.println("当前时间后2个小时："+localDateTime.plusHours(2)); System.out.println("当前时间前5个小时："+localDateTime.plusHours(-5)); //偏移年 System.out.println("去年此时："+localDateTime.plusYears(-1)); //偏移月 System.out.println("下月此时："+localDateTime.plusMonths(1)); //偏移周 System.out.println("上周此时："+localDateTime.plusWeeks(-1)); }   //不可变性LocalDateTime  localDateTime2 = localDateTime.plusMonths(3);System.out.println(localDateTime);//默认输出当前时间System.out.println(localDateTime2);//默认输出当前时间的月份+3//with表示带属性LocalDateTime localDateTime3 =localDateTime.withHour(4);System.out.println(localDateTime);//输出当前时间System,out,println(LocalDateTime3);当前时间的小时数为4.</code></pre> <p>三、SimpleDataFormat</p> <p>关于时间对象,我们在页面展示时,可能会想要不同的格式输出,常用的就是通过java.text.SimpleDateFormat设置不同的格式:</p> <p>yyyy:年</p> <p>MM:月</p> <p>z:时区</p> <p>dd : 日</p> <p>HH : 小时(24小时制)</p> <p>hh : 小时(12小时制)</p> <p>mm : 分钟</p> <p>ss : 秒</p> <p>S : 毫秒</p> <p>D : 一年中的第一几天</p> <p>F : 一个月中的第几个星期(通过这个月的天数除7,例如5号那就是属于第一个星期)</p> <p>W : 一个月中的第几个星期(根据实际情况计算)</p> <p>w : 一年中的第几个星期</p> <pre><code>SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); System.out.println(sdf.format(new Date()));//2019-08-05 14:56:23 sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a"); System.out.println(sdf.format(new Date()));//2019-08-05 02:56:23 下午 sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");// System.out.println(sdf.format(new Date()));//2019-08-05 03:10:32 下午 sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:S"); System.out.println(sdf.format(new Date()));//2019-08-05 15:10:32:186 sdf = new SimpleDateFormat("yyyy-MM-dd 一年中的第D天"); System.out.println(sdf.format(new Date()));//2019-08-05 一年中的第217天 sdf = new SimpleDateFormat("yyyy-MM-dd E"); System.out.println(sdf.format(new Date()));//2019-08-05 星期一 sdf = new SimpleDateFormat("yyyy-MM-dd M月中的第W个星期"); System.out.println(sdf.format(new Date()));//2019-08-05 8月中的第2个星期 sdf = new SimpleDateFormat("yyyy-MM-dd M月中的第F个星期"); System.out.println(sdf.format(new Date()));//2019-08-05 8月中的第1个星期 sdf = new SimpleDateFormat("yyyy-MM-dd 一年中的第w个星期"); System.out.println(sdf.format(new Date()));//2019-08-05 一年中的第32个星期 sdf = new SimpleDateFormat("yyyy-MM-dd z"); System.out.println(sdf.format(new Date()));//2019-08-05 CST</code></pre> <p>四、DataTimeFormat</p> <p>&nbsp;例如：将字符串“2017-08-18”转化为对应的Java.sql.Date类的对象。</p> <p>.. 类似于SimpleDateFormat</p> <p>方式一：预定义的标准格式。如：ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;</p> <p>方式二:本地化相关的格式。如：ofLocalizedDateTime(FormatStyle.LONG);</p> <p>方式三：自定义的格式。如：ofPattern("yyyy-MM-dd hh:mm:ss E");</p> <pre><code>public void test3(){ //方式一：预定义的标准格式 DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME; //格式化：日期--&gt;字符串 DateTimeFormatter localDateTime = DateTimeFormatter.now(); String str1 = formatter.format(localDateTime); } //解析：字符串--&gt;日期 TemporalAccessor parse = formatter.parse(test:"当前时间")； System.out.println(parse);   //方式二： 本地化相关的格式，如：ofLocalizedDateTime() FormatStyle.Long/FormatStyle.MEDIUM/FormatStyle.SHORT:适用于LocalDateTime DateTimeFormatter formatter2 = DateTimeFormatter.ofLocalizedDate(FormatStyle,Full); String str2=formatter2.format(LocalDate.now()); System.out.println(str2); //只输出当前日期  //自定义的格式 ofpattern("yyyy-MM-dd hh:mm:ss E")//里面字符串形式 DateTimeFormatter formatter3=DateTimeFormattern.ofPattern("yyyy-MM-dd hh:mm:ss E"); //格式化 String str3 = formatter3.format(LocalDateTime.now()); System.out.println(str3); formatter3.parse("时间")；</code></pre> <p>get!</p> </div> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1977.htm">kubectl的安装和设置命令补全（linux和win10）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1979.htm">PyTorch的自动求导</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

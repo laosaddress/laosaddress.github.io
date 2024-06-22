@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2173.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>编译安装的nginx建立service,方便… - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>编译安装的nginx建立service,方便…</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div id="sina_keyword_ad_area2" class="articalContent   newfont_family"> <div style="width:100%;border:1px #e3e3e3 solid;"> <div style="width:100%;font-family:'Consolas', 'Courier new';font-size:12px;border-bottom:1px solid #e3e3e3;margin-top:5px;color:#000000;"><wbr>新建一个服务</div> <table style="width:100%;font-family:'Consolas', 'Courier new';font-size:12px;vertical-align:text-top;line-height:15px;" border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td style="color:#008284;background-color:#e3e3e3;vertical-align:text-top;"> <div style="margin:7px;text-align:right;white-space:nowrap;"> <p>        1</div> </td> <td style="background-color:#008284;padding:1px;"> <div style="border:1px #008284 solid;"></div> </td> <td style="background-color:#efefef;width:100%;vertical-align:text-top;color:#000000;"> <div style="margin:7px;">         vim<wbr>/usr/lib/systemd/system/nginx.service</div> </td> </tr> </tbody> </table> </div> <div style="width:100%;border:1px #e3e3e3 solid;"> <div style="width:100%;font-family:'Consolas', 'Courier new';font-size:12px;border-bottom:1px solid #e3e3e3;margin-top:5px;color:#000000;"><wbr>service部分请按照实际路径修改</div> <table style="width:100%;font-family:'Consolas', 'Courier new';font-size:12px;vertical-align:text-top;line-height:15px;" border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td style="color:#008284;background-color:#e3e3e3;vertical-align:text-top;"> <div style="margin:7px;text-align:right;white-space:nowrap;"> <p>        1<br /> 2<br /> 3<br /> 4<br /> 5<br /> 6<br /> 7<br /> 8<br /> 9<br /> 10<br /> 11<br /> 12<br /> 13<br /> 14<br /> 15<br /> 16<br /> 17<br /> 18</div> </td> <td style="background-color:#008284;padding:1px;"> <div style="border:1px #008284 solid;"></div> </td> <td style="background-color:#efefef;width:100%;vertical-align:text-top;color:#000000;"> <div style="margin:7px;">        [Unit]<br /> Description=nginx<wbr>-<wbr>high<wbr>performance<wbr>web<wbr>server<br /> Documentation=http://nginx.org/en/docs/<br /> After=network.target<wbr>remote-fs.target<wbr>nss-lookup.target</p> <p> [Service]<br /> Type=forking<br /> PIDFile=/usr/local/nginx/logs/nginx.pid<br /> ExecStartPre=/usr/local/nginx/sbin/nginx<wbr>-t<wbr>-c<wbr>/usr/local/nginx/conf/nginx.conf</p> <p> ExecStart=/usr/local/nginx/sbin/nginx<wbr>-c<wbr>/usr/local/nginx/conf/nginx.conf<br /> ExecReload=/<span style="color:#8000ff;">bin</span><span style="color:#000000;">/kill<wbr>-s<wbr>HUP<wbr>$MAINPID<br /> ExecStop=/</span><span style="color:#8000ff;">bin</span><span style="color:#000000;">/kill<wbr>-s<wbr>QUIT<wbr>$MAINPID<br /> PrivateTmp=true</p> <p> [Install]<br /> WantedBy=multi-user.target<br /></span></div> </td> </tr> </tbody> </table> </div> </div> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2172.htm">前端面试题：手写用js的函数 实现和instanceof 一样的功能</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2174.htm">我们如何使用MySQL函数STR_TO_DATE（Column，&#8217;％input_format&#8217;）？</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

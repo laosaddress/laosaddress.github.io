@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1982.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SpringBoot打包所有依赖jar包和配置文件全部分离 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>SpringBoot打包所有依赖jar包和配置文件全部分离</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>常规的springboot打包后，只生成一个jar包，配置文件和所有依赖包都在一起，当有一点点改动，上线时需要把整个包发布上去，有些不太方便。</p> <blockquote> <p>pom.xml配置</p> </blockquote> <pre class="has"><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;project xmlns="http://maven.apache.org/POM/4.0.0" 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; 	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; 	&lt;parent&gt; 		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; 		&lt;version&gt;2.0.6.RELEASE&lt;/version&gt; 		&lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt; 	&lt;/parent&gt; 	&lt;groupId&gt;com.mei.dubbo&lt;/groupId&gt; 	&lt;artifactId&gt;SpringBootPackageTest&lt;/artifactId&gt; 	&lt;version&gt;0.0.1&lt;/version&gt; 	&lt;name&gt;SpringBootPackageTest&lt;/name&gt;  	&lt;properties&gt; 		&lt;java.version&gt;1.8&lt;/java.version&gt; 	&lt;/properties&gt;  	&lt;dependencies&gt;  		&lt;dependency&gt; 			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; 		&lt;/dependency&gt;  		&lt;dependency&gt; 			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 			&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; 			&lt;scope&gt;runtime&lt;/scope&gt; 			&lt;optional&gt;true&lt;/optional&gt; 		&lt;/dependency&gt; 		&lt;dependency&gt; 			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt; 			&lt;scope&gt;test&lt;/scope&gt; 		&lt;/dependency&gt; 	&lt;/dependencies&gt;  	&lt;build&gt; 		&lt;plugins&gt; 			&lt;plugin&gt; 				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; 				&lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; 				&lt;configuration&gt; 					&lt;!-- 去除resources下的所有文件 --&gt; 					&lt;excludes&gt; 						&lt;exclude&gt;**/*.properties&lt;/exclude&gt; 						&lt;exclude&gt;**/*.xml&lt;/exclude&gt; 						&lt;exclude&gt;**/*.yml&lt;/exclude&gt; 						&lt;exclude&gt;static/**&lt;/exclude&gt; 						&lt;exclude&gt;templates/**&lt;/exclude&gt; 					&lt;/excludes&gt; 				&lt;/configuration&gt; 			&lt;/plugin&gt;  			&lt;plugin&gt; 				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; 				&lt;configuration&gt; 					&lt;layout&gt;ZIP&lt;/layout&gt; 					&lt;includes&gt; 						&lt;!-- 打包时，本jar包不包含其他依赖包 ， 否则打出的jar包还是很大 --&gt; 						&lt;include&gt; 							&lt;groupId&gt;nothing&lt;/groupId&gt; 							&lt;artifactId&gt;nothing&lt;/artifactId&gt; 						&lt;/include&gt; 					&lt;/includes&gt; 				&lt;/configuration&gt; 			&lt;/plugin&gt;  			&lt;plugin&gt; 				&lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt; 				&lt;configuration&gt; 					&lt;descriptors&gt; 						&lt;!-- 用于复制文件等配置 --&gt; 						&lt;descriptor&gt;assembly.xml&lt;/descriptor&gt; 					&lt;/descriptors&gt; 					&lt;finalName&gt;${project.artifactId}&lt;/finalName&gt; 					&lt;appendAssemblyId&gt;false&lt;/appendAssemblyId&gt; 				&lt;/configuration&gt; 				&lt;executions&gt; 					&lt;execution&gt; 						&lt;phase&gt;package&lt;/phase&gt; 						&lt;goals&gt; 							&lt;goal&gt;single&lt;/goal&gt; 						&lt;/goals&gt; 					&lt;/execution&gt; 				&lt;/executions&gt; 			&lt;/plugin&gt; 		&lt;/plugins&gt;  	&lt;/build&gt;   &lt;/project&gt;</code></pre> <blockquote> <p>assembly.xml</p> </blockquote> <pre class="has"><code class="language-java">&lt;assembly 	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd"&gt; 	&lt;id&gt;release&lt;/id&gt; 	&lt;includeBaseDirectory&gt;true&lt;/includeBaseDirectory&gt;  	&lt;formats&gt; 		&lt;!-- 打出包的后缀， xxxx.tar.gz --&gt; 		&lt;format&gt;tar.gz&lt;/format&gt; 		&lt;format&gt;dir&lt;/format&gt; 	&lt;/formats&gt; 	&lt;fileSets&gt; 		&lt;fileSet&gt; 			&lt;directory&gt;target/classes&lt;/directory&gt; 			&lt;outputDirectory&gt;config&lt;/outputDirectory&gt; 			&lt;includes&gt; 				&lt;include&gt;*.yml&lt;/include&gt; 				&lt;include&gt;*.xml&lt;/include&gt; 				&lt;include&gt;*.properties&lt;/include&gt; 			&lt;/includes&gt; 		&lt;/fileSet&gt; 		&lt;fileSet&gt; 			&lt;directory&gt;target/classes&lt;/directory&gt; 			&lt;outputDirectory&gt;resources&lt;/outputDirectory&gt; 			&lt;includes&gt; 				&lt;include&gt;static/**&lt;/include&gt; 				&lt;include&gt;templates/**&lt;/include&gt; 			&lt;/includes&gt; 		&lt;/fileSet&gt; 	&lt;/fileSets&gt; 	&lt;dependencySets&gt; 		&lt;dependencySet&gt; 			&lt;!-- 将项目所有依赖包拷贝到发布包的lib目录下 --&gt; 			&lt;outputDirectory&gt;lib&lt;/outputDirectory&gt; 			&lt;useProjectArtifact&gt;false&lt;/useProjectArtifact&gt; 		&lt;/dependencySet&gt; 	&lt;/dependencySets&gt;   &lt;/assembly&gt;</code></pre> <p>项目结构如下：</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="427" src="http://img.555519.xyz/uploads/20221201/79d50caa6e5865ecedf96f4fb3096d6b.jpg"></p> <p>使用eclipse&nbsp; &nbsp;maven&nbsp; install 打包后，结构如下：</p> <p>tar.gz 包中没有SpringBootPackageTest-0.0.1.jar包， 解压SpringBootPackageTest-0.0.1.tar.gz后需要手动考进去。</p> <p><img decoding="async" alt="" class="has" height="105" src="http://img.555519.xyz/uploads/20221201/dd3de27dfc4be33347abb17c888d99b7.jpg"></p> <p><img decoding="async" alt="" class="has" height="226" src="http://img.555519.xyz/uploads/20221201/9e991cc1b2e8806e09cd3139a1e08b5c.jpg"></p> <p><img loading="lazy" decoding="async" alt="" class="has" height="272" src="http://img.555519.xyz/uploads/20221201/c764aad55a3c24451fc63c1a88555e64.jpg"></p> <p><img loading="lazy" decoding="async" alt="" class="has" height="182" src="http://img.555519.xyz/uploads/20221201/54c856555e818884d6158076e54f96f8.jpg"></p> <p>运行：&nbsp;&nbsp;java -Dloader.path=./lib,config -jar &nbsp;SpringBootPackageTest-0.0.1.jar</p> <p>访问：<img loading="lazy" decoding="async" alt="" class="has" height="144" src="http://img.555519.xyz/uploads/20221201/7707b97e3239e19d7732f131f3a09779.jpg"></p> <p>暂时简单测试没问题。这种方式只适合不带页面的后台程序运行（如前后端分离的后端程序），有页面的工程暂时没找到解决方法。</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1981.htm">Java设计模式——单例设计模式(八种实例)</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1983.htm">Vue中实现扫描指定路径自动加载路由</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

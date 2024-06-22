@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2034.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>js开发实例仿京东侧边导航栏&amp;网页轮播图 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>js开发实例仿京东侧边导航栏&amp;网页轮播图</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1><a id="_0" rel="nofollow"></a><strong>二十四、仿京东侧边导航栏</strong></h1> <p>HTML 代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/f3895125d91786031045820bfcdf6347.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <p>JS代码</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/a8b959a22c5ab30be283730a8513a897.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/cbe1dadaba994a80cd43bb8d4e926a52.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h1><a id="_12" rel="nofollow"></a><strong>二十五、网页轮播图</strong></h1> <p>轮播图也称为焦点图,是网页中比较常见的网页特效。</p> <p>功能需求:</p> <h2><a id="1_18" rel="nofollow"></a><strong>1.鼠标经过轮播图模块,左右按钮显示,离开隐藏左右按钮。</strong></h2> <p>①因为js较多，我们单独新建js文件夹，再新建js文件，引入页面中。</p> <p>②此时需要添加load事件。</p> <p>③鼠标经过轮播图模块，左右按钮显示，离开隐藏左右按钮。</p> <p>④显示隐藏display按钮</p> <p>JS代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/9a545ea0d6cb759e673ce6bcf2723690.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h2><a id="2_33" rel="nofollow"></a><strong>2.动态生成小圆圈</strong></h2> <p>① 动态生成小圆圈。。</p> <p>② 核心思路:小圆圈的个数要跟图片张数一致。</p> <p>③ 所以首先先得到u里面图片的张数(图片放入i里面，所以就是i的个数)。</p> <p>④利用循环动态生成小圆圈(这个小圆圈要放入ol里面)</p> <p>⑤创建节点createElement(“”)</p> <p>⑥插入节点ol. appendChild(i)</p> <p>⑦第一个小圆圈需要添加current类</p> <p>JS 代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/bcd7315f6f41c5ec38300f5796a98e03.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h4><a id="_54" rel="nofollow"></a><strong>点击圆圈，变色</strong></h4> <p>①小圆圈的排他思想</p> <p>②点击当前小圆圈，就添加Current类</p> <p>③其余的小圆圈就移除这个current类</p> <p>④注意:我们在刚才生成小圆圈的同时，就可以直接绑定这个点击事件了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/b30e3f4beb8104c541b09822504803e7.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h2><a id="3_67" rel="nofollow"></a><strong>3.点击右侧按钮一次,图片往左播放一张,以此类推,左侧按钮同理。</strong></h2> <p>①点击右侧按钮一次，就让图片滚动一张。</p> <p>②声明一个变量num，点击一次， 自增1，让这个变量乘以图片宽度，就是ul的滚动距离。</p> <p>③无缝滚动。</p> <p>④把ul第一个i复制一份，放到ul的最后面。</p> <p>⑤当图片滚动到克隆的最后一张图片时，让ul 快速的、不做动画的跳到最左侧: left 为0。</p> <p>⑥让num为0。</p> <p>JS 代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/22bba242da86b63fd22e9283d421ea61.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/5bc22bc7d4a3df9b8b0e800db86b1333.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h3><a id="_87" rel="nofollow"></a></h3> <h3><a id="_89" rel="nofollow"></a><strong>克隆第一张图</strong></h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/dcebe5d08accdc2e78ad973a269e5883.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h2><a id="4_94" rel="nofollow"></a><strong>4.图片播放的同时,下面小圆圈模块跟随一起变化。</strong></h2> <p>①点击右侧按钮，小圆圈跟随变化。</p> <p>②最简单的做法是再声明一个变量cirde，每次点击自增1.注意，左侧按钮也需要这个变量，因此要声明全局变量。</p> <p>③但是图片有5张，我们小圆圈只有4个少- -个，必须加一个判断条件。</p> <p>④如果circle == 4就从新复原为0 。</p> <p>JS 代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/8093667039d8e9ffde386ca0ab49d61b.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <p><strong>当我们点击了某个小li就要把这个li的索引号给num</strong></p> <p><strong>当我们点击了某个小1i就要把这个1i的索引号给circle</strong></p> <h2><a id="5_117" rel="nofollow"></a><strong>5.点击小圆圈,可以播放相应图片。</strong></h2> <p>①点击小圆圈滚动图片。</p> <p>②此时用到animate动画函数，将is文件引入 (注意，因为indexjis依赖animate.jis所以，animatejs 要写到index.js上面)。</p> <p>③使用动画函数的前提，该元素必须有定位。</p> <p>④注意是ul移动而不是小li。</p> <p>⑤滚动图片的核心算法:点击某个小圆圈，就让图片滚动小圆圈的<strong>索引号乘以图片的宽度</strong>做为ul移动距离。</p> <p>⑥此时需要知道小圆圈的索引号，我们可以在生成小圆圈的时候，给它设置-个自定义属性，点击的时候获取这个自定义属性即可。</p> <p>JS 代码：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/51422291ec360a89bf9f8e681791d3d8.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/bd9fc252ab2ec31c4c59a5e49a332b42.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> <h3><a id="_140" rel="nofollow"></a></h3> <h2><a id="6_142" rel="nofollow"></a><strong>6.鼠标不经过轮播图，轮播图也会自动播放图片。</strong></h2> <p>①自动播放功能。</p> <p>②添加一个定时器。</p> <p>③自动播放轮播图，实际就类似于点击了右侧按钮。</p> <p>④此时我们使用手动调用右侧按钮点击事件arrow_ r.click()。</p> <h2><a id="7_153" rel="nofollow"></a><strong>7.鼠标经过,轮播图模块，自动播放停止。</strong></h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/6324b73c01960d8cd70d476b77d69f35.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/06e1957d836c32feb29b5da493a7ba07.jpg" alt="js开发实例仿京东侧边导航栏&amp;网页轮播图"></p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2033.htm">多层感知机实现</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2035.htm">Zookeeper java客户端API常规应用</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

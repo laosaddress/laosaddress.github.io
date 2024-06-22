@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2045.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MVVM中的数据的刷新 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>MVVM中的数据的刷新</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>在我们用MVVM框架做项目，在做到新增、删除等功能的时候，新增和删除成功后就会遇到一个问题，那就是数据的刷新。<br /> 怎样做到刷新的呢，其实刷新说白了就是重新查询下数据，只要我们调用一下查询的方法<br /> 就可以了。<br /> 当我删除数据时，因为删除操作和数据查询操作可以在同一个ViewModel中，所以我们在写删除的时候可以直接调用查询方法。<br /> 这是我写的查询方法：</p> <pre><code class="prism language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">GetAllCommodityBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token class-name"><span class="token keyword">var</span></span> list <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">from</span> tbCommodity <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Commodity                 <span class="token keyword">join</span> tbCommodtyType <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_CommodityType <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>CommodityTypeID equals tbCommodtyType<span class="token punctuation">.</span>CommodityTypeID                 <span class="token keyword">join</span> tbUnit <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Unit <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>UnitID equals tbUnit<span class="token punctuation">.</span>UnitID                 <span class="token keyword">join</span> tbInventory <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Inventory <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>InventoryID equals tbInventory<span class="token punctuation">.</span>InventoryID                 <span class="token keyword">select</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CommodityVos</span>                 <span class="token punctuation">{<!-- --></span>                      CommodityID<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityID<span class="token punctuation">,</span>                      InventoryID<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>InventoryID<span class="token punctuation">,</span>                      CommodityNumber<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityNumber<span class="token punctuation">,</span>                      CommodityName<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityName<span class="token punctuation">,</span>                      CommodityTypeName<span class="token operator">=</span>tbCommodtyType<span class="token punctuation">.</span>CommodityTypeName<span class="token punctuation">,</span>                      UnitName<span class="token operator">=</span>tbUnit<span class="token punctuation">.</span>UnitName<span class="token punctuation">,</span>                      Specification<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>Specification<span class="token punctuation">,</span>                      InventoryFloor<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>InventoryFloor<span class="token punctuation">,</span>                      TheCurrentInventory<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>TheCurrentInventory<span class="token punctuation">,</span>                      WhetherGive<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>WhetherGive<span class="token punctuation">,</span>                      WhetherForbidden<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>WhetherForbidden<span class="token punctuation">,</span>                      TheDefaultSetting<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>TheDefaultSetting<span class="token punctuation">,</span>                      BarCode<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>BarCode<span class="token punctuation">,</span>                      Remark<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>Remark     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     Commodity <span class="token operator">=</span> list<span class="token punctuation">;</span>             <span class="token punctuation">}</span> </code></pre> <p>这是删除后调用查询方法：</p> <pre><code class="prism language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>myModel<span class="token punctuation">.</span><span class="token function">SaveChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token punctuation">{<!-- --></span>       MessageBox<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token string">"删除成功"</span><span class="token punctuation">,</span> <span class="token string">"系统提示"</span><span class="token punctuation">,</span> MessageBoxButton<span class="token punctuation">.</span>OK<span class="token punctuation">,</span> MessageBoxImage<span class="token punctuation">.</span>Information<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token function">GetAllCommodityBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> </code></pre> <p>这是删除前的表格：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/8eeaae9eb291b3c3c5fc4ac00f925b83.jpg" alt="MVVM中的数据的刷新"><br /> 我选择最后一条数据删除<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/32f69dbdf7f94ead5f401c416f9329c4.jpg" alt="MVVM中的数据的刷新"><br /> 当删除成功后点击确定，表格就会刷新了：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/e141a19483a301d92d1a3d57e892bf27.jpg" alt="MVVM中的数据的刷新"><br /> 而新增操作和查询操作不在一个ViewModel怎么办呢，这时候我们就要用到委托了。<br /> 我们在新增的ViewModel中声明一个委托：</p> <pre><code class="prism language-csharp"><span class="token comment">//委托</span>  <span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">LodedSelect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token keyword">public</span> <span class="token keyword">event</span> <span class="token class-name">LodedSelect</span> LodedCommodity<span class="token punctuation">;</span> </code></pre> <p>然后我们在查询的ViewModel中把查询方法赋值给这个委托：</p> <pre><code class="prism language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddCommodity</span><span class="token punctuation">(</span><span class="token class-name">Window</span> window<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                  <span class="token class-name">CommodityAdd</span> addOrCommodityWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CommodityAdd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token class-name"><span class="token keyword">var</span></span> Commoditys <span class="token operator">=</span> <span class="token punctuation">(</span>addOrCommodityWindow<span class="token punctuation">.</span>DataContext <span class="token keyword">as</span> 			   <span class="token class-name">CommodityAddViewModel</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      Commoditys<span class="token punctuation">.</span>LodedCommodity <span class="token operator">+=</span> GetAllCommodityBy<span class="token punctuation">;</span>      addOrCommodityWindow<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span> </code></pre> <p>再然后我们在新增操作中用上这个委托就可以了。</p> <pre><code class="prism language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>myModel<span class="token punctuation">.</span><span class="token function">SaveChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token punctuation">{<!-- --></span>       MessageBox<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token string">"新增成功"</span><span class="token punctuation">,</span> <span class="token string">"系统提示"</span><span class="token punctuation">,</span> MessageBoxButton<span class="token punctuation">.</span>OK<span class="token punctuation">,</span> MessageBoxImage<span class="token punctuation">.</span>Information<span class="token punctuation">)</span><span class="token punctuation">;</span>       window1<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       LodedCommodity<span class="token punctuation">?.</span><span class="token function">Invoke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> </code></pre> <p>在我刚才删除数据的表格上新增一条“榴莲”的数据,<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/8862b5bad96a64da5bb6b0f4446eaccd.jpg" alt="MVVM中的数据的刷新"><br /> 当我点击“确定”后，新增页面关闭并表格刷新：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/591cb832f565510976377b4d41c9bb4c.jpg" alt="MVVM中的数据的刷新"></p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2044.htm">为什么HttpContextAccessor要这么设计?</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2046.htm">在Vue中mock假数据</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

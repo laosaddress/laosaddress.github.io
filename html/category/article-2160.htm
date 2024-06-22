@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2160.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>如何一个项目配置多个数据库 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>如何一个项目配置多个数据库</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>我们在项目中经常会遇到配置多个数据的情况，之前我有写过通过配置mapper.xml的不同地址来实现同一个项目连接到多个数据库。如果用这种方式可以参考，下面一片文章。</p> <pre><code>https://blog.csdn.net/fajing_feiyue/article/details/100604300</code></pre> <p>这篇文档与上面一种方式相比，是通过注解来实现和切面来配置实现数据库，这种方式需要能够更深刻来理解mybatis与spring的结合，这里将这种方式展示出来供大家参考。</p> <p>1、引入maven依赖</p> <pre><code>    &lt;dependencies&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;             &lt;version&gt;2.0.4.RELEASE&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.mybatis&lt;/groupId&gt;             &lt;artifactId&gt;mybatis&lt;/artifactId&gt;             &lt;version&gt;3.5.2&lt;/version&gt;         &lt;/dependency&gt;          &lt;dependency&gt;             &lt;groupId&gt;com.alibaba&lt;/groupId&gt;             &lt;artifactId&gt;druid&lt;/artifactId&gt;             &lt;version&gt;1.1.12&lt;/version&gt;         &lt;/dependency&gt;          &lt;dependency&gt;             &lt;groupId&gt;com.alibaba&lt;/groupId&gt;             &lt;artifactId&gt;druid&lt;/artifactId&gt;             &lt;version&gt;1.1.12&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;             &lt;scope&gt;test&lt;/scope&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;             &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;             &lt;version&gt;2.1.0&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;mysql&lt;/groupId&gt;             &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;             &lt;scope&gt;runtime&lt;/scope&gt;             &lt;version&gt;8.0.17&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-log4j2&lt;/artifactId&gt;             &lt;version&gt;2.0.4.RELEASE&lt;/version&gt;         &lt;/dependency&gt;          &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;             &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;         &lt;/dependency&gt;          &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;             &lt;scope&gt;test&lt;/scope&gt;             &lt;exclusions&gt;                 &lt;exclusion&gt;                     &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;                     &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;                 &lt;/exclusion&gt;             &lt;/exclusions&gt;         &lt;/dependency&gt;</code></pre> <p>2、配置application.properties</p> <pre><code>server.port=8080   default.datasource.type=com.alibaba.druid.pool.DruidDataSource default.datasource.url=jdbc:mysql://127.0.0.1:3306/pingyougou?serverTimezone=UTC default.datasource.driver-class-name=com.mysql.cj.jdbc.Driver default.datasource.username=root default.datasource.password=123  custom.datasource.names=custom1 custom.datasource.custom1.type=com.alibaba.druid.pool.DruidDataSource custom.datasource.custom1.url=jdbc:mysql://127.0.0.1:3306/pinyougoudb?serverTimezone=UTC custom.datasource.custom1.driver-class-name=com.mysql.cj.jdbc.Driver custom.datasource.custom1.username=root custom.datasource.custom1.password=123   #配置初始化大小，最小，最大 common.datasource.initialSize=10 common.datasource.minIdle=10 common.datasource.maxActive=50 #配置连接等待超时时间 common.datasource.maxWait=15000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 common.datasource.timeBetweenEvictionRunsMillis=60000 #配置一个连接在池中最小生存时间，一个小时 common.datasource.minEvictableIdleTimeMillis=3600000 #连接空闲时是否进行有效性验证（即是否还和数据库连通的） common.datasource.testWhileIdle=true #取得连接时是否进行有效性验证（即是否还和数据库连通的）【防止取到连接不可用】 common.datasource.testOnBorrow=true #回连接时是否进行有效性验证（即是否还和数据库连通的） common.datasource.testOnReturn=false #配置提交方式，默认是true，可以不用配置 common.datasource.defultAutoCommint=true   #logging.config=classpath:config/log4j2.xml  #配置.xml文件路径 #mybatis.config-locations=classpath:mybatis/mybatis-config.xml mybatis.mapper-locations=classpath:mapper/*.xml mybatis.type-aliases-package=com.yin.dynamic_datasource.dto</code></pre> <p>3、通过实现ImportBeanDefinitionRegistrar动态注册DataSource，实现EnvironmentAware 来读取application.properties里面的内容。由自己定义DynamicDataSourceContextHolder来保存目前正在数据库的信息<br /> 和每个线程所使用的数据库。并且设置由自己定义的DynamicDataSource来切换数据库。</p> <pre><code>public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {      private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceRegister.class);     private static final Object DATASOURCE_TYPE_DEFAULT = "com.alibaba.druid.pool.DruidDataSource";     private DataSource defaultDataSource;     private Map&lt;String, DataSource&gt; customDataSources = new HashMap();     private static String DB_NAME = "names";     private static String DB_DEFAULT_VALUE = "default.datasource";     private static String DB_CUSTOM_VALUE = "custom.datasource";     private static String DB_COMMON_VALUE = "common.datasource";       public DynamicDataSourceRegister() {     }        @Override     public void setEnvironment(Environment env) {         initDefaultDataSource(env);         initCustomDataSources(env);      }      private void initCustomDataSources(Environment env) {         String dsPrefixs = env.getProperty(DB_CUSTOM_VALUE + "." + DB_NAME);         String[] var3 = dsPrefixs.split(",");         int var4 = var3.length;          for(int var5 = 0; var5 &lt; var4; ++var5) {             String dsPrefix = var3[var5];             Map&lt;String, Object&gt; dsMap = new HashMap();             dsMap.put("type", env.getProperty(DB_CUSTOM_VALUE + "." + dsPrefix + ".type"));             dsMap.put("driver-class-name", env.getProperty(DB_CUSTOM_VALUE + "." + dsPrefix + ".driver-class-name"));             dsMap.put("url", env.getProperty(DB_CUSTOM_VALUE + "." + dsPrefix + ".url"));             dsMap.put("username", env.getProperty(DB_CUSTOM_VALUE + "." + dsPrefix + ".username"));             dsMap.put("password", env.getProperty(DB_CUSTOM_VALUE + "." + dsPrefix + ".password"));             DataSource ds = this.buildDataSource(dsMap,env);             this.customDataSources.put(dsPrefix, ds);         }     }      private void initDefaultDataSource(Environment env) {          HashMap&lt;String, Object&gt; dsMap = new HashMap&lt;&gt;();         dsMap.put("type", env.getProperty(DB_DEFAULT_VALUE + ".type"));         dsMap.put("driver-class-name", env.getProperty(DB_DEFAULT_VALUE + ".driver-class-name"));         dsMap.put("url", env.getProperty(DB_DEFAULT_VALUE + ".url"));         dsMap.put("username", env.getProperty(DB_DEFAULT_VALUE + ".username"));         dsMap.put("password", env.getProperty(DB_DEFAULT_VALUE + ".password"));         //创建数据源         defaultDataSource = buildDataSource(dsMap, env);     }      private DataSource buildDataSource(Map&lt;String, Object&gt; dsMap,Environment env) {         Object type = dsMap.get("type");         if (type == null) {             type = DATASOURCE_TYPE_DEFAULT;         }         Class&lt;? extends DataSource&gt; dataSourceType;         try {             dataSourceType = (Class&lt;? extends DataSource&gt;) Class.forName((String) type);             String driverClassName = dsMap.get("driver-class-name").toString();             String url = dsMap.get("url").toString();             String username = dsMap.get("username").toString();             String password = dsMap.get("password").toString();              DruidDataSource dataSource = new DruidDataSource();             dataSource.setUrl(url);             dataSource.setUsername(username);             dataSource.setPassword(password);             dataSource.setDriverClassName(driverClassName);              dataSource.setInitialSize(Integer.valueOf(env.getProperty(DB_COMMON_VALUE + ".initialSize")));             dataSource.setMinIdle(Integer.valueOf(env.getProperty(DB_COMMON_VALUE + ".minIdle")));             dataSource.setMaxActive(Integer.valueOf(env.getProperty(DB_COMMON_VALUE + ".maxActive")));             dataSource.setMaxWait(Integer.valueOf(env.getProperty(DB_COMMON_VALUE + ".maxWait")));             dataSource.setTimeBetweenEvictionRunsMillis(Integer.valueOf(env.getProperty(DB_COMMON_VALUE + ".timeBetweenEvictionRunsMillis")));             dataSource.setMinEvictableIdleTimeMillis(Long.valueOf(env.getProperty(DB_COMMON_VALUE + ".minEvictableIdleTimeMillis")));             dataSource.setTestWhileIdle(Boolean.valueOf(env.getProperty(DB_COMMON_VALUE + ".testWhileIdle")));             dataSource.setTestOnBorrow(Boolean.valueOf(env.getProperty(DB_COMMON_VALUE + ".testOnBorrow")));             dataSource.setTestOnReturn(Boolean.valueOf(env.getProperty(DB_COMMON_VALUE + ".testOnReturn")));             dataSource.setDefaultAutoCommit(Boolean.valueOf(env.getProperty(DB_COMMON_VALUE + ".defultAutoCommint")));             dataSource.setValidationQuery("SELECT 1");             return dataSource;           } catch (ClassNotFoundException ex) {             logger.error(ex.getMessage(), ex);         }         return null;     }      @Override     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry registry) {         Map&lt;Object, Object&gt; targetDataSources = new HashMap();         targetDataSources.put("dataSource", this.defaultDataSource);         DynamicDataSourceContextHolder.dataSourceIds.add("dataSource");         targetDataSources.putAll(this.customDataSources);         Iterator var4 = this.customDataSources.keySet().iterator();          while(var4.hasNext()) {             String key = (String)var4.next();             DynamicDataSourceContextHolder.dataSourceIds.add(key);         }          GenericBeanDefinition beanDefinition = new GenericBeanDefinition();         beanDefinition.setBeanClass(DynamicDataSource.class);         beanDefinition.setSynthetic(true);         MutablePropertyValues mpv = beanDefinition.getPropertyValues();         mpv.addPropertyValue("defaultTargetDataSource", this.defaultDataSource);         mpv.addPropertyValue("targetDataSources", targetDataSources);         registry.registerBeanDefinition("dataSource", beanDefinition);         logger.info("Dynamic DataSource Registry");     } }</code></pre> <p>4、将DynamicDataSourceRegister 注册类交由启动类加载</p> <pre><code>@SpringBootApplication @Import(DynamicDataSourceRegister.class) public class DynamicDatasourceApplication {      public static void main(String[] args) {         SpringApplication.run(DynamicDatasourceApplication.class, args);     }  }</code></pre> <p>5、定义DynamicDataSourceContextHolder类来保存所有用到数据库和每个线程所使用到数据库</p> <pre><code>public class DynamicDataSourceContextHolder {     /**      * 保存每个线程对应数据信息      */     private static final ThreadLocal&lt;String&gt; contextHolder = new ThreadLocal&lt;&gt;();     /**      * 保存所有数据库的信息      */     public static List&lt;String&gt; dataSourceIds = new CopyOnWriteArrayList&lt;&gt;();      public static void setContextHolder(String dataSource){         contextHolder.set(dataSource);     }       public static String getContextHolder(){         return contextHolder.get();     }      public static  boolean isContainsDatasource(String dataSourceId){         return dataSourceIds.contains(dataSourceId);     } //这里在使用完数据库进行.remove()防止内存泄漏从而导致内存溢出     public static void clearDataSourceType(){         contextHolder.remove();     }   }</code></pre> <p>6、定义DynamicDataSource来切换数据库</p> <pre><code>public class DynamicDataSource extends AbstractRoutingDataSource {     @Override     protected Object determineCurrentLookupKey() {         return DynamicDataSourceContextHolder.getContextHolder();     } }</code></pre> <p>7、定义注解TargetDataSource 来实现，对数据库指定</p> <pre><code>@Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface TargetDataSource {     String name(); }</code></pre> <p>8、定义切面对使用到这个注解的方法前后对用DynamicDataSourceContextHolder 保存和移除每个线程所使用到的数据库信息。之所以要用完移除主要是防止内存泄漏从而导致的内存溢出。</p> <pre><code>@Aspect //保证该aop在@Transaction之前执行 @Order(-1) @Component public class DynamicDataSourceAspect {     private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceAspect.class);      public DynamicDataSourceAspect() {     }      @Before("@annotation(ds)")     public void changeDataSource(JoinPoint point, TargetDataSource ds) throws Throwable {         String dsId = ds.name();         if (!DynamicDataSourceContextHolder.isContainsDatasource(dsId)) {             logger.error("数据源[{}]不存在，使用默认数据源 &gt; {}", ds.name(), point.getSignature());         } else {             logger.debug("Use DataSource : {} &gt; {}", dsId, point.getSignature());             DynamicDataSourceContextHolder.setContextHolder(dsId);         }      }      @After("@annotation(ds)")     public void restoreDataSource(JoinPoint point, TargetDataSource ds) {         logger.debug("Revert DataSource : {} &gt; {}", ds.name(), point.getSignature());         DynamicDataSourceContextHolder.clearDataSourceType();     } }</code></pre> <p>9、测试（以下为测试内容）</p> <pre><code>package com.yin.dynamic_datasource.controller;  import com.yin.dynamic_datasource.dto.AreaDto; import com.yin.dynamic_datasource.service.DynamicService; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.web.servlet.ServletComponentScan; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.Mapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author yin  * @Date 2020/1/28 10:35  * @Method  */ @RestController @RequestMapping("/dynamic/test")  public class DynamicController {     @Autowired     private DynamicService dynamicService;      @GetMapping("/insert/default")     public AreaDto insertDefault(){         AreaDto areaDto = new AreaDto();         areaDto.setArea("defaultArea1");         areaDto.setAreaId("defaultId1");         areaDto.setCityid("defaultCityId1");         dynamicService.insertDefaultArea(areaDto);         return areaDto;     }      @GetMapping("/insert/custom1")     public AreaDto insertCustom1(){         AreaDto areaDto = new AreaDto();         areaDto.setArea("custom1Area1");         areaDto.setAreaId("custom1Id1");         areaDto.setCityid("custom1CityId1");         dynamicService.insertCustom1Area(areaDto);         return areaDto;     }  }</code></pre> <p>service</p> <pre><code>public interface DynamicService {     void insertArea(AreaDto areaDto);      void insertDefaultArea(AreaDto areaDto);      void insertCustom1Area(AreaDto areaDto); }</code></pre> <p>serviceImpl</p> <pre><code>@Service public class DynamicServiceImpl implements DynamicService {     @Autowired     private DynamicMapper dynamicMapper;      @Override     public void insertArea(AreaDto areaDto) {         dynamicMapper.insertArea(areaDto);     }      @Override     public void insertDefaultArea(AreaDto areaDto) {         dynamicMapper.insertArea(areaDto);     }      @Override     @TargetDataSource(name = "custom1")     public void insertCustom1Area(AreaDto areaDto) {         dynamicMapper.insertArea(areaDto);     } }</code></pre> <p>mapper.xml</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt; &lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt; &lt;mapper namespace="com.yin.dynamic_datasource.dao.DynamicMapper"&gt;      &lt;!-- 插入记录--&gt;     &lt;insert id="insertArea" useGeneratedKeys="true" keyProperty="id"             parameterType="com.yin.dynamic_datasource.dto.AreaDto"&gt;  		  INSERT INTO tb_areas(areaid, area, cityid) values (#{areaId}, #{area}, #{cityid})      &lt;/insert&gt;   &lt;/mapper&gt;</code></pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2159.htm">pyenv与pyenv-virtualenv的安装和使用（Mac）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2161.htm">Java并发系列之JUC中的Lock锁与synchronized同步代码块问题_java_</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

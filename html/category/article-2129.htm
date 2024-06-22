@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2129.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue在安装时 node-sass报错 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue在安装时 node-sass报错</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2><a id="_0" rel="nofollow"></a><strong>具体报错如下：</strong></h2> <pre><code class="prism language-javascript">npm<span class="token constant">ERR</span><span class="token operator">!</span> node<span class="token operator">-</span>sass@<span class="token number">4.13</span><span class="token number">.1</span> postinstall<span class="token operator">:</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">node scripts/build.js</span><span class="token template-punctuation string">`</span></span> npm<span class="token constant">ERR</span><span class="token operator">!</span> Exit status<span class="token number">1</span> npm<span class="token constant">ERR</span><span class="token operator">!</span> npm<span class="token constant">ERR</span><span class="token operator">!</span> Failed at the node<span class="token operator">-</span>sass@<span class="token number">4.13</span><span class="token number">.1</span> postinstall script<span class="token punctuation">.</span> npm<span class="token constant">ERR</span><span class="token operator">!</span> This is probably not a problem<span class="token keyword">with</span> npm<span class="token punctuation">.</span> There is likely additional logging output above<span class="token punctuation">.</span>  npm<span class="token constant">ERR</span><span class="token operator">!</span><span class="token constant">A</span> complete log<span class="token keyword">of</span><span class="token keyword">this</span> run can be found<span class="token keyword">in</span><span class="token operator">:</span> npm<span class="token constant">ERR</span><span class="token operator">!</span><span class="token constant">C</span><span class="token operator">:</span>\Users\<span class="token number">32008</span>\AppData\Roaming\npm<span class="token operator">-</span>cache\_logs\<span class="token number">2021</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">30</span>T08_34_40_264Z<span class="token operator">-</span>debug<span class="token punctuation">.</span>log</code></pre> <h2><a id="_13" rel="nofollow"></a><strong>解决方案</strong></h2> <h2><a id="1cnpm_15" rel="nofollow"></a>1.安装cnpm</h2> <pre><code class="prism language-javascript">npm install<span class="token operator">-</span>g cnpm<span class="token operator">-</span>registry<span class="token operator">=</span>https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>registry<span class="token punctuation">.</span>npm<span class="token punctuation">.</span>taobao<span class="token punctuation">.</span>org</code></pre> <p>安装成功可输入命令查看：<strong>cnpm -v</strong></p> <pre><code class="prism language-lua">C<span class="token punctuation">:</span>\Users\<span class="token number">32008</span><span class="token operator">&gt;</span>cnpm<span class="token operator">-</span>v cnpm@<span class="token number">6.2</span><span class="token number">.0</span><span class="token punctuation">(</span>C<span class="token punctuation">:</span>\Users\<span class="token number">32008</span>\AppData\Roaming\npm\node_modules\cnpm\lib\parse_argv<span class="token punctuation">.</span>js<span class="token punctuation">)</span> npm@<span class="token number">6.14</span><span class="token number">.13</span><span class="token punctuation">(</span>C<span class="token punctuation">:</span>\Users\<span class="token number">32008</span>\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\lib\npm<span class="token punctuation">.</span>js<span class="token punctuation">)</span> node@<span class="token number">14.15</span><span class="token number">.4</span><span class="token punctuation">(</span>E<span class="token punctuation">:</span>\前端\node\node<span class="token punctuation">.</span>exe<span class="token punctuation">)</span> npminstall@<span class="token number">3.28</span><span class="token number">.0</span><span class="token punctuation">(</span>C<span class="token punctuation">:</span>\Users\<span class="token number">32008</span>\AppData\Roaming\npm\node_modules\cnpm\node_modules\npminstall\lib\index<span class="token punctuation">.</span>js<span class="token punctuation">)</span> prefix<span class="token operator">=</span>C<span class="token punctuation">:</span>\Users\<span class="token number">32008</span>\AppData\Roaming\npm win32 x64<span class="token number">10.0</span><span class="token number">.19042</span> registry<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">//</span>registry<span class="token punctuation">.</span>nlark<span class="token punctuation">.</span>com</code></pre> <h2><a id="2nodesassnpm_uninstall_nodesass_33" rel="nofollow"></a>2.卸载node-sass:<strong>npm uninstall node-sass</strong></h2> <pre><code class="prism language-lua">E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue<span class="token operator">&gt;</span>npm uninstall node<span class="token operator">-</span>sass npm WARN deprecated request@<span class="token number">2.88</span><span class="token number">.2</span><span class="token punctuation">:</span> request has been deprecated<span class="token punctuation">,</span> see https<span class="token punctuation">:</span><span class="token operator">//</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>request<span class="token operator">/</span>request<span class="token operator">/</span>issues<span class="token operator">/</span><span class="token number">3142</span> npm WARN deprecated har<span class="token operator">-</span>validator@<span class="token number">5.1</span><span class="token number">.5</span><span class="token punctuation">:</span> this library is no longer supported npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\jest<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\jest<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\jest<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\jest<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\jest as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\jest<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\gulp<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\gulp<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\gulp<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\gulp<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\gulp as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\gulp<span class="token operator">-</span>cli npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\shjs<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_shelljs@<span class="token number">0.7</span><span class="token number">.8</span>@shelljs npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\shjs<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_shelljs@<span class="token number">0.7</span><span class="token number">.8</span>@shelljs npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\shjs as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_shelljs@<span class="token number">0.7</span><span class="token number">.8</span>@shelljs npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\semver<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_semver@<span class="token number">5.7</span><span class="token number">.1</span>@semver npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\semver<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_semver@<span class="token number">5.7</span><span class="token number">.1</span>@semver npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\semver as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_semver@<span class="token number">5.7</span><span class="token number">.1</span>@semver npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.7</span><span class="token number">.1</span>@rimraf npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.7</span><span class="token number">.1</span>@rimraf npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.7</span><span class="token number">.1</span>@rimraf npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf<span class="token punctuation">.</span>ps1 as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.6</span><span class="token number">.3</span>@rimraf npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf<span class="token punctuation">.</span>cmd as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.6</span><span class="token number">.3</span>@rimraf npm WARN rm<span class="token keyword">not</span> removing E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\<span class="token punctuation">.</span>bin\rimraf as it wasn't installed by E<span class="token punctuation">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_rimraf@<span class="token number">2.6</span><span class="token number">.3</span>@rimraf</code></pre> <h2><a id="3nodesasscnpm_install_nodesass_59" rel="nofollow"></a>3.重新安装node-sass:cnpm install node-sass</h2> <pre><code class="prism language-r">E<span class="token operator">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue<span class="token operator">&gt;</span>cnpm install node<span class="token operator">-</span>sass √ Installed<span class="token number">1</span> packages √ Linked<span class="token number">176</span> latest versions<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> scripts.install node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token operator">*</span> run<span class="token string">"node scripts/install.js"</span><span class="token punctuation">,</span> root<span class="token operator">:</span><span class="token string">"E:\\java\\Git\\renren-fast-vue\\node_modules\\_node-sass@6.0.0@node-sass"</span> Cached binary found at C<span class="token operator">:</span>\Users\<span class="token number">32008</span>\.npminstall_tarball\node<span class="token operator">-</span>sass\<span class="token number">6.0</span><span class="token number">.0</span>\win32<span class="token operator">-</span>x64<span class="token operator">-</span><span class="token number">83</span>_binding.node<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> scripts.install node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token operator">*</span> finished<span class="token keyword">in</span><span class="token number">442</span>ms<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> scripts.postinstall node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token operator">*</span> run<span class="token string">"node scripts/build.js"</span><span class="token punctuation">,</span> root<span class="token operator">:</span><span class="token string">"E:\\java\\Git\\renren-fast-vue\\node_modules\\_node-sass@6.0.0@node-sass"</span> Binary found at E<span class="token operator">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\_node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token number">6.0</span><span class="token number">.0</span><span class="token operator">@</span>node<span class="token operator">-</span>sass\vendor\win32<span class="token operator">-</span>x64<span class="token operator">-</span><span class="token number">83</span>\binding.node Testing binary Binary is fine<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> scripts.postinstall node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token operator">*</span> finished<span class="token keyword">in</span><span class="token number">161</span>ms √ Run<span class="token number">1</span> scripts deprecate node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token number">6.0</span><span class="token number">.0</span> › request<span class="token operator">@</span><span class="token operator">^</span><span class="token number">2.88</span><span class="token number">.0</span> request has been deprecated<span class="token punctuation">,</span> see https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>github.com<span class="token operator">/</span>request<span class="token operator">/</span>request<span class="token operator">/</span>issues<span class="token operator">/</span><span class="token number">3142</span> deprecate node<span class="token operator">-</span>sass<span class="token operator">@</span><span class="token number">6.0</span><span class="token number">.0</span> › request<span class="token operator">@</span><span class="token number">2.88</span><span class="token number">.2</span> › har<span class="token operator">-</span>validator<span class="token operator">@</span><span class="token operator">~</span><span class="token number">5.1</span><span class="token number">.3</span> this library is no longer supported Recently updated<span class="token punctuation">(</span>since<span class="token number">2021</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">23</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token number">1</span> packages<span class="token punctuation">(</span>detail see file E<span class="token operator">:</span>\java\Git\renren<span class="token operator">-</span>fast<span class="token operator">-</span>vue\node_modules\.recently_updates.txt<span class="token punctuation">)</span> √ All packages installed<span class="token punctuation">(</span><span class="token number">192</span> packages installed from npm registry<span class="token punctuation">,</span> used<span class="token number">6</span>s<span class="token punctuation">(</span>network<span class="token number">5</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span> speed<span class="token number">72.53</span>kB<span class="token operator">/</span>s<span class="token punctuation">,</span> json<span class="token number">177</span><span class="token punctuation">(</span><span class="token number">365.18</span>kB<span class="token punctuation">)</span><span class="token punctuation">,</span> tarball<span class="token number">0</span>B<span class="token punctuation">)</span></code></pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2128.htm">MySQL 优化：explain 执行计划详解与示例分析</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2130.htm">Python数据分析实例</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

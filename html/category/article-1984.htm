@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1984.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>快速入门kotlin-标准函数与静态方法 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>快速入门kotlin-标准函数与静态方法</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1> <a id="_0" rel="nofollow"></a>标准函数</h1> <p>首先我们介绍标准函数 with、run、apply，如果你了解javascript，那理解kotlin的标准函数width、run、apply那简直不要太轻松。with、run、apply与javascript中的with的意义基本一模一样，只是含有一些细微差别。</p> <h2> <a id="with_4" rel="nofollow"></a>with</h2> <p>with它接收两个参数，第一个参数可以是任意类型的对象，第二个参数是一个Lambda表达式。with函数会在Lambda表达式中提供第一个对象的上下文，可以直接使用对象的属性或方法，而不需要带上对象前缀。with函数会使用Lambda表达式中的最后一行代码作为返回值返回。</p> <pre><code class="prism language-kt"><span class="token keyword">val</span> result <span class="token operator">=</span> <span class="token function">with</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">// 这里是obj的上下文环境</span> 	<span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="run_15" rel="nofollow"></a>run</h2> <p>run函数的用法与使用场景和with函数非常类似，只是做了些许改动。run函数无法直接调用，他需要在某个对象的基础上去调用它；其次run函数值接收一个Lambda表达式作为参数，并且会在Lambda表达中提供调用对象的上下文，同样将Lambda表达式中的最后一行代码作为返回值。</p> <p>val result = obj.run {<!-- --><br /> // 这里是obj的上下文环境<br /> doSomething() // 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用<br /> }</p> <h2> <a id="apply_24" rel="nofollow"></a>apply</h2> <p>apply函数和run函数在用法上基本一模一样，唯一区别是apply函数不会将Lambda表达式中的最后一行作为参数返回，而是会返回对象本身.</p> <pre><code class="prism language-kt"><span class="token keyword">val</span> result <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">{<!-- --></span> <span class="token comment">// 这里是obj的上下文环境</span> 	<span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用</span> <span class="token punctuation">}</span> <span class="token comment">// result == obj</span> </code></pre> <h1> <a id="_36" rel="nofollow"></a>静态方法</h1> <p>在java中定义一个静态方法如下：</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Util</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用静态方法</span> <span class="token class-name">Util</span><span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>而Kotlin提供了几种方式去实现类似java中的静态方法</p> <ul> <li>单例类实现静态方法</li> </ul> <pre><code class="prism language-kt"><span class="token comment">// 声明一个单例类</span> <span class="token keyword">object</span> Util <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <ul> <li>伴生类实现静态方法</li> </ul> <p>单例类的写法会让类中的所有方法全部变成了类似静态方法的调用形式，如果我们只是希望类中的某些方法变成静态方法的调用形式怎么办呢？kotlin给我们提供了伴生类 companion object。</p> <pre><code class="prism language-kt"><span class="token keyword">class</span> Utl <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">companion</span> obj <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>这个关键字实际会在Util类的内部创建一个伴生类，Kotlin会保证一个类中只会存在一个伴生类对象,调用Util.doSome()实际上是调用Util类中的伴生类对象的doSome方法。</p> <ul> <li>注解实现静态方法</li> </ul> <p>如果我们确确实实需要定义真正的静态方法，我们可以给单例类或companion object伴生类中的方法加上 @JvmStatic注解，那么kotlin编译器就会将这些方法编译成真正的静态方法。注意这个注释一般加在单例类或伴生类的方法上，如果加在普通方法上，会直接提示语法错误。</p> <pre><code class="prism language-kt"><span class="token keyword">class</span> Utl <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">companion</span> obj <span class="token punctuation">{<!-- --></span> 		<span class="token annotation builtin">@JvmStatic</span> 		<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <ul> <li>顶层方法实现静态方法</li> </ul> <p>顶层方法指的是哪些没有定义在任何类中的方法，比如我们编写的main()方法。kotlin编译器会将所有的顶层方法全部编译成静态方法。所有的顶层方法在任何位置可以直接被调用，不用管包名路径，也不用创建实例。但如果这个方法在Java代码中调用，需要加上该方法所在的文件名。</p> <pre><code class="prism language-kt"><span class="token comment">// 如我们在Tool.kt 文件中创建了一个顶层方法</span> <span class="token comment">// Tool.kt</span> <span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">// todo</span> <span class="token punctuation">}</span>  <span class="token comment">// 在java代码中使用</span> <span class="token keyword">public</span> <span class="token keyword">class</span> JavaTest <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">public</span> void <span class="token function">invokeStaticFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// 文件名+方法形式调用顶层方法</span> 		Tool<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1983.htm">Vue中实现扫描指定路径自动加载路由</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1985.htm">MaxCompute SQL函数详解 ODPS SQL函数详解之日期相关函数</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

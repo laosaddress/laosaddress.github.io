@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2231.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>antd组件upload上传xlsx文件，并读取文件内容 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>antd组件upload上传xlsx文件，并读取文件内容</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3><a id="xlsx_0" rel="nofollow"></a>xlsx包</h3> <p>这个包是个npm包，这里使用的版本为：</p> <blockquote> <p>“xlsx”: “^0.14.5”</p> </blockquote> <h3><a id="_3" rel="nofollow"></a>使用方式</h3> <p>首先，在文件中引入：</p> <pre><code class="prism language-js"><span class="token keyword">import</span><span class="token constant">XLSX</span><span class="token keyword">from</span><span class="token string">'xlsx'</span><span class="token punctuation">;</span></code></pre> <p>然后在upload组件的beforeUpload中使用：</p> <pre><code class="prism language-js"><span class="token function">beforeUpload</span><span class="token punctuation">(</span><span class="token parameter">files</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span><span class="token function-variable function">readFile</span><span class="token operator">=</span><span class="token parameter">file</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span><span class="token punctuation">[</span>fileReader<span class="token punctuation">,</span> data1<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token keyword">new</span><span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">let</span><span class="token punctuation">[</span>binaryData<span class="token punctuation">,</span> workbook<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">]</span><span class="token punctuation">;</span>         fileReader<span class="token punctuation">.</span><span class="token function-variable function">onload</span><span class="token operator">=</span><span class="token parameter">e</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>           binaryData<span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>           workbook<span class="token operator">=</span><span class="token constant">XLSX</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>binaryData<span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'binary'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>workbook<span class="token punctuation">.</span>Sheets<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">sheet</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>             data1<span class="token punctuation">[</span>sheet<span class="token punctuation">]</span><span class="token operator">=</span><span class="token constant">XLSX</span><span class="token punctuation">.</span>utils<span class="token punctuation">.</span><span class="token function">sheet_to_json</span><span class="token punctuation">(</span>workbook<span class="token punctuation">.</span>Sheets<span class="token punctuation">[</span>sheet<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">header</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           workbook<span class="token punctuation">.</span>SheetNames<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">sheetName</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> dataSheet<span class="token operator">=</span> data1<span class="token punctuation">[</span>sheetName<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> index<span class="token operator">&lt;</span> dataSheet<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index<span class="token operator">+=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> row<span class="token operator">=</span> dataSheet<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">const</span> item<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">name</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">snCode</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">macAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">ipAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">number</span><span class="token operator">:</span><span class="token function">Number</span><span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token literal-property property">podium</span><span class="token operator">:</span><span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token string">'是'</span><span class="token operator">?</span><span class="token boolean">true</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token literal-property property">devices</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">ipAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">location</span><span class="token operator">:</span><span class="token string">'top1'</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">ipAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">location</span><span class="token operator">:</span><span class="token string">'side1'</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">ipAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">location</span><span class="token operator">:</span><span class="token string">'front1'</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">ipAddress</span><span class="token operator">:</span> row<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token operator">?</span> row<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token literal-property property">location</span><span class="token operator">:</span><span class="token string">'front2'</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span>               fileData<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// fileData即为表格数据</span><span class="token keyword">if</span><span class="token punctuation">(</span>fileData<span class="token punctuation">.</span>length<span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>             that<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">tables</span><span class="token operator">:</span> fileData<span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             message<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">'导入成功！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{<!-- --></span>             message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'导入失败！'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>         fileReader<span class="token punctuation">.</span><span class="token function">readAsBinaryString</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token function">readFile</span><span class="token punctuation">(</span>uploadFile<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2230.htm">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2232.htm">vue中v-model的三种修饰符:lazy,numer,trim</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

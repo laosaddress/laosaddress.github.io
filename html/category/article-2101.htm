@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2101.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>欧拉定理的C ++程序 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>欧拉定理的C ++程序</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>这是一个C ++程序，它演示了Euler定理的实现。数字和模数必须是互质的，才能存在模数乘法逆。</p> <h2>算法</h2> <pre>Begin &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;as&nbsp;modular&nbsp;value &nbsp;&nbsp;&nbsp;Perform&nbsp;inverse&nbsp;array&nbsp;function: &nbsp;&nbsp;&nbsp;modInverse(x&nbsp;+&nbsp;1,&nbsp;0); &nbsp;&nbsp;&nbsp;modInverse[1]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;=&nbsp;2&nbsp;to&nbsp;x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modInverse[i]&nbsp;=&nbsp;(-(y&nbsp;/&nbsp;i)&nbsp;*&nbsp;modInverse[y&nbsp;mod&nbsp;i])&nbsp;mod&nbsp;y&nbsp;+&nbsp;y &nbsp;&nbsp;&nbsp;return&nbsp;modInverse End</pre> <h2>范例程式码</h2> <pre>#include&nbsp;&lt;iostream&gt; #include&nbsp;&lt;vector&gt; using&nbsp;namespace&nbsp;std; vector&lt;int&gt;&nbsp;inverseArray(int&nbsp;x,&nbsp;int&nbsp;y)&nbsp;{ &nbsp;&nbsp;&nbsp;vector&lt;int&gt;&nbsp;modInverse(x&nbsp;+&nbsp;1,&nbsp;0); &nbsp;&nbsp;&nbsp;modInverse[1]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;2;&nbsp;i&nbsp;&lt;=&nbsp;x;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modInverse[i]&nbsp;=&nbsp;(-(y&nbsp;/&nbsp;i)&nbsp;*&nbsp;modInverse[y&nbsp;%&nbsp;i])&nbsp;%&nbsp;y&nbsp;+&nbsp;y; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;return&nbsp;modInverse; } int&nbsp;main()&nbsp;{ &nbsp;&nbsp;&nbsp;vector&lt;int&gt;::iterator&nbsp;it; &nbsp;&nbsp;&nbsp;int&nbsp;a,&nbsp;m; &nbsp;&nbsp;&nbsp;cout&lt;&lt;"Enter&nbsp;number&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse:&nbsp;"; &nbsp;&nbsp;&nbsp;cin&gt;&gt;a; &nbsp;&nbsp;&nbsp;cout&lt;&lt;"Enter&nbsp;Modular&nbsp;Value:&nbsp;"; &nbsp;&nbsp;&nbsp;cin&gt;&gt;m; &nbsp;&nbsp;&nbsp;cout&lt;&lt;inverseArray(a,&nbsp;m)[a]&lt;&lt;endl; }</pre> <p>输出结果</p> <pre>Enter&nbsp;number&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse:&nbsp;26 Enter&nbsp;Modular&nbsp;Value:&nbsp;7 7</pre> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2100.htm">Blazor 在开发环境保存机密（User Secrets）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2102.htm">idea配置本地maven仓库</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

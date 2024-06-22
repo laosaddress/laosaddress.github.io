@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2114.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kotlin的标准函数和静态方法 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Kotlin的标准函数和静态方法</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_1" rel="nofollow">标准函数和静态方法</a></li> <li> <ul> <li><a href="#_3" rel="nofollow">标准函数</a></li> <li> <ul> <li><a href="#with_8" rel="nofollow">with函数</a></li> <li><a href="#run_58" rel="nofollow">run函数</a></li> <li><a href="#apply_82" rel="nofollow">apply函数</a></li> </ul> </li> <li><a href="#_102" rel="nofollow">静态方法</a></li> <li> <ul> <li><a href="#_108" rel="nofollow">单例类</a></li> <li><a href="#companion_object_123" rel="nofollow">companion object</a></li> <li><a href="#_142" rel="nofollow">注解</a></li> <li><a href="#_166" rel="nofollow">顶层方法</a></li> </ul> </li> </ul> </li> </ul> </div> <h1> <a id="_1" rel="nofollow"></a>标准函数和静态方法</h1> <h2> <a id="_3" rel="nofollow"></a>标准函数</h2> <ul> <li>标准函数就是在Standard.kt文件中定义的函数,任何Kotlin代码都可以自由地调用所有的标准函数</li> <li>let函数就属于是一个标准函数,经常配合?.操作符来进行判空处理</li> </ul> <h3> <a id="with_8" rel="nofollow"></a>with函数</h3> <ul> <li>with函数接收两个参数,第一参数可以是任何类型的对象,第二个参数是一个Lambda表达式</li> <li>with函数会在Lambda表达式中提供第一个参数的上下文,并使用Lambda表达式的最后一行代码作为函数的返回值</li> <li>示例代码</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">val</span> res <span class="token operator">=</span> <span class="token function">with</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">//这里是obj对象的上下文</span>     <span class="token string-literal singleline"><span class="token string">"value"</span></span><span class="token comment">//这里是with函数的返回值</span> <span class="token punctuation">}</span> </code></pre> <ul> <li>with函数的作用.假如现在有个需求让吃完所有的水果并且将结果打印出来,代码可以这样写</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">fun</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">val</span> list <span class="token operator">=</span> listOf<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Apple"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Banana"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Pear"</span></span><span class="token punctuation">)</span>     <span class="token keyword">val</span> sb <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Start eating fruits.\n"</span></span><span class="token punctuation">)</span>     <span class="token keyword">for</span> <span class="token punctuation">(</span>fruits <span class="token keyword">in</span> list<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"\n"</span></span><span class="token punctuation">)</span>     <span class="token punctuation">}</span>     sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ate all fruits."</span></span><span class="token punctuation">)</span>     <span class="token keyword">val</span> res <span class="token operator">=</span> sb<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <ul> <li>利用with函数可以这样写,可以看到在Lambda表达式中,都是StringBuilder的上下文,那么就不需要我们通过StringBuilder的实例调用append()方法了,而是直接使用append()方法即可.</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">fun</span> <span class="token function">withTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">val</span> list <span class="token operator">=</span> listOf<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Apple"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Banana"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Pear"</span></span><span class="token punctuation">)</span>     <span class="token keyword">val</span> res <span class="token operator">=</span> <span class="token function">with</span><span class="token punctuation">(</span><span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Start eating fruits.\n"</span></span><span class="token punctuation">)</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span>fruits <span class="token keyword">in</span> list<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token function">append</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span>             <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"\n"</span></span><span class="token punctuation">)</span>         <span class="token punctuation">}</span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ate all fruits."</span></span><span class="token punctuation">)</span>         <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//最后一行就是函数的返回值</span>     <span class="token punctuation">}</span>     <span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <h3> <a id="run_58" rel="nofollow"></a>run函数</h3> <ul> <li>run函数和with函数基本类似,区别就是,run函数不能直接调用,需要在某个对象的基础上进行调用</li> <li>其次run函数只接受一个Lambda参数,并且在Lambda表达式中提供调用对象的上下文.</li> <li>其他和with函数都是一样的</li> <li>使用run函数完成上述需求的实例</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">fun</span> <span class="token function">runTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">val</span> list <span class="token operator">=</span> listOf<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Apple"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Banana"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Pear"</span></span><span class="token punctuation">)</span>     <span class="token comment">//将StringBuilder调出来,用来调用run函数</span>     <span class="token keyword">val</span> res <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">run</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Start eating fruits.\n"</span></span><span class="token punctuation">)</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span>fruits <span class="token keyword">in</span> list<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token function">append</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span>             <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"\n"</span></span><span class="token punctuation">)</span>         <span class="token punctuation">}</span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ate all fruits."</span></span><span class="token punctuation">)</span>         <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token punctuation">}</span>     <span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <h3> <a id="apply_82" rel="nofollow"></a>apply函数</h3> <ul> <li>apply函数和run函数基本一样,就是apply函数不能指定返回值,只能返回调用调用者的本身</li> <li>apply函数实例</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">fun</span> <span class="token function">applyTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">val</span> list <span class="token operator">=</span> listOf<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Apple"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Banana"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Pear"</span></span><span class="token punctuation">)</span>     <span class="token keyword">val</span> res <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Start eating fruits.\n"</span></span><span class="token punctuation">)</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span>fruits <span class="token keyword">in</span> list<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token function">append</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span>             <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"\n"</span></span><span class="token punctuation">)</span>         <span class="token punctuation">}</span>         <span class="token function">append</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ate all fruits."</span></span><span class="token punctuation">)</span>     <span class="token punctuation">}</span>     <span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="_102" rel="nofollow"></a>静态方法</h2> <ul> <li>静态方法又叫做类方法,就是说不需要实例,直接用类就可以进行调用,一般会将工具类中的方法设置为静态方法,方便调用</li> <li>在java当中的静态方法就是使用static关键字修饰的方法</li> <li>但是在kotlin当中没有直接的静态方法</li> </ul> <h3> <a id="_108" rel="nofollow"></a>单例类</h3> <ul> <li>在kotlin当中要是想要定义一个工具类,会比较推荐单例类进行实现</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">object</span> Util <span class="token punctuation">{<!-- --></span>     <span class="token keyword">fun</span> <span class="token function">doAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">println</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"do something"</span></span><span class="token punctuation">)</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li>虽然单例类中的doAction()方法并不是静态放啊,但是我们还是可以直接使用Util.doAction()来进行调用</li> <li>但是单例类的缺点是单例类中的方法都是类似静态方法这种调用方式,但是我们只需要让类中的一个方法变成静态的怎么办?</li> </ul> <h3> <a id="companion_object_123" rel="nofollow"></a>companion object</h3> <ul> <li>在companion object中定义的方法就可以类似于静态方法那样进行调用了</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">class</span> Util <span class="token punctuation">{<!-- --></span>     <span class="token comment">//非静态方法属性</span>     <span class="token keyword">fun</span> <span class="token function">doAction1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>              <span class="token punctuation">}</span>     <span class="token comment">//拥有静态方法的属性</span>     <span class="token keyword">companion</span> <span class="token keyword">object</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">fun</span> <span class="token function">doAction2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                      <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h3> <a id="_142" rel="nofollow"></a>注解</h3> <ul> <li>单例类和companion object都是在语法形式上模仿了静态方法,实际上不属于真正的静态方法</li> <li>如果我们给单例类或者companion object中的方法加上@JvmStatic注解,那么kotlin编译器就会将这些方法编译成为真正的静态方法</li> <li>如下</li> </ul> <pre><code class="prism language-kotlin"><span class="token keyword">class</span> Util <span class="token punctuation">{<!-- --></span>     <span class="token comment">//非静态方法属性</span>     <span class="token keyword">fun</span> <span class="token function">doAction1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>              <span class="token punctuation">}</span>     <span class="token comment">//拥有静态方法的属性</span>     <span class="token keyword">companion</span> <span class="token keyword">object</span> <span class="token punctuation">{<!-- --></span>         <span class="token annotation builtin">@JvmStatic</span>         <span class="token keyword">fun</span> <span class="token function">doAction2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                      <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li>@JvmStatic只能加在单例类或者companion object中的方法</li> </ul> <h3> <a id="_166" rel="nofollow"></a>顶层方法</h3> <ul> <li>顶层方法指的就是没有定义在任何类中的方法,kotlin编译器会将所有的顶层方法编译成为静态方法</li> <li>因此只要定义了一个顶层方法,那么他肯定是一个静态方法</li> </ul> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2113.htm">springboot集成elasticsearch7.2</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2115.htm">vue之prop与$emit的用法说明_vue.js_</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

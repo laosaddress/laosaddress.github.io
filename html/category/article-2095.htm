@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2095.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>阿里云IoT流转到postgresql数据库方案_在线工具 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>阿里云IoT流转到postgresql数据库方案_在线工具</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>之前写过一篇如使用阿里云上部署.NET 3.1自定义运行时的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/podolski/p/12847037.html"  target="_blank"  rel="nofollow">文章</a>，吐槽一下，虽然现在已经2022年了，但是阿里云函数计算的支持依然停留在.NET Core 2.1，更新缓慢，由于程序解包大小的限制，也不能放太复杂的东西的上去，虽然现在.NET 6裁剪包能挺好地解决这个问题，但是心里还是不爽。</p> <h2 id="需求">需求</h2> <p>言归正传，有这么一个情景：发送数据想接入阿里云的IoT平台，然后直接插入postgresQL数据库中。正常来说，只要数据发送到了IoT平台，然后定义转发到RDS就可以了，不过阿里云有几个限制：</p> <ol> <li>数据流转到RDS数据库，只能支持<code>mysql</code>与<code>sql server</code> </li> <li>数据流转只支持<code>json</code>形式的数据流转，如果发送的是透传的数据，那么发送不了（更新：现在新版的数据流转已经支持了。）</li> </ol> <p>思前想后，可能只能掏出阿里云的函数计算服务了，运用函数计算作为中转，将透传的数据流转给函数计算，然后在函数计算中执行sql语句。</p> <h2 id="iot平台接收设置">IoT平台接收设置</h2> <p>阿里云的物联网平台，设置了基本的产品和设备之后，如果是物模型的话，那么自行设置好对应的物模型。对于透传就比较简单了，支持MQTT的设备方只需要定义：</p> <ul> <li>透传的消息发送到/{productKey}/{deviceName}/user/update</li> <li>订阅阿里云的/{productKey}/{deviceName}/user/get</li> <li>设置阿里云的Mqtt IoT实例终端节点:（{YourProductKey}.iot-as-mqtt.{YourRegionId}.aliyuncs.com:1883</li> <li>设置设备的ProductKey和ProductSecret</li> </ul> <p>设置好之后，即可传输数据到阿里云IoT端，数据传输过来，看下日志，如果能看到：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/400c095eb30379942af14a6cefa6aa36.jpg" alt="阿里云IoT流转到postgresql数据库方案_在线工具"></p> <p>那说明就已经发送OK了，接收到的是普通的字符串（不是json），需要进行进一步解析。</p> <h2 id="iot流转设置">IoT流转设置</h2> <p>在<strong>云产品流转</strong>中，新建解析器，设置好数据源，数据目的选择函数计算：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/57cbea6d330bb0414933e4dc37a819fa.jpg" alt="阿里云IoT流转到postgresql数据库方案_在线工具"><br /> 解析器脚本比较简单：</p> <pre><code>var data = payload();  writeFc(1000, data);   </code></pre> <p>注意，payload函数<code>payload</code>(textEncoding)是內建的函数：</p> <ul> <li>不传入参数：默认按照UTF-8编码转换为字符串，即payload()等价于payload('utf-8')。</li> <li>'json'：将payload数据转换成Map格式变量。如果payload不是JSON格式，则返回异常。</li> <li>'binary'：将payload数据转换成二进制变量进行透传。<br /> 这里我使用文本透传的形式，将数据转成UTF8文本传输。writeFc指将转换的内容传递给1000编号的目标函数。详情见<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/286549.htm"  target="_blank"  rel="nofollow">文档</a>。</li> </ul> <blockquote> <p>当然还可以使用更为复杂的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/270937.html"  target="_blank"  rel="nofollow">脚本</a>，实现对脚本数据的初步处理，由于我这里后面还有函数计算，我就直接将数据转到下一个节点。</p> </blockquote> <h2 id="函数计算配置">函数计算配置</h2> <p>按照官方文档新建函数，请注意<strong>不需要</strong>新建触发器！我们这里的函数使用python语言，通过<code>psycopg2</code>实现数据插入到postgres数据库中。</p> <p>由于函数计算中，默认并没有该包，需要手动添加引用，官方建议使用<code>Serverless Devs</code>工具安装部署，这个玩意非常不好用，嗯，我不接受他的建议。推荐大家使用<strong>vscode</strong>，安装阿里云serverless的插件，这样其实更加方便。</p> <p>按照插件的文档，自己建立好服务与函数，默认会给一个函数入口：</p> <pre><code class="language-python"># To enable the initializer feature (https://help.aliyun.com/document_detail/158208.html) # please implement the initializer function as below： # def initializer(context): #   logger = logging.getLogger() #   logger.info('initializing')  def handler(event, context):   logger = logging.getLogger()   logger.info(event)   return 'hello world' </code></pre> <p>我们首先在函数上右键，然后选择<code>Install Package</code>，选择pip安装<code>psycopg2</code>，依赖就自动被安装上了，这个非常方便。</p> <p>请注意，通过IOT流转过来的字符串，是<code>b'data'</code>这样的形式的形式，需要先decode一下，然后在处理，修改函数为：</p> <pre><code class="language-python"># -*- coding: utf-8 -*- import logging import psycopg2 import uuid import time  def insert_database(device_id,data):     timest = int(time.time()*1000)     guid = str(uuid.uuid1())     conn = psycopg2.connect(database="", user="", password="", host="", port="")     cur = conn.cursor()     sql = 'INSERT INTO "data"("Id","DeviceId","Timestamp", "DataArray") VALUES (\'{id}\', \'{deviceid}\', \'{timestamp}\', array{data})'     sql = sql.format(id= guid, deviceid= device_id, timestamp= timest, data= data)     cur.execute(sql)     conn.commit()     print(" Records inserted successfully")     conn.close()       def extract_string_array(data: bytes):     arr = data.decode().strip().split(' ')     # 写自己的逻辑     return deviceid, resu     def handler(event, context):   logger = logging.getLogger()   logger.info(event)   device_id, result = extract_string_array(event)   insert_database(device_id, result)   return 'OK' </code></pre> <p>保存，然后在vscode中deploy即可。</p> <blockquote> <p>提示：vscode中也可以进行本地的debug，还是比较方便的，不过这些功能依赖docker，所以还是提前装好比较好。</p> </blockquote> <p>弄完了之后，应该是能看见这样的画面：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/39ea5e0996a90fc6fdc25c6306461473.jpg" alt="阿里云IoT流转到postgresql数据库方案_在线工具"></p> <p>至此，数据就正常流转成功。</p> <h2 id="要点">要点</h2> <ol> <li>不要设置触发器，当时为了配置这个触发器弄了非常长的时间</li> <li>函数计算与数据库的VPC应该相同，并且赋予权限，否则无法访问。</li> <li>函数计算默认无法保持状态，如果有这个需求，最好试试别的方案，或者看下函数计算的预留实例（常驻实例）</li> <li>提前在本地安装好Docker，要不会有各种各样的问题出现。</li> <li>Postgresql插入数组格式的数据，需要注意格式，可以参考这篇<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/Anidot/articles/9451540.html"  target="_blank"  rel="nofollow">文档</a> </li> <li>如果长时间不用docker，导致docker无法启动，可以参考这篇<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_42348424/article/details/119999131"  target="_blank"  rel="nofollow">文章</a> </li> </ol> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2094.htm">CSS中position属性详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2096.htm">Metalama简介3.自定义.NET项目中的代码分析</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2193.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#error_1" rel="nofollow">一、error接口:</a></li> <li> <ul> <li><a href="#1_error_2" rel="nofollow">1. 使用error接口</a></li> </ul> </li> <li><a href="#panic_29" rel="nofollow">二、panic函数:</a></li> <li> <ul> <li><a href="#1_panic_30" rel="nofollow">1. panic函数的使用:</a></li> </ul> </li> <li><a href="#defer_58" rel="nofollow">三、延时调用defer:</a></li> <li> <ul> <li><a href="#1_defer_59" rel="nofollow">1. defer的使用:</a></li> <li><a href="#2__74" rel="nofollow">2. 在异常中的使用:</a></li> <li><a href="#3__95" rel="nofollow">3. 与匿名函数配合:</a></li> </ul> </li> <li><a href="#recover_123" rel="nofollow">四、recover:</a></li> <li> <ul> <li><a href="#1_recover_124" rel="nofollow">1. recover的使用:</a></li> </ul> </li> </ul> </div> <h1> <a id="error_1" rel="nofollow"></a>一、error接口:</h1> <h2> <a id="1_error_2" rel="nofollow"></a>1. 使用error接口</h2> <pre><code class="prism language-go"><span class="token keyword">package</span> main  <span class="token keyword">import</span> <span class="token punctuation">(</span> 	<span class="token string">"fmt"</span> <span class="token punctuation">)</span>  <span class="token keyword">func</span> <span class="token function">test</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>res <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	err <span class="token operator">=</span> <span class="token boolean">nil</span> 	<span class="token keyword">if</span> b <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"err="</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span> <span class="token comment">// err= &lt;nil&gt;</span> 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{<!-- --></span> 		res <span class="token operator">=</span> a <span class="token operator">/</span> b 	<span class="token punctuation">}</span> 	<span class="token keyword">return</span> <span class="token punctuation">}</span>  <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	res<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"err = "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token comment">// 0</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h1> <a id="panic_29" rel="nofollow"></a>二、panic函数:</h1> <h2> <a id="1_panic_30" rel="nofollow"></a>1. panic函数的使用:</h2> <p>panic函数: 当程序遇到panic函数会自动终止;</p> <pre><code class="prism language-go"><span class="token keyword">package</span> main  <span class="token keyword">import</span> <span class="token string">"fmt"</span>  <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span>  	<span class="token comment">// hello...</span> 	<span class="token comment">// hello...</span> 	<span class="token comment">// hello...</span> 	<span class="token comment">// panic: hello</span>  	<span class="token comment">// goroutine 1 [running]:</span> 	<span class="token comment">// main.main()</span> 	<span class="token comment">//         /Users/chengfei/Documents/学习/02_Golang学习/09_异常处理/02_panic函数.go:9 +0x145</span> 	<span class="token comment">// exit status 2</span>  <span class="token punctuation">}</span> </code></pre> <h1> <a id="defer_58" rel="nofollow"></a>三、延时调用defer:</h1> <h2> <a id="1_defer_59" rel="nofollow"></a>1. defer的使用:</h2> <ul> <li>defer执行顺序: <ul> <li>一个函数有多个defer语句, 他们以"后进先出"的顺序执行</li> </ul> </li> </ul> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好..."</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"世界..."</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"world..."</span><span class="token punctuation">)</span> 	<span class="token comment">// world...</span> 	<span class="token comment">// hello...</span> 	<span class="token comment">// 世界...</span> 	<span class="token comment">// 你好...</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="2__74" rel="nofollow"></a>2. 在异常中的使用:</h2> <p>即使函数或者某个延迟调用发生了错误, 这些调用依旧会被执行</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">test</span><span class="token punctuation">(</span>x <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{<!-- --></span> 	v <span class="token operator">:=</span> <span class="token number">100</span> <span class="token operator">/</span> x 	<span class="token keyword">return</span> v <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好..."</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"世界..."</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello..."</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"world..."</span><span class="token punctuation">)</span> 	<span class="token comment">// world...</span> 	<span class="token comment">// hello...</span> 	<span class="token comment">// 世界...</span> 	<span class="token comment">// 你好...</span> 	<span class="token comment">// panic: runtime error: integer divide by zero</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="3__95" rel="nofollow"></a>3. 与匿名函数配合:</h2> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	a<span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span> 	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"匿名函数: "</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> 	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	a <span class="token operator">=</span> <span class="token number">100</span> 	b <span class="token operator">=</span> <span class="token number">200</span> 	<span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"main函数"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">}</span> main函数 <span class="token number">100</span> <span class="token number">200</span> 匿名函数<span class="token punctuation">:</span>  <span class="token number">100</span> <span class="token number">200</span> </code></pre> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	a<span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span> 	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"匿名函数: "</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> 	<span class="token punctuation">}</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> 	a <span class="token operator">=</span> <span class="token number">100</span> 	b <span class="token operator">=</span> <span class="token number">200</span> 	<span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"main函数"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token comment">// main函数 100 200</span> <span class="token comment">// 匿名函数:  10 20</span> </code></pre> <h1> <a id="recover_123" rel="nofollow"></a>四、recover:</h1> <h2> <a id="1_recover_124" rel="nofollow"></a>1. recover的使用:</h2> <pre><code class="prism language-go"><span class="token keyword">package</span> main  <span class="token keyword">import</span> <span class="token string">"fmt"</span>  <span class="token keyword">func</span> <span class="token function">testA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"testA..."</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">testB</span><span class="token punctuation">(</span>x <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">// 设置recover()</span> 	<span class="token comment">// 在defer调用的函数中使用recover()</span> 	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// 防止程序崩溃</span> 		<span class="token comment">// recover()</span> 		<span class="token keyword">if</span> err <span class="token operator">:=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 匿名函数调用</span>  	<span class="token keyword">var</span> a <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span> 	a<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">999</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">testC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"testC..."</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token function">testA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">testB</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// err: 下标越界</span> 	<span class="token function">testC</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  	<span class="token comment">// testA...</span> 	<span class="token comment">// runtime error: index out of range [3] with length 3</span> 	<span class="token comment">// testC...</span> <span class="token punctuation">}</span> </code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2192.htm">Java 超详细讲解数据结构的应用_java</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2194.htm">TensorFlow之张量的形状相关操作</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

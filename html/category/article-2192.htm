@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2192.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Java 超详细讲解数据结构的应用_java - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Java 超详细讲解数据结构的应用_java</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">一.bfs</a></li> <li><a href="#_label1" rel="nofollow">二.双端队列</a></li> <li><a href="#_label2" rel="nofollow">三.算法题</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_0" rel="nofollow">1.kotori和迷宫</a></li> <li><a href="#_lab2_2_1" rel="nofollow">2.小红找红点</a></li> <li><a href="#_lab2_2_2" rel="nofollow">3.小红玩数组 </a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>一.bfs</h2> <p>bfs（广度优先搜索），类似二叉树的层序遍历，利用队列完成。一般用于求最短路。</p> <p>图的最短路问题：</p> <p>给定一个无向图，每条边的长度都是1。求1号点到x号点的最短距离。 顶点数n  边数为m</p> <p>q次询问  输入x 输出1到x的最短距离。 若1号点到x不连通，则输出-1</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>二.双端队列</h2> <p>双端队列的应用（区间翻转）：</p> <p>对于长度为n的数组，给定一个长度为m的区间，区间初始位置为a[1]到a[m]。</p> <p>3种操作：</p> <ul> <li>区间右移（最右端不会超过a[n]）</li> <li>区间左移（最左端不会超过a[n]）</li> <li>区间内所有数翻转。</li> </ul> <p>q次操作后请你还原数组。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>三.算法题</h2> <p class="maodian"><a name="_lab2_2_0" rel="nofollow"></a></p> <h3>1.kotori和迷宫</h3> <p>难度⭐⭐</p> <p>知识点：bfs</p> <p>首先找到k字母，然后从k字母位置开始bfs。bfs过程中即可得到k到每个e的最短路程。（要注意走过的e不可继续往下走）</p> <p>题目描述：</p> <p>kotori在一个n*m迷宫里，迷宫的最外层被岩浆淹没，无法涉足，迷宫内有k个出口。kotori只能上下左右四个方向移动。她想知道有多少出口是她能到达的，最近的出口离她有多远？</p> <p>输入描述:</p> <p>第一行为两个整数n和m，代表迷宫的行和列数 (1≤n,m≤30)</p> <p>后面紧跟着n行长度为m的字符串来描述迷宫。'k'代表kotori开始的位置，'.'代表道路，'*'代表墙壁，'e'代表出口。保证输入合法。</p> <p>输出描述:</p> <p>若有出口可以抵达，则输出2个整数，第一个代表kotori可选择的出口的数量，第二个代表kotori到最近的出口的步数。（注意，kotori到达出口一定会离开迷宫）</p> <p>若没有出口可以抵达，则输出-1。</p> <p>示例1</p> <p>输入</p> <blockquote> <p>6 8</p> <p>e.*.*e.*</p> <p>.**.*.*e</p> <p>..*k**..</p> <p>***.*.e*</p> <p>.**.*.**</p> <p>*......e</p> </blockquote> <p>输出</p> <blockquote> <p>2 7</p> </blockquote> <p>说明</p> <p>可供选择坐标为[4,7]和[6,8]，到kotori的距离分别是8和7步。</p> <div class="ay1code"> <pre class="brush:java;">  import java.util.*;  import java.io.*;  public class Main{    public static void main(String[] args) throws IOException{      BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));      String[] s1 = bf.readLine().split(" ");      int n = Integer.parseInt(s1[0]);      int m = Integer.parseInt(s1[1]);      //建立地图、标记图      char[][] maze = new char[n][m];      boolean[][] visited = new boolean[n][m];      //纪录步数      int[][] dis = new int[n][m];      //纪录初始的坐标      int ki = 0, kj = 0;      for(int i = 0; i &lt; n; i++){        String s = bf.readLine();        for(int j = 0; j &lt; m; j++){           dis[i][j] = Integer.MAX_VALUE;           char c = s.charAt(j);           maze[i][j] = c;           if(c == 'k'){            ki = i;            kj = j;          }        }      }             int count = 0, min = Integer.MAX_VALUE;      Queue&lt;Integer&gt; queue = new ArrayDeque&lt;&gt;();      //二维数组的性质，保存了坐标，并且节省了空间      queue.add(ki * m + kj);      visited[ki][kj] = true;      dis[ki][kj]= 0;      while(!queue.isEmpty()){        int temp = queue.poll();        int tempi = temp / m, tempj = temp % m;        //支持八个方向的移动或者不移动（但是因为Math.abs(i - j) == 1限定了绝对值为1，所以变成了四个方向）        for(int i = -1; i &lt;= 1; i++){          for(int j = -1; j &lt;= 1; j++){            if(Math.abs(i - j) == 1 &amp;&amp; tempi + i &gt;= 0 &amp;&amp; tempi + i &lt; n &amp;&amp; tempj + j &gt;= 0 &amp;&amp; tempj + j &lt; m &amp;&amp; !visited[tempi + i][tempj + j]){              if(maze[tempi + i][tempj + j] == '.'){                visited[tempi + i][tempj + j] = true;                dis[tempi + i][tempj + j] = dis[tempi][tempj] + 1;                queue.add((tempi + i) * m + (tempj + j));              }              if(maze[tempi + i][tempj + j] == 'e'){                visited[tempi + i][tempj + j] = true;                dis[tempi + i][tempj + j] = dis[tempi][tempj] + 1;                min = Math.min(min, dis[tempi][tempj] + 1);                count++;              }            }          }        }       }      if(count == 0) System.out.print(-1);      else System.out.print(count + " " + min);    }  }</pre> </div> <p>思考：队列是怎么实现bfs的？</p> <p>1.起始点入队--&gt;2.将起始点四个方向的可达点入队--&gt;3.起始点出队。以此循序依次访问队列中的元素。</p> <p class="maodian"><a name="_lab2_2_1" rel="nofollow"></a></p> <h3>2.小红找红点</h3> <p>难度⭐⭐⭐</p> <p>知识点：bfs，多源最短路</p> <p>多源最短路的求法：在bfs开始之前将所有点都扔进队列，然后开始bfs即可。</p> <p>题目描述：</p> <p>小红拿到了一张无向图，有 n 个顶点和 m 条边。每条边的长度为 1 。 </p> <p>小红给一些顶点染成了红色。她想知道，对于每个顶点，到附近最近的红色点的距离为多少？</p> <p>输入描述:</p> <p>第一行输出两个正整数 n 和 m ，用空格隔开。分别代表顶点数和边数。</p> <p>第二行输入一个长度为 n 的字符串，代表每个顶点的染色情况。第 i 个字符为 'R' 代表被染成红色，为 'W' 代表未被染色。</p> <p>接下来的 m 行，每行两个正整数 x 和 y ，代表 x 和 y 有一条无向边相连。</p> <p>不保证图是整体连通的。不保证没有重边和自环。</p> <p>1&lt;=n,m&lt;=10^5</p> <p>输出描述:</p> <p>输出一行 n 个整数，代表从 1 到 n 每个顶点到最近的红色顶点的距离。若对于某点而言无论如何都走不到红色顶点，则输出 -1 。</p> <p>示例1:</p> <p>输入</p> <blockquote> <p>5 5</p> <p>RWWRW</p> <p>1 2</p> <p>3 3</p> <p>1 2</p> <p>2 5</p> <p>1 4</p> </blockquote> <p>输出</p> <blockquote> <p>0 1 -1 0 2</p> </blockquote> <p>说明</p> <p style="text-align: center;"><img fetchpriority="high" decoding="async" alt="" height="464" src="http://img.555519.xyz/uploads3/20220424/586f90c6e7214fa2cd2b3d670e7197f1.jpg"></p> <p>样例的图如上所示。</p> <div class="ay1code"> <pre class="brush:java;">  import java.util.*;  import java.io.*;     public class Main{      static ArrayList&lt;Integer&gt;[] g;      static String[] strings;      static int[] visited;      static int[] dis;         public static void main(String[] args) throws Exception {          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));          String[] firstLine = br.readLine().split(" ");          int n = Integer.parseInt(firstLine[0]);          int m = Integer.parseInt(firstLine[1]);          g = new ArrayList[n+1];          visited = new int[n+1];          dis= new int[n+1];          for (int i=1;i&lt;n+1;i++) {              g[i] = new ArrayList&lt;Integer&gt;();          }          //一个字符一个字符的读取          strings = br.readLine().split("");          for (int i=0;i&lt;m;i++) {              //描绘双向图              String[] temp = br.readLine().split(" ");              int x = Integer.parseInt(temp[0]);              int y = Integer.parseInt(temp[1]);              g[x].add(y);              g[y].add(x);          }          //g[x]代表当前点 g[x].get(i)代表所连的线          Queue&lt;Integer&gt; queue = new ArrayDeque&lt;&gt;();          for(int i=1;i&lt;=n;i++){              if(strings[i-1].equals("R")){                  queue.add(i);                  visited[i]=1;              }          }          while(!queue.isEmpty()){              int temp=queue.remove();              for(int i=0;i&lt;g[temp].size();i++){                  if(visited[g[temp].get(i)]==0){                      visited[g[temp].get(i)]=1;                      dis[g[temp].get(i)]=dis[temp]+1;                      queue.add(g[temp].get(i));                  }              }          }          for(int i=1;i&lt;=n;i++){              if(visited[i]==0)System.out.print("-1 ");              else System.out.print(dis[i]+" ");          }      }  }</pre> </div> <p>对照上一章的案例：小红点点点结合理解。  分别使用的dfs和bfs。</p> <p>本题思想：先将红色的所有点都入队列，然后bfs。</p> <p>这是一种逆向思维：不是所谓的从编号开始，并且所有走过的都不能在走了。</p> <p class="maodian"><a name="_lab2_2_2" rel="nofollow"></a></p> <h3>3.小红玩数组 </h3> <p>难度⭐⭐⭐⭐</p> <p>知识点：双端队列</p> <p>用一个双端队列来模拟过程，用一个变量来标记双端队列是否翻转过。</p> <p style="text-align: center;"><img decoding="async" alt="" height="321" src="http://img.555519.xyz/uploads3/20220424/3781b8f239b245a7de38ffe83a9ba499.jpg"></p> <p style="text-align: center;"><img decoding="async" alt="" height="294" src="http://img.555519.xyz/uploads3/20220424/d1a26e18c37beefc47b107df8bdb02f1.jpg"></p> <p>示例1：</p> <p>输入</p> <blockquote> <p>6 4</p> <p>1 5 4 6 2 8</p> <p>5</p> <p>21323</p> </blockquote> <p>输出</p> <blockquote> <p>4 6 2 1 5 8</p> </blockquote> <div class="ay1code"> <pre class="brush:java;">  import java.io.*;  import java.util.*;  public class Main{      static Deque&lt;Integer&gt; workQueue;      public static void main(String[] args)throws IOException{          BufferedReader br=new BufferedReader(new InputStreamReader(System.in));          PrintWriter pw=new PrintWriter(System.out);          String[] firstLine=br.readLine().split(" ");          int total=Integer.parseInt(firstLine[0]);          int size=Integer.parseInt(firstLine[1]);          int[] arr=new int[total];          String[] secondLine=br.readLine().split(" ");          for(int i=0;i&lt;total;i++){              arr[i]=Integer.parseInt(secondLine[i]);          }          int L=0;          int R=size-1;          workQueue=new LinkedList&lt;&gt;();          for(int i=0;i&lt;size;i++){              workQueue.offerLast(arr[i]);          }          int times=Integer.parseInt(br.readLine());          String tries=br.readLine();          int is=0;//0代表没有翻转！          for(int i=0;i&lt;times;i++){              if(tries.charAt(i)=='1'){                  if(R==arr.length-1)                      continue;                  R++;                  if(is==0){                         workQueue.offerLast(arr[R]);                      int tmp=workQueue.pollFirst();                      arr[L]=tmp;                     }else{                         workQueue.offerFirst(arr[R]);                      int tmp=workQueue.pollLast();                      arr[L]=tmp;                     }                  L++;              }else if(tries.charAt(i)=='2'){                  if(L==0)                      continue;                  L--;                  if(is==0){                      workQueue.offerFirst(arr[L]);                         arr[R]=workQueue.pollLast();                     }else{                         workQueue.offerLast(arr[L]);                      arr[R]=workQueue.pollFirst();                        }                  R--;              }else{                  is=1-is;              }          }          for(int i=0;i&lt;L;i++){              pw.print(arr[i]+" ");          }          if(is==0){              while(!workQueue.isEmpty()) {                  pw.print(workQueue.pollFirst() + " ");              }          }else{              while(!workQueue.isEmpty()) {                  pw.print(workQueue.pollLast() + " ");              }          }          for(int i=R+1;i&lt;arr.length;i++){              pw.print(arr[i]+" ");          }          pw.flush();         }  }</pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2191.htm">vue动态控制样式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2193.htm">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1995.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue简单实现骨架屏 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue简单实现骨架屏</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3><a id="vue_0" rel="nofollow"></a>vue实现页面加载占位</h3> <h4><a id="_1" rel="nofollow"></a>效果如下</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/425d27cb35a3ba74547f82f95d84a9f9.jpg" alt="vue简单实现骨架屏"></p> <h4><a id="_3" rel="nofollow"></a>思路与实现</h4> <p>  页面加载时用户等待，此时与用户交互的方式通常有等待层、进度条、加载动画等；本次介绍加载占位，把页面即将展示的样子用css背景展示出来，等数据返回后即可进行页面渲染，可以有效减少页面抖动。<br /> 页面组成如下：</p> <ul> <li>占位子组件：使用纯css编写；</li> <li>获取数据的交易：此处使用setTimeout模拟查询耗时；</li> <li>数据展示组件；</li> </ul> <p>代码如下：</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>title<span class="token operator">-</span>bar<span class="token operator">:</span>title<span class="token operator">=</span><span class="token string">"title"</span> @goBack<span class="token operator">=</span><span class="token string">"goback"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">-</span>bar<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"res==true"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"(prd, index) in productList"</span><span class="token operator">:</span>key<span class="token operator">=</span><span class="token string">"index"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>prd<span class="token operator">-</span>item<span class="token operator">:</span>prd<span class="token operator">=</span><span class="token string">"prd"</span> @toPrdDetail<span class="token operator">=</span><span class="token string">"toPrdDetail"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>prd<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>list<span class="token operator">-</span>loading v<span class="token operator">-</span><span class="token keyword">else</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">-</span>loading<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token keyword">import</span> TitleBar<span class="token keyword">from</span><span class="token string">"@/components/TitleBar"</span><span class="token punctuation">;</span><span class="token keyword">import</span> ListLoading<span class="token keyword">from</span><span class="token string">'@/components/ListLoading'</span><span class="token punctuation">;</span><span class="token keyword">import</span> PrdItem<span class="token keyword">from</span><span class="token string">"./components/PrdItem"</span><span class="token punctuation">;</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span>   name<span class="token operator">:</span><span class="token string">"hgang"</span><span class="token punctuation">,</span><span class="token comment">// 分割线</span>   components<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     ListLoading<span class="token punctuation">,</span>     TitleBar<span class="token punctuation">,</span>     PrdItem<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span>       res<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token comment">// 数据是否已经返回</span>       title<span class="token operator">:</span><span class="token string">'产品列表'</span><span class="token punctuation">,</span>       productList<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>           imgPath<span class="token operator">:</span><span class="token string">"apple-1001.png"</span><span class="token punctuation">,</span>           name<span class="token operator">:</span><span class="token string">"Apple iPad Air 平板电脑(2020新款)"</span><span class="token punctuation">,</span>           price<span class="token operator">:</span><span class="token string">"4799.00"</span><span class="token punctuation">,</span>           sale<span class="token operator">:</span><span class="token string">"5"</span><span class="token punctuation">,</span>           ranking<span class="token operator">:</span><span class="token string">"10000+评价 平板热卖第5名"</span><span class="token punctuation">,</span>           prdShopName<span class="token operator">:</span><span class="token string">"Apple官方旗舰店"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">111</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">waitDateload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>   methods<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token function">waitDateload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>res<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">toPrdDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">goback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <p>其中：</p> <ul> <li>ListLoading：加载占位子组件，使用css编写，另加闪光动画效果；</li> <li>PrdItem：数据返回之后页面渲染子组件；</li> <li>res：控制占位组件与实际页面切换变量，通过v-if来控制页面展示，数据返回立刻重新渲染页面。</li> </ul> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1994.htm">橙子&#8211;python字典的增删改查与集合的增删改查</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1996.htm">kafka正常启动，但是几秒后停止运行</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

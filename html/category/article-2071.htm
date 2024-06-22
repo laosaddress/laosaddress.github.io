@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2071.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>【Android】ListView 控件的简单使用 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>【Android】ListView 控件的简单使用</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>1. 效果预览</p> <p class="img-center"><img fetchpriority="high" decoding="async" alt="" height="818" src="http://img.555519.xyz/uploads/20230202/10236495c042a53b1b6eb2758e8a9265.jpg"></p> <p>2. 在布局文件中放置 ListView 控件</p> <pre><code class="language-XML">&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     android:layout_height="match_parent"     tools:context=".MainActivity"&gt;      &lt;ListView         android:id="@+id/listView"         android:layout_width="match_parent"         android:layout_height="wrap_content"/&gt;  &lt;/LinearLayout&gt;</code></pre> <p>3. 创建 ListView 的 item 布局</p> <pre><code class="language-XML">&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     android:layout_height="wrap_content"&gt;      &lt;ImageView         android:id="@+id/iv_interaction"         android:layout_alignParentStart="true"         android:padding="10dp"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         tools:ignore="ContentDescription" /&gt;      &lt;TextView         android:id="@+id/tv_interaction"         android:layout_toEndOf="@+id/iv_interaction"         android:layout_centerVertical="true"         android:textSize="20sp"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         tools:ignore="RelativeOverlap" /&gt;      &lt;ImageView         android:id="@+id/messages_into"         android:layout_alignParentEnd="true"         android:padding="10dp"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         tools:ignore="ContentDescription" /&gt;  &lt;/RelativeLayout&gt;</code></pre> <p>4. 创建实体类</p> <pre><code class="language-java">public class InteractionBean {      private final int iv_interaction;     private final String tv_interaction;     private final int messages_into;      public InteractionBean(int iv_interaction, String tv_interaction, int messages_into){         this.iv_interaction = iv_interaction;         this.tv_interaction = tv_interaction;         this.messages_into = messages_into;     }      public int getIv_interaction() {         return iv_interaction;     }      public String getTv_interaction() {         return tv_interaction;     }      public int getMessages_into() {         return messages_into;     }  }</code></pre> <p>5. 创建适配器继承自 BaseAdapter</p> <pre><code class="language-java">public class InteractionAdapter extends BaseAdapter {      private final Context context;     private final List&lt;InteractionBean&gt; interactions;      public InteractionAdapter(Context context, List&lt;InteractionBean&gt; interactions){         this.context = context;         this.interactions = interactions;     }      @Override     public int getCount() {         return interactions.size();     }      @Override     public Object getItem(int i) {         return interactions.get(i);     }      @Override     public long getItemId(int i) {         return i;     }      @Override     public View getView(int i, View view, ViewGroup viewGroup) {          ViewHolder holder;          if (view == null){             view = LayoutInflater.from(context).inflate(R.layout.interaction_item, viewGroup, false);             holder = new ViewHolder();             holder.iv_interaction = view.findViewById(R.id.iv_interaction);             holder.tv_interaction = view.findViewById(R.id.tv_interaction);             holder.messages_into = view.findViewById(R.id.messages_into);             view.setTag(holder);         }else {             holder = (ViewHolder) view.getTag();         }          holder.iv_interaction.setImageResource(interactions.get(i).getIv_interaction());         holder.tv_interaction.setText(interactions.get(i).getTv_interaction());         holder.messages_into.setImageResource(interactions.get(i).getMessages_into());          return view;      }      static class ViewHolder{         ImageView iv_interaction;         TextView tv_interaction;         ImageView messages_into;     }  }</code></pre> <p>6. 为 item 设置数据，为 ListView 设置适配器</p> <pre><code class="language-java">public class MainActivity extends AppCompatActivity {      @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);          ListView listView = findViewById(R.id.listView);         List&lt;InteractionBean&gt; interactions = new ArrayList&lt;&gt;();         InteractionAdapter adapter = new InteractionAdapter(MainActivity.this, interactions);          InteractionBean at = new InteractionBean(R.drawable.messages_at, "有人@你", R.drawable.messages_into);         InteractionBean comment = new InteractionBean(R.drawable.messages_comment, "评论提醒", R.drawable.messages_into);         InteractionBean like = new InteractionBean(R.drawable.messages_like, "点赞提醒", R.drawable.messages_into);          interactions.add(at);         interactions.add(comment);         interactions.add(like);          listView.setAdapter(adapter);      } }</code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2070.htm">vue路由自动加载、按组件异步载入vuex以及dll优化</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2072.htm">PHP索引数组详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

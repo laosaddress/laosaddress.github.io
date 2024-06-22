@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2195.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue+element+oss实现前端分片上传和断点续传 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue+element+oss实现前端分片上传和断点续传</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>纯前端实现：<code>切片上传</code><code>断点续传</code> 。<code>断点续传</code>需要在切上上传的基础上实现</p> <p>前端之前上传OSS，无需后端提供接口。先上完整代码，直接复制，将new OSS里的参数修改成自己公司OSS相关信息后可用，如遇问题，请继续往下看。</p> <p><code>oss官方文档</code></p> <p>https://help.aliyun.com/document_detail/111268.html?spm=a2c4g.11186623.6.1111.5a583a07LknRUO</p> <h3 id="代码允许所需环境：vue--element--ali-oss">代码允许所需环境：vue + element + ali-oss</h3> <p>优惠券网站 https://www.cps3.cn/</p> <blockquote> <p>安装ali-oss： cnpm install ali-oss</p> </blockquote> <ul> <li>代码实现</li> </ul> <pre><code>&lt;template&gt;   &lt;div class="dashboard-editor-container"&gt;     &lt;el-upload       class="upload-demo"       action=""       ref="upload"       :file-list="fileList"       :limit="2"       :on-change="handleChange"       :on-remove="handleRemove"       :auto-upload="false"       accept=""     &gt;       &lt;el-button slot="trigger" size="small" type="primary"&gt;选取文件&lt;/el-button&gt;       &lt;el-button style="margin-left: 10px;" size="small" type="success" @click="submitForm"&gt;上传到服务器&lt;/el-button&gt;       &lt;el-button style="margin-left: 10px;" size="small" type="success" @click="resumeUpload"&gt;继续&lt;/el-button&gt;       &lt;el-button style="margin-left: 10px;" size="small" type="success" @click="stopUplosd"&gt;暂停&lt;/el-button&gt;       &lt;el-button style="margin-left: 10px;" size="small" type="success" @click="abortMultipartUpload"&gt;清除切片&lt;/el-button&gt;     &lt;/el-upload&gt;     &lt;el-progress :percentage="percentage" :status="uploadStatus"&gt;&lt;/el-progress&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt;   let OSS = require('ali-oss') // 引入ali-oss插件   const client = new OSS({     region: 'oss-cn-shanghai',//根据那你的Bucket地点来填写     accessKeyId: 'LTA*********RaXY',//自己账户的accessKeyId     accessKeySecret: 'uu1************GiS',//自己账户的accessKeySecret     bucket: 'a******o',//bucket名字   }); export default {   data () {     return {       fileList:[],       file: null,       tempCheckpoint: null, // 用来缓存当前切片内容       uploadId: '',       uploadStatus: null, // 进度条上传状态       percentage: 0, // 进度条百分比       uploadName: '',  //Object所在Bucket的完整路径     }   },   mounted() {     // window.addEventListener('online',  this.resumeUpload);   },   methods: {     // 点击上传至服务器     submitForm(file) {       this.multipartUpload();     },     // 取消分片上传事件     async abortMultipartUpload() {       window.removeEventListener('online', this.resumeUpload)       const name = this.uploadName; // Object所在Bucket的完整路径。       const uploadId = this.upload; // 分片上传uploadId。       const result = await client.abortMultipartUpload(name, uploadId);       console.log(result, '=======清除切片====');     },     // 暂停分片上传。     stopUplosd () {       window.removeEventListener('online', this.resumeUpload) // 暂停时清除时间监听       let result = client.cancel();       console.log( result, '---------暂停上传-----------')     },     // 切片上传     async multipartUpload () {       if (!this.file) {         this.$message.error('请选择文件')         return       }       this.uploadStatus = null       // console.log("this.uploadStatus",this.file, this.uploadStatus);        this.percentage = 0       try {         //object-name可以自定义为文件名（例如file.txt）或目录（例如abc/test/file.txt）的形式，实现将文件上传至当前Bucket或Bucket下的指定目录。         let result = await client.multipartUpload(this.file.name, this.file, {           headers: {             'Content-Disposition': 'inline',             'Content-Type': this.file.type //注意：根据图片或者文件的后缀来设置，我试验用的‘.png’的图片，具体为什么下文解释           },           progress: (p, checkpoint) =&gt; {             this.tempCheckpoint = checkpoint;             this.upload = checkpoint.uploadId             this.uploadName = checkpoint.name             this.percentage = p * 100             // console.log(p, checkpoint, this.percentage, '---------uploadId-----------')             // 断点记录点。浏览器重启后无法直接继续上传，您需要手动触发上传操作。           },           meta: { year: 2020, people: 'dev' },           mime: this.file.type         });         console.log(result, this.percentage, 'result= 切片上传完毕=');       } catch (e) {         window.addEventListener('online',  this.resumeUpload) // 该监听放在断网的异常处理         // 捕获超时异常。         if (e.code === 'ConnectionTimeoutError') { // 请求超时异常处理           this.uploadStatus = 'exception'           console.log("TimeoutError");           // do ConnectionTimeoutError operation         }         // console.log(e)       }     },     // 恢复上传。     async resumeUpload () {       window.removeEventListener('online', this.resumeUpload)       if (!this.tempCheckpoint) {         this.$message.error('请先上传')         return       }       this.uploadStatus = null       try {         let result = await client.multipartUpload(this.file.name, this.file, {           headers: {             'Content-Disposition': 'inline',             'Content-Type': this.file.type //注意：根据图片或者文件的后缀来设置，我试验用的‘.png’的图片，具体为什么下文解释           },            progress: (p, checkpoint) =&gt; {             this.percentage = p * 100             console.log(p, checkpoint, 'checkpoint----恢复上传的切片信息-------')             this.tempCheckpoint = checkpoint;           },           checkpoint: this.tempCheckpoint,           meta: { year: 2020, people: 'dev' },           mime: this.file.type         })         console.log(result, 'result-=-=-恢复上传完毕')       } catch (e) {         console.log(e, 'e-=-=-');       }     },      // 选择文件发生改变     handleChange(file, fileList) {       this.fileList = fileList.filter(row =&gt; row.uid == file.uid)       this.file = file.raw       // 文件改变时上传       // this.submitForm(file)     },     handleRemove(file, fileList) {       this.percentage = 0 //进度条置空       this.fileList = []     },   } } &lt;/script&gt;  &lt;style scoped&gt; &lt;/style&gt;</code></pre> <p>如果相关依赖已经安装完毕，但是上述代码操作时仍有报错，请检查以下问题</p> <pre><code>  const client = new OSS({     region: 'oss-cn-shanghai',//根据那你的Bucket地点来填写     accessKeyId: 'LT******XY',//自己账户的accessKeyId     accessKeySecret: 'uu*********GiS',//自己账户的accessKeySecret     bucket: 'a******io',//bucket名字   });</code></pre> <ul> <li>上述信息放在前端会存在安全问题，如在项目中使用尽量由后端接口提供。或使用STS临时授权。demo中没有，请自行探索。<br /> https://www.alibabacloud.com/help/zh/doc-detail/100624.htm?spm=a2c63.p38356.879954.5.7a234d04IQpf5I#concept-xzh-nzk-2gb</li> </ul> <blockquote> <p>配置项中信息可以问后端或者运维，bucket的名字必须是你OSS上存在的且你有权限访问的，不然会一直报<code>Pleasr create a busket first</code>或者一直报跨域</p> </blockquote> <blockquote> <p>当遇到跨域时，或者遇到报报错信息中有<code>etag</code>时，请检查OSS配置，然后找有OSS服务器权限人员进行配置：</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/43996a942ea919ed21c103ea40f56d82.jpg" alt="vue+element+oss实现前端分片上传和断点续传"></p> <blockquote> <p><code>window.addEventListener('online', this.resumeUpload)</code>用于监听网络状态（断网状态和连网状态），实现断网后恢复网络自动上传就必须设置监听。</p> </blockquote> <blockquote> <p><code>window.removeEventListener('online', this.resumeUpload)</code>取消监听。如果不设置取消监听，联网状态下会一直处于进行上传，因为一直满足监听条件`</p> </blockquote> <pre><code>headers: {             'Content-Disposition': 'inline',             'Content-Type': this.file.type //注意：根据图片或者文件的后缀来设置，我取得是文件的type，具体为什么下文解释           },</code></pre> <blockquote> <p>'Content-Type': this.file.type`的作用：加了在文件上传完毕后，访问文件链接时可以直接查看，否则会直接下载。</p> </blockquote> <blockquote> <p>文件上传完毕后查看，可以去resule.res.requestUrls中去取，但是注意要去点地址后面的<code>?uploadId=******</code></p> </blockquote> <p>上述代码只是demo，代码以实现功能为主，并不严谨，请自行完善。如对各位有所帮助，请推荐，谢谢各位！。</p> <p>以上就是全部内容，如有疑问，敬请留言！如有问题，请指出，谢谢~~</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2194.htm">TensorFlow之张量的形状相关操作</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2196.htm">Parquet列式文件存储格式</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

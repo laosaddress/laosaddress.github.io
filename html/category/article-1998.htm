@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1998.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue父子组件之间传值，以及之间方法调用 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue父子组件之间传值，以及之间方法调用</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>该文章主要记录在工作中经常使用的小知识点、注意点、遇到的小问题</p> <h2> <a id="vue_1" rel="nofollow"></a>vue父子组件传值，调用方法</h2> <h4> <a id="_2" rel="nofollow"></a>父传子值，父调用子方法</h4> <p>父组件向子组件传值（引入子组件→在引入的子组件绑定需要传送的值→子组件props接收）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child :msg="msg"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   data () {     return {       msg: '父组件的值'     }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   props:{       msg:{           type:String,           default:''       }   }   mounted(){       console.log(this.msg)   } } </code></pre> <p>父组件调用子组件方法（引入子组件→给注册的子组件注册引用信息→调用子组件方法）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child ref="child" &gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   mounted(){       this.$refs.child.getData() // 调用   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   methods:{       getData(){           console.log('父组件调用了我的方法')       }   } } </code></pre> <h4> <a id="_77" rel="nofollow"></a>子传父值，子调用父方法</h4> <p>子组件向父组件传值（方法一）</p> <pre><code>&lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child @func="getData"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   mounted(){       getData(val){           console.log(val) //我是子组件的数据       }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {     data(){         msg: "我是子组件的数据",     }     mounted(){         //func: 是父组件指定的传数据绑定的函数，this.msg:子组件给父组件传递的数据         this.$emit('func', this.msg)      } } </code></pre> <p>子组件向父组件传值（方法二）</p> <pre><code>父组件直接获取子组件里的data数据 this.$ref.child.msg </code></pre> <p>子组件调用父组件方法（方法一）</p> <pre><code>子组件直接通过this.$parent.event调用 //event为需要调用的父组件的事件 </code></pre> <p>子组件调用父组件方法（方法二）</p> <pre><code>子组件里用$emit向父组件触发一个事件，父组件监听这个事件就行了（与子组件向父组件传值（方法一）一致） </code></pre> <p>子组件调用父组件方法（方法三）</p> <pre><code>父组件把方法传入子组件中，在子组件里直接调用这个方法 &lt;!-父组件---&gt; &lt;template&gt;   &lt;div&gt;     &lt;child :getData="getData"&gt;&lt;/child&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import child from './child' export default {   components:{     child   }   methods:{       getData(){         console.log('这是父组件的方法'）        }   } }  &lt;!-子组件---&gt; &lt;template&gt;   &lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   props:{       getData:{           type:Function,           default:null       }   }   mounted(){     if(this.getData){         this.getData()     }   } } </code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1997.htm">go-micro开发RPC服务的方法及其运行原理</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1999.htm">mac系统ruby命令安装失败，重装brew命令</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

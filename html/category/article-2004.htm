@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2004.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>【小程序】微信小程序自定义导航栏及其封装 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>【小程序】微信小程序自定义导航栏及其封装</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>????????</p> <blockquote> <p>✨： 微信小程序自定义导航栏<br />  <br /> ????：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/m0_62159662?spm=1000.2115.3001.5343"  rel="nofollow">东非不开森的主页</a><br />  <br /> ????: 因为很多东西来不及去做去看可是时间很快总是赶不上，所以要去成长呀????????<br />  <br /> ????: 如有错误或不足之处，希望可以指正，非常感谢????<br />  </p> </blockquote> <p>应用场景：我们在小程序中想要自定义导航栏（当然组件库更方便哈哈）</p> <div class="toc"> <h3>小程序自定义导航栏</h3> <ul> <li> <ul> <li><a href="#_14" rel="nofollow">一、导航栏适配</a></li> <li> <ul> <li><a href="#11json_15" rel="nofollow">1.1.在json文件里更改页面配置项</a></li> <li><a href="#12_28" rel="nofollow">1.2.导航栏适配每种机型</a></li> </ul> </li> <li><a href="#_55" rel="nofollow">二、封装导航栏组件</a></li> <li> <ul> <li><a href="#21wxml_59" rel="nofollow">2.1.wxml</a></li> <li><a href="#22wxss_92" rel="nofollow">2.2.wxss</a></li> <li><a href="#23js_136" rel="nofollow">2.3.js</a></li> <li><a href="#24_165" rel="nofollow">2.4.在页面中使用导航栏组件</a></li> <li><a href="#25_173" rel="nofollow">2.5.效果图</a></li> </ul> </li> </ul> </li> </ul> </div> <h2> <a id="_14" rel="nofollow"></a>一、导航栏适配</h2> <h3> <a id="11json_15" rel="nofollow"></a>1.1.在json文件里更改页面配置项</h3> <p>⭐⭐⭐<br />  <br /> 官方文档介绍的有：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/606e8e75d8fe062a02de3427cf7412eb.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"></p> <p><code>"navigationStyle": "custom"</code><br /> 这样原本默认的导航栏就会消失了<br />  <br /> PS: <strong>如果是单页面需要就写在对应页面的json内，如果全局需要就写在app.josn内</strong><br />  <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/d234917f9d0b168bfbd2b864c8c4cce2.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br />  </p> <h3> <a id="12_28" rel="nofollow"></a>1.2.导航栏适配每种机型</h3> <p>⭐⭐⭐<br />  </p> <p>在<code>app.js</code> 里面获取statusbarHeight（这个就是每种机型的导航高度，我们需要获取并且动态的展示）<br />  <br /><code>wx.getSystemInfo</code>获取。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/00a51b6adc114dbc796152f9a29e36c5.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br />  </p> <p>我们要在对应该导航组件的<code>js</code>文件里面进行获取</p> <ul> <li> <code>data</code>中定义一个数据</li> <li>在动态从<code>app.js</code>中获取</li> <li>将获取到的<code>statusBarHeight</code>，存储到<code>data</code>中</li> </ul> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/f9c2739f7f95a224b851c91eb31c9434.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br />  </p> <p>在<code>wxml</code>里面动态的使用该数据<br />  </p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/02baab9e069c57d88fee5ca2a2cca2be.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br /> 这样机型适配就完成啦o(<em>￣︶￣</em>)o<br />  </p> <h2> <a id="_55" rel="nofollow"></a>二、封装导航栏组件</h2> <p>⭐⭐⭐⭐⭐<br />  </p> <h3> <a id="21wxml_59" rel="nofollow"></a>2.1.wxml</h3> <p> </p> <p>这里我们使用了插槽<br /> （可以看看插槽的内容）<br />  </p> <pre><code class="prism language-html"><span class="token comment">&lt;!--components/nav-bar/nav-bar.wxml--&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-bar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token selector">height:</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>statusHeight<span class="token punctuation">}</span><span class="token punctuation">}</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>left<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slot<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>left<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>default<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assets/images/icons/arrow-left.png<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slot<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>default<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>           {<!-- -->{title}}         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>  </code></pre> <h3> <a id="22wxss_92" rel="nofollow"></a>2.2.wxss</h3> <p>⭐⭐⭐<br />  </p> <ul> <li>这里主要控制导航栏显示的位置</li> <li>还有默认插槽用通过css3的伪类:empty，class="default"的view盒子默认的样式是display: none隐藏的，如果class="slot"的view盒子为空时，那么就会将class="default"的view盒子的样式设为display: flex（<strong>因为小程序是默认不显示默认插槽的</strong>）<br />  </li> </ul> <pre><code class="prism language-css"><span class="token comment">/* components/nav-bar/nav-bar.wxss */</span> <span class="token comment">/* 自定义导航 */</span> <span class="token selector">.nav</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>   <span class="token property">height</span><span class="token punctuation">:</span> 44px<span class="token punctuation">;</span>   <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token selector">.left, .right, .center</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>   <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token selector">.nav .left, .nav .right</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">width</span><span class="token punctuation">:</span> 120rpx<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token selector">.nav .center</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">flex</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token comment">/* 控制内容显示 */</span> <span class="token selector">.left .icon</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">width</span><span class="token punctuation">:</span> 40rpx<span class="token punctuation">;</span>   <span class="token property">height</span><span class="token punctuation">:</span> 40rpx<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token selector">.default</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token selector">.slot:empty + .default</span> <span class="token punctuation">{<!-- --></span>   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span> <span class="token punctuation">}</span>  </code></pre> <h3> <a id="23js_136" rel="nofollow"></a>2.3.js</h3> <p> </p> <ul> <li>在properties下设置标题</li> <li>在options开启多个插槽</li> </ul> <pre><code class="prism language-javascript"><span class="token comment">// components/nav-bar/nav-bar.js</span>  <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">multipleSlots</span><span class="token operator">:</span> <span class="token boolean">true</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token literal-property property">properties</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>       <span class="token literal-property property">type</span><span class="token operator">:</span> String<span class="token punctuation">,</span>       <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"导航标签"</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">statusHeight</span><span class="token operator">:</span><span class="token number">20</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token literal-property property">lifetimes</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>     <span class="token function">attached</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">statusHeight</span><span class="token operator">:</span> app<span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>statusHeight<span class="token punctuation">}</span><span class="token punctuation">)</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <h3> <a id="24_165" rel="nofollow"></a>2.4.在页面中使用导航栏组件</h3> <p>⭐⭐⭐<br />  <br /> 因为插槽的使用，这里就很方便了,如果添加内容，那么就会显示默认插槽<br />  <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/35347b55b560684ddfd265d0d7d30a11.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/b5f0018f9be231834e2e5ac0c9300e46.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"></p> <h3> <a id="25_173" rel="nofollow"></a>2.5.效果图</h3> <p> <br /> 这就是大概的效果了，当然文字箭头这里都是可以自定义的hh<br />  <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a46d4c6eb8aea396e4f753e29acaa7fa.jpg" alt="【小程序】微信小程序自定义导航栏及其封装"><br /> &lt;(￣︶￣)↗[GO!]&lt;(￣︶￣)↗[GO!]</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2003.htm">NTL密码算法开源库拓展SM2算法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2005.htm">关于Android10 暗黑模式的简述</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

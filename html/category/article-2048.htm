@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2048.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JS中URL参数的编解码 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>JS中URL参数的编解码</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-size:14px">HTML中的<span style="color:#ff0000"><strong>$("form").serialize()</strong></span>函数，在submit按钮<strong>点击时</strong>，将form表单中含有name的input整理成一个“name=aaa&amp;pass=bbb”这样的字符串，使用<strong>get</strong>方法请求时会将此字符串添加到请求url后面作为参数后缀，如果请求内容中存在<strong>汉字</strong>（即form表单中需要传输的input中有汉字），汉字将转换为一种由“%”开头的编码，如下图：</span></p> <p><span style="font-size:14px">下图是将<span style="font-size:14px">$("form").serialize()返回的字符串通过<strong>split('&amp;'</strong></span></span><span style="font-size:14px"><strong>)</strong>分割之后的数组，上面为未解码的数组，下面为解码之后又split('=')分割的右值：（纯获取数值完全可以使用正则，这里只做演示）</span></p> <p><span style="font-size:14px"><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/0eef4c47cb9628c11341a07c2f389e07.jpg" alt="JS中URL参数的编解码"><br /></span></p> <p><span style="font-size:14px">从上面的数组可以看到，汉字在url中传输时会被编码，其实不仅汉字，某些特殊字符，如空格等在传输时也会被编码。编码方式主要有两种：</span></p> <p><span style="font-size:14px"><strong><span style="color:#3366ff">1.<span style="font-size:14px">encodeURI编码</span></span></strong></span></p> <p><span style="font-size:14px">定义和用法:： &nbsp; encodeURI() 函数可把字符串作为 URI 进行编码。<br /> 语 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 法： &nbsp; &nbsp;encodeURI(URIstring)<br /> 参数 &nbsp; &nbsp;描述： &nbsp; &nbsp;URIstring &nbsp;必需。一个字符串，含有 URI 或其他要编码的文本。<br /> 返 &nbsp; &nbsp;回 &nbsp; 值： &nbsp; &nbsp;URIstring 的副本，其中的某些字符将被十六进制的转义序列进行替换。<br /> 说 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 明： &nbsp; &nbsp;该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。</p> <p> 该编码方法的目的是<strong><span style="color:#ff0000">对 URI 进行完整的编码</span></strong>，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<strong>;/?:@&amp;=+$,#</strong><br /></span></p> <div></div> <p><span style="font-size:14px"><strong><span style="color:#3366ff">2.encodeURIComponent() 编码</span></strong></span></p> <p><span style="font-size:14px">定义和用法： &nbsp; encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。<br /> 语 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 法： &nbsp; encodeURIComponent(URIstring)<br /> 参数 &nbsp; &nbsp;描述： &nbsp;URIstring &nbsp;必需。一个字符串，含有 URI 组件或其他要编码的文本。<br /> 返 &nbsp; &nbsp;回 &nbsp; 值： &nbsp; URIstring 的副本，其中的某些字符将被十六进制的转义序列进行替换。<br /> 说 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 明： &nbsp;该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 其他字符（比如 ：;/?:@&amp;=+$,# 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换<span style="white-space:pre"></span>&nbsp; &nbsp; &nbsp; &nbsp; 的。</span></p> <p><span style="font-size:14px"><strong><span style="color:#3366ff">提示：</span></strong><br /> 注意 encodeURIComponent() 函数 与 encodeURI() 函数的区别之处，前者假定它的参数是 URI 的一部分（比如协议、主机名、路径或查询字符串）。因此 encodeURIComponent() 函数将转义用于分隔 URI 各个部分的标点符号。</span></p> <p><span style="font-size:14px">例如当传递的参数为某个http地址时，需要使用<span style="font-size:14px">encodeURIComponent()编码，如下：</span><br /></span></p> <p><span style="font-size:14px"><span style="font-size:14px"><strong>&lt;a href="http://passport.baidu.com/?logout&amp;aid=7&amp;url='+<span style="color:#ff0000">encodeURIComponent("http://cang.baidu.com/bruce42")</span>+'"&gt;退出&lt;/a&gt;');</strong></span></span></p> <p><span style="font-size:14px"><span style="font-size:14px"><strong>还有这种例子：</strong></span></span></p> <p><span style="font-size:14px"><span style="font-size:14px"><strong><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/69342b3fcef92ddd6b4ba179554c9b64.jpg" alt="JS中URL参数的编解码"><br /></strong></span></span></p> <p><strong><span style="font-size:14px; color:#3366ff">解码方式：</span></strong></p> <p><span style="font-size:14px">encodeURI()编码的解码函数为 decodeURI()</span></p> <p><span style="font-size:14px">encodeURIComponent()编码的解码函数为 decodeURIComponent()，</span></p> <p><span style="font-size:14px"><strong><span style="color:#ff0000">一定要注意的是，参数中正常的“+”依然被解码成原来的“+”，但是参数中<span style="font-size:14px">的空格也会被解码成“+”，这就需要在解码前进行对空格的处理：<span style="font-size:14px">decodeURIComponent(str.replace("/\+/g","%20")),这里str中原来正常的“+”经过编码之后会被转成“%2B”，正常的空格被转成“+”，而不是转成一个编码，所以解码的时候“%2B”自然被解码为“+”，但“+”却依然被解码为“+”，就出现了“+”编码解码后是“+”，空格编码再解码之后也是“+”的局面。</span></span></span></strong><br /></span></p> <p><span style="font-size:14px; color:#3366ff"><strong>拓展：</strong></span></p> <p><span style="font-size:14px"><span style="font-size:14px">encodeURI()编码 和</span><span style="font-size:14px">encodeURIComponent()编码方式是替代早期 escape()&nbsp;的方法， 因为ECMAScript v3 反对使用escape()方法，</span><br /></span></p> <p><span style="font-size:14px"><span style="font-size:14px"><span style="font-size:14px"><span style="font-size:14px">escape()方法也是对参数的编码方式，不会对 ASCII 字母和数字进行编码，也不会对下面这些 ASCII 标点符号进行编码： * @ - _ +</span></span></span></span></p> <p><span style="font-size:14px"><span style="font-size:14px"><span style="font-size:14px"><span style="font-size:14px">&nbsp;. / 。其他所有的字符都会被转义序列替换，其解码方式为unescape()。</span></span></span></span></p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2047.htm">vue跳转方式及传参 (包括打开新窗口)</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2049.htm">Redis和Mysql如何保证数据一致性</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

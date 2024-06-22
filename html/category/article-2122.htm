@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2122.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flutter之Decoration（编写圆角竖线） - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Flutter之Decoration（编写圆角竖线）</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>自己根据资料编写圆角竖线，具体实现代码如下：</p> <pre><code>Container(           margin: EdgeInsets.fromLTRB(10, 10, 5, 10),           width: 3,           height: 11,           decoration: ShapeDecoration(               color: Colors.lightBlue,               shape: RoundedRectangleBorder(                   borderRadius: BorderRadius.circular(5))),         ) </code></pre> <p>Flutter之Decoration（边框、圆角、阴影、形状、渐变、背景图像等）<br /> 1 继续关系：</p> <p>BoxDecoration:实现边框、圆角、阴影、形状、渐变、背景图像</p> <p>ShapeDecoration:实现四个边分别指定颜色和宽度、底部线、矩形边色、圆形边色、体育场（竖向椭圆）、 角形（八边角）边色</p> <p>FlutterLogoDecoration:实现Flutter图片</p> <p>UnderlineTabindicator:下划线</p> <p>2 介绍<br /> 一个背景装饰对象，相当于Android中的shape.xml，定制各种各样的背景（边框、圆角、阴影、形状、渐变、背景图像）。</p> <p>3 BoxDecoration例子：<br /> 构造方法：</p> <p>const BoxDecoration({<!-- --><br /> this.color, // 底色<br /> this.image, // 图片<br /> this.border, 边色<br /> this.borderRadius, // 圆角度<br /> this.boxShadow, // 阴影<br /> this.gradient, // 渐变<br /> this.backgroundBlendMode, // 混合Mode<br /> this.shape = BoxShape.rectangle, // 形状<br /> })<br /> 3.1 边框+圆角:<br /> decoration: new BoxDecoration(<br /> border: new Border.all(color: Color(0xFFFF0000), width: 0.5), // 边色与边宽度<br /> color: Color(0xFF9E9E9E), // 底色<br /> // borderRadius: new BorderRadius.circular((20.0)), // 圆角度<br /> borderRadius: new BorderRadius.vertical(top: Radius.elliptical(20, 50)), // 也可控件一边圆角大小<br /> ),<br /> 3.2 阴影：<br /> decoration: new BoxDecoration(<br /> border: new Border.all(color: Color(0xFFFF0000), width: 0.5), // 边色与边宽度<br /> // 生成俩层阴影，一层绿，一层黄， 阴影位置由offset决定,阴影模糊层度由blurRadius大小决定（大就更透明更扩散），阴影模糊大小由spreadRadius决定<br /> boxShadow: [BoxShadow(color: Color(0x99FFFF00), offset: Offset(5.0, 5.0), blurRadius: 10.0, spreadRadius: 2.0), BoxShadow(color: Color(0x9900FF00), offset: Offset(1.0, 1.0)), BoxShadow(color: Color(0xFF0000FF))],<br /> ),<br /> 3.3 形状（圆形与矩形）：<br /> decoration: new BoxDecoration(<br /> border: new Border.all(color: Color(0xFFFFFF00), width: 0.5), // 边色与边宽度<br /> color: Color(0xFF9E9E9E), // 底色<br /> // shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius<br /> shape: BoxShape.rectangle, // 默认值也是矩形<br /> borderRadius: new BorderRadius.circular((20.0)), // 圆角度<br /> ),<br /> 3.4 渐变（环形、扫描式、线性）：<br /> decoration: new BoxDecoration(<br /> border: new Border.all(color: Color(0xFFFFFF00), width: 0.5), // 边色与边宽度<br /> // 环形渲染<br /> gradient: RadialGradient(colors: [Color(0xFFFFFF00), Color(0xFF00FF00), Color(0xFF00FFFF)],radius: 1, tileMode: TileMode.mirror)<br /> //扫描式渐变<br /> // gradient: SweepGradient(colors: [Color(0xFFFFFF00), Color(0xFF00FF00), Color(0xFF00FFFF)], startAngle: 0.0, endAngle: 1*3.14)<br /> // 线性渐变<br /> // gradient: LinearGradient(colors: [Color(0xFFFFFF00), Color(0xFF00FF00), Color(0xFF00FFFF)], begin: FractionalOffset(1, 0), end: FractionalOffset(0, 1))<br /> ),<br /> 3.4 背景图像：<br /> decoration: new BoxDecoration(<br /> border: new Border.all(color: Color(0xFFFFFF00), width: 0.5), // 边色与边宽度<br /> image: new DecorationImage(<br /> image: new NetworkImage(‘https://avatar.csdn.net/8/9/A/3_chenlove1.jpg’), // 网络图片<br /> // image: new AssetImage(‘graphics/background.png’), 本地图片<br /> fit: BoxFit.fill // 填满<br /> // centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),// 固定大小<br /> ),<br /> ),<br /> 4 ShapeDecoration例子：<br /> 构造方法：</p> <p>const ShapeDecoration({<!-- --><br /> this.color,<br /> this.image,<br /> this.gradient,<br /> this.shadows,<br /> @required this.shape,<br /> })<br /> 除了shape，其他与BoxDecoration一致，shape研究：</p> <p>decoration: new ShapeDecoration(<br /> color: Color(0xFFFF00FF), // 底色<br /> // 统一四边颜色和宽度<br /> shape: Border.all(color: Color(0xFF00FFFF),style: BorderStyle.solid,width: 2)<br /> // 四个边分别指定颜色和宽度， 当只给bottom时与UnderlineInputBorder一致效果<br /> // shape: Border(top: b, bottom: b, right: b, left: b)<br /> // 底部线<br /> // shape: UnderlineInputBorder( borderSide:BorderSide(color: Color(0xFFFFFFFF), style: BorderStyle.solid, width: 2))<br /> // 矩形边色<br /> // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)), side: BorderSide(color: Color(0xFFFFFFFF), style: BorderStyle.solid, width: 2))<br /> // 圆形边色<br /> // shape: CircleBorder(side: BorderSide(color: Color(0xFFFFFF00), style: BorderStyle.solid, width: 2))<br /> // 体育场（竖向椭圆）<br /> // shape: StadiumBorder(side: BorderSide(width: 2, style: BorderStyle.solid, color: Color(0xFF00FFFF))<br /> // 角形（八边角）边色<br /> // shape: BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)), side: BorderSide(color: Color(0xFFFFFFFF), style: BorderStyle.solid, width: 2))<br /> ),<br /> 5 FlutterLogoDecoration例子：<br /> 构造方法：</p> <p>const FlutterLogoDecoration({<!-- --><br /> this.lightColor = const Color(0xFF42A5F5), // Colors.blue[400]<br /> this.darkColor = const Color(0xFF0D47A1), // Colors.blue[900]<br /> this.textColor = const Color(0xFF616161),<br /> this.style = FlutterLogoStyle.markOnly,<br /> this.margin = EdgeInsets.zero,<br /> })<br /> 这个就不解析了，Flutter的logo，开发没啥用！</p> <p>6 UnderlineTabindicator例子：<br /> 构造方法：</p> <p>const UnderlineTabIndicator({<!-- --><br /> this.borderSide = const BorderSide(width: 2.0, color: Colors.white),<br /> this.insets = EdgeInsets.zero,<br /> })<br /> 这个比较简单就是加下划线，可以设置Insets值（控制下划高底，左右边距）</p> <p>decoration: new UnderlineTabIndicator(<br /> borderSide: BorderSide(width: 2.0, color: Colors.white),<br /> insets: EdgeInsets.fromLTRB(0,0,0,10)</p> <p>原文：https://blog.csdn.net/chenlove1/article/details/83627831</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2121.htm">CesiumJS 2022^ 原理[2] 渲染架构之 Primitive &#8211; 创建并执行指令</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2123.htm">python学习记录（文件操作）</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

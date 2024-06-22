@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2127.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue如何根据条件判断按钮是否可以点击_vue.js - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue如何根据条件判断按钮是否可以点击_vue.js</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">根据条件判断按钮是否可以点击</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">方法一：使用v-if 、v-else 来判断</a></li> <li><a href="#_lab2_0_1" rel="nofollow">方法二：增加一个变量,判断</a></li> </ul> <li><a href="#_label1" rel="nofollow">vue判断点击当前元素</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_2" rel="nofollow">需要判断你是点击了遮罩层还是form表单</a></li> <li><a href="#_lab2_1_3" rel="nofollow">接下来是分别对e.currentTarget、e.target打印</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>根据条件判断按钮是否可以点击</h2> <p>按钮当在特定环境下不可点击，需要根据判断来控制点击事件。</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>方法一：使用v-if 、v-else 来判断</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;      &lt;div&gt;          &lt;el-button v-if="!isDisabled"&gt;&lt;/el-button&gt;          &lt;el-button v-else @click="getDetail()"&gt;&lt;/el-button&gt;      &lt;/div&gt;  &lt;/template&gt;</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>方法二：增加一个变量,判断</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;  &lt;el-button @click="!isDisabled &amp;&amp; getDetail()"&gt;&lt;/el-button&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  data(){      return{          isDisabled:true,  //为true时可以点击，false时不可点击      }  }  &lt;/script&gt;</pre> </div> <p>两种方法都可以，但第二种相对来说编写的代码更少，具体怎么用看个人习惯。  </p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>vue判断点击当前元素</h2> <p><strong>点击按钮，出现弹窗；然后点击遮罩层，当前弹窗消失。</strong></p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220420/daf4430faf326471612b9e98018cdaca.jpg"></p> <p>一开始都会在遮罩层上绑定点击事件，但是这样的话，点击了form表单，当前弹窗也会消失。</p> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>需要判断你是点击了遮罩层还是form表单</h3> <p>1.在遮罩层上绑定点击事件 @click=“showfun2($event)”</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div class="topfrom" v-show="msg" @click="showfun2($event)"&gt;      &lt;!--子组件--&gt;      &lt;fromdemo btndata="点击咨询"&gt;&lt;/fromdemo&gt;    &lt;/div&gt;</pre> </div> <p>2.判断是否点击了当前元素 e.currentTarget === e.target</p> <div class="ay1code"> <pre class="brush:js;">showfun2(e) {      if (e.currentTarget === e.target) {          this.msg = false      }  },</pre> </div> <p>以上就完成当前事件点击元素的判断。</p> <p class="maodian"><a name="_lab2_1_3" rel="nofollow"></a></p> <h3>接下来是分别对e.currentTarget、e.target打印</h3> <div class="ay1code"> <pre class="brush:js;">showfun2(e) {      console.log(e.currentTarget)      console.log(e.target)  },</pre> </div> <p><strong>第一次点击 遮罩层 </strong></p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220420/c6248c78246179b90fbda8582922dd41.jpg"></p> <p><strong>第二次点击 form表单</strong></p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220420/479a87b1709193d23e46a0847fb91800.jpg"></p> <p>发现 e.currentTarget 打印的始终是，绑定点击事件的元素。</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2126.htm">编码练习：JavaScript 点击下拉列表显示相关信息</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2128.htm">MySQL 优化：explain 执行计划详解与示例分析</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2184.htm" title="【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具">【mq】从零开始实现 mq-04-启动检测与实现优化_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

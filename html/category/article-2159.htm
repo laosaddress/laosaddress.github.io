@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2159.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>pyenv与pyenv-virtualenv的安装和使用（Mac） - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>pyenv与pyenv-virtualenv的安装和使用（Mac）</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <blockquote> <p>使用Pyenv方便管理/切换Python版本</p> </blockquote> <h3>1、安装</h3> <pre># 通过 Homebrew 安装 brew update brew install pyenv</pre> <h3>2、配置</h3> <ol> <li>编辑配置文件</li> </ol> <pre># 使用 zsh shell vim ~/.zshrc  # 使用系统默认 vim ~/.bash_profile</pre> <p>在<strong>.zshrc</strong>&nbsp;或<strong>.bash_profile</strong>&nbsp;文件最后写入：</p> <pre>export PYENV_ROOT="$HOME/.pyenv" export PATH="$PYENV_ROOT/bin:$PATH"  if which pyenv &gt; /dev/null;   then eval "$(pyenv init -)"; fi</pre> <ol> <li>使配置生效</li> </ol> <pre>source ~/.zshrc # or source ~/.bash_profile</pre> <h3>3、使用</h3> <ul> <li>查看可安装的版本</li> </ul> <pre>pyenv install --list</pre> <ul> <li>安装python版本</li> </ul> <pre>pyenv install 3.6.3</pre> <ul> <li>查看当前已安装的python版本</li> </ul> <pre>pyenv versions</pre> <p><a href="http://img.555519.xyz/uploads3/20220904/d6b1d96b943b826ddaf1befba2988db8.jpg" rel="nofollow" class="fancybox" data-fancybox-group="button"><img decoding="async" alt="2017-11-01-14-52-01" class="has" src="http://img.555519.xyz/uploads3/20220904/d6b1d96b943b826ddaf1befba2988db8.jpg"></a></p> <p><em>已安装3.6.2 与 3.6.3 版本, 当前使用的版本: 3.6.3</em></p> <ul> <li>设置python版本</li> </ul> <pre># 对所有的Shell全局有效，会把版本号写入到~/.pyenv/version文件中 pyenv global 3.6.3  # 只对当前目录有效，会在当前目录创建.python-version文件 pyenv local 3.6.3  # 只在当前会话有效 pyenv shell 3.6.3  # 可通过配置PYENV_VERSION环境变量或编辑~/.python-version文件设置会话默认使用的python版本 echo "3.6.3" &gt; ~/.python-version # or echo 'export PYENV_VERSION="3.6.3"' &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc</pre> <ul> <li>重置版本设置</li> </ul> <blockquote> <p>只有 pyenv shell 和 pyenv local 命令有--unset参数</p> </blockquote> <pre>pyenv shell --unset pyenv local --unset</pre> <ul> <li>卸载版本</li> </ul> <pre>pyenv uninstall 3.6.3</pre> <h2><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/pyenv/pyenv-virtualenv"  rel="nofollow">pyenv-virtualenv</a></h2> <blockquote> <p>pyenv-virtualenv 是pyenv的插件，为pyenv设置的python版本提供隔离的虚拟环境，设置虚拟环境后，在当前目录下面安装的第三方库都不会影响其他环境</p> </blockquote> <h3>1、安装</h3> <pre>brew update brew install pyenv-virtualenv</pre> <h3>2、配置</h3> <ol> <li>编辑配置文件</li> </ol> <pre># 使用 zsh shell vim ~/.zshrc  # 使用系统默认 vim ~/.bash_profile</pre> <p>在<strong>.zshrc</strong>&nbsp;或<strong>.bash_profile</strong>&nbsp;文件最后写入：</p> <pre># pyenv-virtualenv if which pyenv-virtualenv-init &gt; /dev/null;   then eval "$(pyenv virtualenv-init -)"; fi</pre> <ol> <li>使配置生效</li> </ol> <pre>source ~/.zshrc # or source ~/.bash_profile</pre> <h3>3、使用</h3> <ul> <li>从当前版本创建virtualenv</li> </ul> <pre># 当前版本为3.6.3 pyenv virtualenv xxx-3.6.3</pre> <ul> <li>指定版本创建virtualenv</li> </ul> <pre>#pyenv virtualenv 版本号 虚拟环境名 pyenv virtualenv 3.6.3 xxx-3.6.3</pre> <ul> <li>查看已创建的virtualenv</li> </ul> <pre>pyenv versions</pre> <p><a href="http://img.555519.xyz/uploads3/20220904/c5ef1325c441bd8c8f1fe4e7ba22c844.jpg" rel="nofollow" class="fancybox" data-fancybox-group="button"><img decoding="async" alt="2017-11-01-17-20-55" class="has" src="http://img.555519.xyz/uploads3/20220904/c5ef1325c441bd8c8f1fe4e7ba22c844.jpg"></a></p> <ul> <li>激活和停用virtualenv</li> </ul> <pre># 手动激活 pyenv activate 虚拟环境名 pyenv deactivate  # 自动激活 # 使用pyenv local 虚拟环境名 # 会把`虚拟环境名`写入当前目录的.python-version文件中 # 关闭自动激活 -&gt; pyenv deactivate # 启动自动激活 -&gt; pyenv activate xxx-3.6.3 pyenv local xxx-3.6.3</pre> <ul> <li>删除现有virtualenv</li> </ul> <pre>pyenv uninstall 虚拟环境名</pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2158.htm">VsCode调试docker中的NodeJS程序</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2160.htm">如何一个项目配置多个数据库</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

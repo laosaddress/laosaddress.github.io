@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2069.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PHP别名/导入名称空间方法详解 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>PHP别名/导入名称空间方法详解</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h2>介绍</h2> <p>命名空间的重要功能是能够使用别名引用外部完全限定名称或进行导入。PHP命名空间支持以下几种别名或导入-</p> <ul class="list-paddingleft-2"> <li> <p>给类名起别名，</p> </li> <li> <p>为接口名称起别名，</p> </li> <li> <p>给命名空间名称起别名</p> </li> <li> <p>别名或导入函数和常量名称。</p> </li> </ul> <p>在PHP中，别名是通过use运算符完成的。</p> <h2>使用运算符</h2> <h2>示例</h2> <pre>#test1.php &lt;?php namespace&nbsp;mynamespace; function&nbsp;sayhello(){ &nbsp;&nbsp;&nbsp;echo&nbsp;"Hello&nbsp;from&nbsp;mynamespace\n"; } sayhello(); namespace&nbsp;mynewspace; function&nbsp;sayhello(){ &nbsp;&nbsp;&nbsp;echo&nbsp;"Hello&nbsp;from&nbsp;my&nbsp;new&nbsp;space\n"; } sayhello(); use&nbsp;\mynewspace\sayhello&nbsp;as&nbsp;hello; ?&gt;</pre> <p>输出结果</p> <pre>Hello&nbsp;from&nbsp;mynamespace Hello&nbsp;from&nbsp;my&nbsp;new&nbsp;space</pre> <h2>多种使用陈述相结合</h2> <h2>示例</h2> <pre>&lt;?php namespace&nbsp;mynamespace; class&nbsp;myclass{ &nbsp;&nbsp;&nbsp;function&nbsp;test()&nbsp;{&nbsp;echo&nbsp;"myclass&nbsp;in&nbsp;mynamespace\n";&nbsp;} } class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;test()&nbsp;{&nbsp;echo&nbsp;"testclass&nbsp;in&nbsp;mynamespace\n";&nbsp;} } use&nbsp;\mynamespace\myclass&nbsp;as&nbsp;myclass,&nbsp;\mynamespace\testclass; $a=new&nbsp;myclass(); $a-&gt;test(); $b=new&nbsp;\mynamespace\testclass(); $b-&gt;test(); ?&gt;</pre> <p>输出结果</p> <pre>myclass&nbsp;in&nbsp;mynamespace testclass&nbsp;in&nbsp;mynamespace</pre> <h2>导入和动态名称</h2> <p>动态替换导入类的名称</p> <h2>示例</h2> <pre>&lt;?php namespace&nbsp;mynamespace; class&nbsp;myclass{ &nbsp;&nbsp;&nbsp;function&nbsp;test()&nbsp;{&nbsp;echo&nbsp;"myclass&nbsp;in&nbsp;mynamespace\n";&nbsp;} } class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;test()&nbsp;{&nbsp;echo&nbsp;"testclass&nbsp;in&nbsp;mynamespace\n";&nbsp;} } use&nbsp;\mynamespace\myclass&nbsp;as&nbsp;myclass; $a=new&nbsp;myclass; $b='myclass'; $c=new&nbsp;$b; ?&gt;</pre> <p>use关键字必须在最外部或全局范围内或在命名空间声明内声明。导入过程在编译时而不是在运行时完成。因此，不能对它进行块作用域限定。以下使用将是非法的</p> <h2>示例</h2> <pre>&lt;?php function&nbsp;myfunction(){ &nbsp;&nbsp;&nbsp;use&nbsp;myspace\myclass; &nbsp;&nbsp;&nbsp;// &nbsp;&nbsp;&nbsp;// } ?&gt;</pre> <p>包含的文件不会继承父文件的导入规则，因为它们是基于每个文件的</p> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2068.htm">Pandas 如何处理超大规模数据</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2070.htm">vue路由自动加载、按组件异步载入vuex以及dll优化</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2179.htm" title="Maven 项目打war包步骤">Maven 项目打war包步骤</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

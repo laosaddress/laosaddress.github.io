@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2208.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>分库分表实现方式Client和Proxy，性能和维护性该怎么选？ - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>分库分表实现方式Client和Proxy，性能和维护性该怎么选？</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>大家好，我是【架构摆渡人】，一只十年的程序猿。这是分库分表系列的第一篇文章，这个系列会给大家分享很多在实际工作中有用的经验，如果有收获，还请分享给更多的朋友。</p> <p>其实这个系列有录过视频给大家学习，但很多读者反馈说看视频太慢了。也不好沉淀为文档资料，希望能有一系列文字版本的讲解，要用的时候可以快速浏览关键的知识点。那么它就来了，我再花点时间写成几篇连续的文章供大家学习。</p> <h1 id="分库分表的手段">分库分表的手段</h1> <h2 id="手动路由">手动路由</h2> <p>如果没有复杂的操作，手动路由相对来说是简单的方式。比如你的操作只根据分片键操作，那么通过分片键你可以计算出这条数据的库和表，从而将你的SQL路由到指定的库进行执行。</p> <p>这里主要是要在执行SQL的时候，动态获取对应的数据源，获取到数据源之后就用这个数据源进行SQL的执行。至于SQL在哪张表即SQL拼接的时候就已经知道了。</p> <p>这也是最简单的实现分库分表的方式，但是实际业务中，我们不可能只根据分片键进行查询，假设有非分片键的查询，就还涉及到数据聚合，分页的问题，如果每个业务都要自己处理，这复杂度就太高了，所以我们需要一款中间件来支撑分库分表的需求。</p> <h2 id="中间件">中间件</h2> <p>分库分表中间件的出现，降低了分库分表的门槛，也极大的提升了开发效率。中间件内部会回SQL进行校验，解析，路由，聚合等逻辑。同时也会考虑到可用性，易用性等方面。</p> <p>目前中间件主要分为两种类型，一种是Client方式的中间件，比如Sharding-JDBC，Ctrip DAL，TSharding等优秀的中间件。</p> <p>一种是Proxy方式的中间件，比如ShardingSphere，Mycat等优秀的中间件。</p> <h1 id="client和proxy方式对比">Client和Proxy方式对比</h1> <p>Client方式是指分库分表的逻辑都在应用本地进行控制，应用本地会直连多个数据库进行操作，然后本地进行数据的聚合汇总等操作逻辑。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8d2b217576e15e11489d7ebb29f069ed.jpg" alt="分库分表实现方式Client和Proxy，性能和维护性该怎么选？"></p> <p>Proxy方式是指挥有一个独立的应用，这个应用实现了Mysql的协议，可以对外提供服务。业务方的应用不需要直接连接数据库，而是连接这个Proxy的应用，把这个Proxy就当做一个数据库使用。Proxy会将Sql分发到具体的数据库进行执行，并返回结果。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/630d5062d5b2e6375b6752d15112bb02.jpg" alt="分库分表实现方式Client和Proxy，性能和维护性该怎么选？"></p> <h2 id="性能方面比较">性能方面比较</h2> <p>从性能这块去比较多的话，Client方式性能更好。Client方式采用的是应用直连数据库的形式，一条SQL直达数据库，拿到结果直接就可以用了，基本上跟我们没分库分表之前差不了多少。</p> <p>Proxy方式在性能方法会有一点损耗，因为中间多了一次路由操作。就是SQL由应用到Proxy，Proxy再将SQL路由到具体的数据库，拿到结果，再响应给应用。</p> <h2 id="内存方面比较">内存方面比较</h2> <p>从内存占用这块去比较的话，Client方式不是很好。Client方式拿到数据库响应的内容后要在应用本地进行聚合操作，内存，cpu等都是占用当前应用的资源。</p> <p>Proxy方式也是会占用内存，但是它的内存不是当前应用的内存，而是Proxy这个应用的内存，Proxy应用是单独部署的，所以是隔离的状态。同时Proxy是会集群部署的，所以会更好点。</p> <h2 id="连接数方面比较">连接数方面比较</h2> <p>Client方式在连接数方面会占用的比较多，每个应用都会直接连接每个库，每个库也就是一个连接池。</p> <p>Proxy方式连接数会相对较少一点，每个库只需要一个连接池即可。应用连接Proxy占用的就不是数据库的连接了。当然如果Proxy集群的节点多的话，连接数也是会相应的增多。</p> <h2 id="架构复杂度比较">架构复杂度比较</h2> <p>Client方式在架构方面比较简单，通常是依赖一个Jar包，不会出现单点故障问题。</p> <p>Proxy方式需要单独部署一个独立的服务，并且这个服务也要考虑高可用，整体的架构复杂度还是比较高的，所以小团队建议大家用Client方式。</p> <h2 id="从升级方面比较">从升级方面比较</h2> <p>Client方式每个项目都要依赖Jar包，一但版本有什么问题，出了新的修复版本，所有项目都得跟着升级。小公司还好，就那么几个项目，大公司的项目成百上千，而且都是属于不同团队下的，这种中间件是属于基础架构团队的，要推动业务团队升级其实很困难的，没个半年基本上很难全部都升级完。</p> <p>Proxy方式在这方面的优势就提现出来了，有什么新功能或者修复了什么Bug，只需要Proxy集群重新发布一遍即可，使用方完全不需要关心，也就不存在推动升级的问题了。但是需要做好一点：<strong>发布过程中必须无损。</strong>这边应用时刻都在执行SQL，你发布不能导致应用执行SQL报错。</p> <h2 id="统一管控方面比较">统一管控方面比较</h2> <p>Client方式要做统一管控，必须得进行升级，但是升级又是一个很耗时的推动过程。</p> <p>Proxy方式在统一管控方式就容易的多，比如对SQL的限流，监控，告警等管控，是不需要客户端关心的。除了这些管控，还有一些其他的管控，比如异地多活场景下的禁写，禁读操作，都是管控的点。如果用Client方式确实不太好统一处理。</p> <h1 id="总结">总结</h1> <p>今天主要给大家介绍了如何进行分库分表中间件的选型，不同的阶段其实适合不同的中间件。规模不大时建议用Client方式的中间件，使用简单，也没什么维护成本。规模大了后建议用Proxy方式的中间件，更方便统一管控和维护。</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2207.htm">详解盒子模型和div布局</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2209.htm">Feign客户端的使用方法详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

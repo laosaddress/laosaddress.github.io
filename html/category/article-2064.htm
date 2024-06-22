@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2064.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue+Element实现登录随机验证码_vue.js_ - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue+Element实现登录随机验证码_vue.js_</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>本文实例为大家分享了vue+Element实现登录随机验证码的具体代码，供大家参考，具体内容如下</p> <p>验证码验证只是前端，无需后台交互</p> <p>首先，创建一个identify.vue页面，用于写各种：随机数字/字母，随机颜色，干扰点/线</p> <p>identify.vue</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;   &lt;div class="s-canvas"&gt;    &lt;canvas id="s-canvas" :width="contentWidth" :height="contentHeight"&gt;    &lt;/canvas&gt;   &lt;/div&gt;  &lt;/template&gt;  &lt;script&gt;   export default {    name: 'SIdentify',    props: {     identifyCode: {      type: String,      default: '1234'     },     fontSizeMin: {      type: Number,      default: 16     },     fontSizeMax: {      type: Number,      default: 40     },     backgroundColorMin: {      type: Number,      default: 180     },     backgroundColorMax: {      type: Number,      default: 240     },     colorMin: {      type: Number,      default: 50     },     colorMax: {      type: Number,      default: 160     },     lineColorMin: {      type: Number,      default: 40     },     lineColorMax: {      type: Number,      default: 180     },     dotColorMin: {      type: Number,      default: 0     },     dotColorMax: {      type: Number,      default: 255     },     contentWidth: {      type: Number,      default: 112     },     contentHeight: {      type: Number,      default: 38     }    },    methods: { // 生成一个随机数         randomNum(min, max) {      return Math.floor(Math.random() * (max - min) + min)     },     // 生成一个随机的颜色     randomColor(min, max) {      var r = this.randomNum(min, max)      var g = this.randomNum(min, max)      var b = this.randomNum(min, max)      return 'rgb(' + r + ',' + g + ',' + b + ')'     },     drawPic() {      var canvas = document.getElementById('s-canvas')      var ctx = canvas.getContext('2d')      ctx.textBaseline = 'bottom'      // 绘制背景      ctx.fillStyle = this.randomColor(       this.backgroundColorMin,       this.backgroundColorMax)      ctx.fillRect(0, 0, this.contentWidth, this.contentHeight)      // 绘制文字      for (let i = 0; i &lt; this.identifyCode.length; i++) {       this.drawText(ctx, this.identifyCode[i], i)      }      this.drawLine(ctx)      this.drawDot(ctx)     },     drawText(ctx, txt, i) {    ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)    ctx.font = this.randomNum(this.fontSizeMin, this.fontSizeMax) +'px SimHei';    var x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))    var y = this.randomNum(this.fontSizeMax,this.contentHeight - 5)    var deg = this.randomNum(-45, 45)      // 修改坐标原点和旋转角度       ctx.translate(x, y)      ctx.rotate(deg * Math.PI / 180)      ctx.fillText(txt, 0, 0)      // 恢复坐标原点和旋转角度      ctx.rotate(-deg * Math.PI / 180)      ctx.translate(-x, -y)     },     drawLine(ctx) {      // 绘制干扰线       for (let i = 0; i &lt; 8; i++) {  ctx.strokeStyle = this.randomColor(this.lineColorMin, this.lineColorMax)  ctx.beginPath()  ctx.moveTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))  ctx.lineTo(this.randomNum(0, this.contentWidth),this.randomNum(0, this.contentHeight))  ctx.stroke()      }     },      drawDot(ctx) {      // 绘制干扰点        for (let i = 0; i &lt; 100; i++) {  ctx.fillStyle = this.randomColor(0, 255)  ctx.beginPath()  ctx.arc(this.randomNum(0, this.contentWidth),this.randomNum(0, this.contentHeight), 1, 0, 2 * Math.PI)     ctx.fill()      }     }     },    watch: {     identifyCode() {      this.drawPic()     }    },    mounted() {     this.drawPic()    }   }  &lt;/script&gt;</pre> </div> <p><strong>然后就是在你需要的页面</strong></p> <p>html代码只是简单的输入行，图片，加验证码替换<br />@keyup.enter.native="submitForm()是我登录时摁下Enter直接登录的方法可有可无，自己选择</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;el-form-item prop="verifycode"&gt;       &lt;el-input v-model="param.verifycode" placeholder="请输入验证码" class="identifyinput" @keyup.enter.native="submitForm()"&gt;       &lt;/el-input&gt;      &lt;/el-form-item&gt;      &lt;el-form-item&gt;       &lt;div class="identifybox"&gt;        &lt;div @click="refreshCode"&gt;         &lt;s-identify :identifyCode="identifyCode"&gt;&lt;/s-identify&gt;        &lt;/div&gt;        &lt;el-button @click="refreshCode" type='text' class="textbtn"&gt;看不清，换一张&lt;/el-button&gt;       &lt;/div&gt;  &lt;/el-form-item&gt;</pre> </div> <p>然后就是script<br />首先引入SIdentify</p> <div class="ay1code"> <pre class="brush:js;">import SIdentify from '../../components/page/identify.vue'</pre> </div> <p>下面各种方法，验证及规则就直接写完了</p> <div class="ay1code"> <pre class="brush:js;">export default {      data: function() {      /* 自定义验证码规则 */     const validateVerifycode = (rule, value, callback) =&gt; {      if (value === '') {       callback(new Error('请输入验证码'))      } else if (value !== this.identifyCode) {       console.log('validateVerifycode:', value);       callback(new Error('验证码不正确!'))      } else {       callback()      }     }      return {          identifyCodes: '1234567890abcdefghijklmnopqrstuvwxyz',            identifyCode: '',            rules:{            verifycode: [{        required: true,        trigger: 'blur',        validator: validateVerifycode,       }]              }          };      },      components:{      SIdentify      },      mounted(){      this.identifyCode='';      this.makeCode(this.identifyCodes,4);      disableBrowserBack();       history.pushState(null, null, document.URL);        if (window.history &amp;&amp; window.history.pushState) {              $(window).on('popstate', function (){                  window.history.pushState('forward', null, '');                  window.history.forward(1);             });              window.history.pushState('forward', null, '');  //在IE中必须得有这两行         window.history.forward(1);      },      methods:{      randomNum(min, max) {      return Math.floor(Math.random() * (max - min) + min)     },     // 切换验证码        refreshCode() {      this.identifyCode = ''      this.makeCode(this.identifyCodes, 4)     },     makeCode(o, l) {      for (let i = 0; i &lt; l; i++) {       this.identifyCode += this.identifyCodes[        this.randomNum(0, this.identifyCodes.length)]      }      console.log(this.identifyCode)      /* alert(this.identifyCode) */     }      }  }</pre> </div> <p>到这就已经完成了，还可以添加css样式完美一下</p> <div class="ay1code"> <pre class="brush:css;"> .identifybox {    display: flex;    justify-content: space-between;    margin-top: 7px;   }</pre> </div> <p>验证码分享就这么多了。</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2063.htm">STL之vector</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2065.htm">golang 的panic、defer、recover和error应用方式</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

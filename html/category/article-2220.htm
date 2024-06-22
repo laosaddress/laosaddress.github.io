@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2220.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>按值致电与按引用致电之间的区别 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>按值致电与按引用致电之间的区别</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>在将参数传递给函数的编程中，我们将函数调用分为两种：按值调用和按引用调用。正如两次调用中所建议的那样，我们按参数类型调用函数，即传递参数的实际值，在其他情况下，我们传递参数的位置/引用。</p> <p>以下是“按值调用”和“按引用调用”之间的重要区别。</p> <table class="table table-bordered table-striped"> <thead> <tr class="firstRow"> <th>序号</th> <th>键</th> <th>按值致电</th> <th>通过参考电话</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>命名约定</td> <td>与这种类型一样，参数的值将传递给函数调用，因此将其命名为“按值调用”。</td> <td>另一方面，在此类型中，参数的引用被传递以调用该函数，因此将其命名为“按引用调用”。</td> </tr> <tr> <td>2</td> <td>内部实施</td> <td>在“按值调用”中，我们在调用函数期间传递的参数值将被复制到函数的实际局部参数中。</td> <td>在“按引用调用”中，将复制传递参数的位置地址/引用，并将其分配给函数的本地参数，因此传递参数和实际参数都指向同一位置。</td> </tr> <tr> <td>3</td> <td>变化的影响</td> <td>由于将传递的参数的值复制到函数的参数，因此函数内部的参数所做的任何更改都不会反映在传递的参数中。</td> <td>由于参数和传递的参数都指向同一位置，因此对函数内部参数所做的任何更改都会反映在传递的参数中。</td> </tr> <tr> <td>4</td> <td>引用的内存位置</td> <td>传递的参数和函数的实际参数所引用的内存位置是不同的。</td> <td>传递的参数和函数的实际参数所引用的内存位置相同。</td> </tr> <tr> <td>5</td> <td>支持的语言。</td> <td>值调用由以下语言支持：C ++。PHP。Visual Basic NET和C#。</td> <td>JAVA主要支持按引用调用。</td> </tr> </tbody> </table> <h2>按值调用与按引用调用的示例</h2> <p><strong>ByValue.c</strong></p> <pre>#include&nbsp;&lt;stdio.h&gt; class&nbsp;ByValue{ &nbsp;&nbsp;&nbsp;void&nbsp;swapByValue(int,&nbsp;int);&nbsp;/*&nbsp;Prototype&nbsp;*/ &nbsp;&nbsp;&nbsp;int&nbsp;main(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;n1&nbsp;=&nbsp;10,&nbsp;n2&nbsp;=&nbsp;20; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapByValue(n1,&nbsp;n2); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("n1:&nbsp;%d,&nbsp;n2:&nbsp;%d\n",&nbsp;n1,&nbsp;n2); &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;swapByValue(int&nbsp;a,&nbsp;int&nbsp;b){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;t; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t&nbsp;=&nbsp;a;&nbsp;a&nbsp;=&nbsp;b;&nbsp;b&nbsp;=&nbsp;t; &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>n1:&nbsp;10,&nbsp;n2:&nbsp;20</pre> <h2>示例</h2> <p><strong>ByReference.c</strong></p> <pre>#include&nbsp;&lt;stdio.h&gt; class&nbsp;ByReference{ &nbsp;&nbsp;&nbsp;void&nbsp;swapByReference(int*,&nbsp;int*); &nbsp;&nbsp;&nbsp;int&nbsp;main(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;n1&nbsp;=&nbsp;10,&nbsp;n2&nbsp;=&nbsp;20; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapByReference(&amp;n1,&nbsp;&amp;n2); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("n1:&nbsp;%d,&nbsp;n2:&nbsp;%d\n",&nbsp;n1,&nbsp;n2); &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;swapByReference(int&nbsp;*a,&nbsp;int&nbsp;*b){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;t; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t&nbsp;=&nbsp;*a;&nbsp;*a&nbsp;=&nbsp;*b;&nbsp;*b&nbsp;=&nbsp;t; &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>n1:&nbsp;20,&nbsp;n2:&nbsp;10</pre> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2219.htm">使用VS  新建C++项目</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2221.htm">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

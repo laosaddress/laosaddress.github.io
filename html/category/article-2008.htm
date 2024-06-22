@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2008.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>设计模式之：享元模式FlyweightPattern的实现 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>设计模式之：享元模式FlyweightPattern的实现</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>享元模式的理解：</p> <p>享元模式的定义：运用共享技术支持大量细粒度对象的复用；</p> <p>Flyweight Pattern Definition：Use sharing to support large numbers of fine-grained efficiently.</p> <p>享元模式关键词：<span style="color: rgba(53, 152, 219, 1)">大量、细粒度、复用、享元池、享元工厂</span>；</p> <ol> <li>当系统中存在大量的细粒度的相同或相似对象时，可以使用享元模式；</li> <li>享元模式通过共享技术，实现相同或相似对象的重复利用；</li> <li>享元的字面理解：<span style="color: rgba(53, 152, 219, 1)">享</span>也就是分享共享的意思，<span style="color: rgba(53, 152, 219, 1)">元</span>就是共享的元素、对象；</li> <li><span style="color: rgba(53, 152, 219, 1)">Flyweight</span>的字面理解：Flyweight本意是拳击运动的一个术语，就是蝇量级的意思，flyweight 蝇量级 112磅；</li> <li>享元模式也叫轻量级模式，享元是对Flyweight的意译，直译的话应该叫蝇量级模式；</li> <li>英文定义中采用Flyweight，是想表达对象的粒度，也就是fine-grained细粒度的意思；</li> <li>grain本意表示谷物，<span style="color: rgba(53, 152, 219, 1)">grained</span>表示像谷物那种颗粒状态，即粒度，而fine-grained则表示细粒度，例如fine grained soil 细土、coarse grained soil粗粒土；</li> <li>享元模式和Unity中的预制体作用类似，享元模式可以通过共享元素生成多个对象，Unity同样可以通过Prefabs生成成千上万的怪物；</li> <li>还有诸如对象池、线程池，实际上也是享元模式的使用案例；</li> </ol> <p>类图with StarUML</p> <p><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220510/3aa0b7241c8a8fab36621cb4fcaabba7.jpg" alt="设计模式之：享元模式FlyweightPattern的实现"></p> <p>棋子抽象类和2个实现类</p> <pre class="language-csharp"><code>    internal abstract class Chessman     {         public abstract string GetColor();         public void Display() { Console.WriteLine($"棋子颜色{this.GetColor()}"); }     }</code></pre> <pre class="language-csharp"><code>    internal class BlackChessman : Chessman     {         public override string GetColor() { return "黑色"; }     }</code></pre> <pre class="language-csharp"><code>    internal class WhiteChessman : Chessman     {         public override string GetColor() { return "白色"; }     }</code></pre> <p>享元工厂类</p> <pre class="language-csharp"><code>    internal class ChessmanFactory     {         //饿汉式单例模式         private static ChessmanFactory instance = new ChessmanFactory();         //该字典相当于享元池（对象池）Flyweight Pool         private Dictionary&lt;string, Chessman&gt; dictionary;         //构造注入依赖项Chessman/BlackChessman/WhiteChessman         private ChessmanFactory()         {             dictionary = new Dictionary&lt;string, Chessman&gt;();             Chessman black = new BlackChessman();             Chessman white = new WhiteChessman();             dictionary.Add("b", black);             dictionary.Add("w", white);         }         //返回唯一实例         public static ChessmanFactory GetInstance() { return instance; }         //根据键是b还是w，返回字典中的对应棋子         public Chessman GetChessman(string color) { return dictionary[color]; }     }</code></pre> <p>客户端</p> <pre class="language-csharp"><code>    internal class Program     {         static void Main(string[] args)         {             Chessman black1, black2, white1, white2;             ChessmanFactory factory = ChessmanFactory.GetInstance();             //生成两颗黑子，并比较             black1 = factory.GetChessman("b");             black2 = factory.GetChessman("b");             Console.WriteLine($"两颗黑子是否相同？{black1 == black2}");             //生成两颗白字，并比较             white1 = factory.GetChessman("w");             white2 = factory.GetChessman("w");             Console.WriteLine($"两颗白子是否相同？{black1 == black2}");             //显示棋子             black1.Display();             black2.Display();             white1.Display();             white2.Display();              Console.Read();         }     }</code></pre> <p>运行结果</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b5f65890188f9fa6923c173fdc91069a.jpg" alt="设计模式之：享元模式FlyweightPattern的实现"></p> <p id="1648972570207"> <p id="1648972562495"> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2007.htm">pytorch报错  ConvTranspose1d object has no attribute padding_mode</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2009.htm">Oracle安装 &#8211; shmmax和shmall设置</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

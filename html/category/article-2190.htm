@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2190.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PHP声明语句 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>PHP声明语句</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h2>介绍</h2> <p>PHP中的<strong>clarify</strong>语句语法类似于其他流控制结构，例如while，for，foreach等。</p> <h2>语法</h2> <pre>declare&nbsp;(directive) { &nbsp;&nbsp;&nbsp;statement1; &nbsp;&nbsp;&nbsp;statement2; &nbsp;&nbsp;&nbsp;.&nbsp;. }</pre> <p>块的行为由指令类型定义。三种类型的指令可以在声明语句来提供-<strong>蜱</strong>，<strong>编码</strong>和<strong>strict_types</strong>指令。</p> <h2>刻度指令</h2> <p>勾号是一种特殊事件的名称，该特殊事件发生在脚本中一定数量的语句被执行时。这些语句在PHP内部，与脚本中的语句（不包括条件和参数表达式）大致相同。任何函数都可以通过<strong>&nbsp;register_tick_function</strong>与tick事件相关联。已注册的函数将在声明指令中指定的滴答数后执行。</p> <p>在以下示例中，<code>myfunction()</code>每次在声明构造中的循环完成5次迭代时都执行一次。</p> <h2>示例</h2> <pre>&lt;?php function&nbsp;myfunction(){ &nbsp;&nbsp;&nbsp;echo&nbsp;"Hello&nbsp;World\n"; } register_tick_function("myfunction"); declare&nbsp;(ticks=5){ &nbsp;&nbsp;&nbsp;for&nbsp;($i=1;&nbsp;$i&lt;=10;&nbsp;$i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$i."\n"; &nbsp;&nbsp;&nbsp;} } ?&gt;</pre> <p>输出结果</p> <p>从命令行运行上述脚本时，将产生以下结果：</p> <pre>1 2 3 4 5 Hello&nbsp;World 6 7 8 9 10 Hello&nbsp;World</pre> <p>PHP还具有<strong>unregister_tick_function()</strong>来删除函数与tick事件的关联</p> <h2>strict_types指令</h2> <p>PHP是一种弱类型语言，它试图转换数据类型以适合于执行某些操作。如果有一个带有两个整数参数的函数并返回它们的加法，并且调用时任一参数都以float形式给出，则PHP解析器将自动将float转换为整数。如果不需要强制，我们可以在声明构造中指定<strong>strict_types = 1</strong></p> <h2>示例</h2> <pre>&lt;?php //默认情况下strict_types为0- function&nbsp;myfunction(int&nbsp;$x,&nbsp;int&nbsp;$y){ &nbsp;&nbsp;&nbsp;return&nbsp;$x+$y; } echo&nbsp;"total="&nbsp;.&nbsp;myfunction(1.99,&nbsp;2.99); ?&gt;</pre> <p>浮点参数被强制为整数以执行加法运算以得到以下结果-</p> <p>输出结果</p> <pre>total=3</pre> <p>但是，将delcare构造与strict_types = 1一起使用可防止强制</p> <h2>示例</h2> <pre>&lt;?php declare&nbsp;(strict_types=1); function&nbsp;myfunction(int&nbsp;$x,&nbsp;int&nbsp;$y){ &nbsp;&nbsp;&nbsp;return&nbsp;$x+$y; } echo&nbsp;"total="&nbsp;.&nbsp;myfunction(1.99,&nbsp;2.99); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下错误-</p> <pre>Fatal&nbsp;error:&nbsp;Uncaught&nbsp;TypeError:&nbsp;Argument&nbsp;1&nbsp;passed&nbsp;to&nbsp;myfunction()&nbsp;must&nbsp;be&nbsp;of&nbsp;the&nbsp;type&nbsp;integer,&nbsp;float&nbsp;given,&nbsp;called&nbsp;in&nbsp;line&nbsp;7&nbsp;and&nbsp;defined&nbsp;in&nbsp;C:\xampp\php\testscript.php:3</pre> <h2>编码指令</h2> <p>声明结构具有Encoding指令，可以使用该指令指定脚本的编码方案</p> <h2>示例</h2> <pre>&lt;?php declare(encoding='ISO-8859-1'); echo&nbsp;"This&nbsp;Script&nbsp;uses&nbsp;ISO-8859-1&nbsp;encoding&nbsp;scheme"; ?&gt;</pre> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2189.htm">CONCAT()和CONCAT_WS()函数有什么区别？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2191.htm">vue动态控制样式</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2180.htm" title="vue在table表中悬浮显示数据及右键菜单_vue.js_">vue在table表中悬浮显示数据及右键菜单_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

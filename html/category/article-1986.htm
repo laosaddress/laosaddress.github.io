@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-1986.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>通过反射获取Class对象的四种方式 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>通过反射获取Class对象的四种方式</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>Java反射机制</h1> <p>反射：通过反射我们可以获取任意一个类的所有属性和方法，还可以调用这些方法和属性。</p> <h1>反射的优缺点</h1> <p><span style="color:#fe2c24;"><strong><span style="background-color:#ffd900;">优点</span></strong><span style="background-color:#ffd900;">：可以让代码更加灵活、为各种框架提供开箱即用的功能提供了便利</span><br /><strong><span style="background-color:#ffd900;">缺点</span></strong><span style="background-color:#ffd900;">：让我们在运行时有了分析操作类的能力，这同样也增加了安全问题。</span><br /><span style="background-color:#ffd900;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。</span><br /><span style="background-color:#ffd900;">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;另外，反射的性能也要稍差点，不过，对于框架来说实际是影响不大的。</span></span></p> <p>如果我们动态获取到这些信息，我们需要依靠 Class 对象。Class 类对象将一个类的方法、变量等信息告诉运行的程序。</p> <h1>四种获取 Class 对象的方式</h1> <ul> <li> <p><span style="color:#fe2c24;"><strong><span style="background-color:#ffd900;">通过</span><code><span style="background-color:#ffd900;">Class.forName()</span></code><span style="background-color:#ffd900;">传入类的全路径获取</span></strong></span></p> </li> <li> <p><span style="color:#fe2c24;"><strong><span style="background-color:#ffd900;">通过对象实例instance.getClass()获取</span></strong></span></p> </li> <li> <p><span style="color:#fe2c24;"><strong><span style="background-color:#ffd900;">通过类加载器ClassLoader.loadClass()根据类的全路径获取</span></strong></span></p> </li> <li> <p><span style="color:#fe2c24;"><strong><span style="background-color:#ffd900;">通过具体的实例对象获取</span></strong></span></p> </li> </ul> <h1>举个栗子</h1> <pre><code class="language-java">	/** 	 * 通过反射获取Class对象的4中方式 	 */ 	@Test 	public void reflectGetMethod_Test() { 		try { 			String classPath = "com.hl.magic.items.day20.reflection.ReflectiveDemo"; 			Class&lt;?&gt; forName = Class.forName(classPath); 			LOGGER.debug("[1]根据类全路径获取当前类的路径： {}", forName.getName());  			String name = ReflectiveDemo.class.getName(); 			LOGGER.debug("[2]-根据类对象来获取当前类的路径： {}", name);  			ReflectiveDemo reflectiveDemo = new ReflectiveDemo(); 			Class&lt;? extends ReflectiveDemo&gt; aClass = reflectiveDemo.getClass(); 			LOGGER.debug("[3]根据对象实例获取当前类的路径： {}", aClass.getName());  			Class&lt;?&gt; aClass1 = ClassLoader.getSystemClassLoader().loadClass(classPath); 			LOGGER.debug("[4]根据类加载器获取当前类的路径： {}", aClass1.getName());  			// 根据类的path获取对应的属性 			ReflectiveDemo reflectiveDemo1 = (ReflectiveDemo) forName.newInstance(); 			String userName = reflectiveDemo1.getUserName(); 			LOGGER.debug("获取反射对象的属性 : [{}]", userName); 		} catch ( ClassNotFoundException | InstantiationException | IllegalAccessException e) { 			e.printStackTrace(); 		} 	}</code></pre> <p><strong>输出：</strong></p> <pre><code>[main] DEBUG com.hl.magic.items.day20.reflection.ReflectiveDemo - [1]根据类全路径获取当前类的路径： com.hl.magic.items.day20.reflection.ReflectiveDemo [main] DEBUG com.hl.magic.items.day20.reflection.ReflectiveDemo - [2]-根据类对象来获取当前类的路径： com.hl.magic.items.day20.reflection.ReflectiveDemo [main] DEBUG com.hl.magic.items.day20.reflection.ReflectiveDemo - [3]根据对象实例获取当前类的路径： com.hl.magic.items.day20.reflection.ReflectiveDemo [main] DEBUG com.hl.magic.items.day20.reflection.ReflectiveDemo - [4]根据类加载器获取当前类的路径： com.hl.magic.items.day20.reflection.ReflectiveDemo [main] DEBUG com.hl.magic.items.day20.reflection.ReflectiveDemo - 获取反射对象的属性 : [小明]</code></pre> <p>通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态代码块和静态对象不会得到执行。</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-1985.htm">MaxCompute SQL函数详解 ODPS SQL函数详解之日期相关函数</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1987.htm">Nodejs对数据库的增删改查</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2189.htm" title="CONCAT()和CONCAT_WS()函数有什么区别？">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

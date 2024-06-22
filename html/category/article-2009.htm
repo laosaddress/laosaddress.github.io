@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2009.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Oracle安装 &#8211; shmmax和shmall设置 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Oracle安装 &#8211; shmmax和shmall设置</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h1 id="一概述">一、概述</h1> <p>在Linux上安装oracle，需要对内核参数进行调整，其中有shmmax和shmall这两个参数，那这两个参数是什么意思，又该如何设置呢？</p> <h1 id="二官方文档">二、官方文档</h1> <p>在oracle的官方文档（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/minimum-parameter-settings-for-installation.html#GUID-CDEB89D1-4D48-41D9-9AC2-6AD9B0E944E3"  target="_blank" rel="nofollow">https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/minimum-parameter-settings-for-installation.html#GUID-CDEB89D1-4D48-41D9-9AC2-6AD9B0E944E3</a> ）中对这两个参数，设置了最小的标准值。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9289e97c1498a0a59ff7a24f2bfb3ed1.jpg" alt="Oracle安装 - shmmax和shmall设置"><br /> shmall - Greater than or equal to the value of shmmax, in pages.<br /> shmmax - Half the size of physical memory in bytes. See My Oracle Support Note 567506.1 for additional information about configuring shmmax.</p> <p>再根据redhat的官方文档（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-configuration_tools-configuring_system_memory_capacity"  target="_blank" rel="nofollow">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-configuration_tools-configuring_system_memory_capacity</a> ），去查这两个参数所表达的含义。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d0cafb10717698e4dfa6f4d5713069c2.jpg" alt="Oracle安装 - shmmax和shmall设置"><br /> shmall - Defines the total amount of shared memory pages that can be used on the system at one time. A page is 4096 bytes on the AMD64 and Intel 64 architecture, for example.<br /> shmmax - Defines the maximum size (in bytes) of a single shared memory segment allowed by the kernel.</p> <p>以上两段英文翻译过来：shmmax单个最大共享内存段，shmall同一时刻能使用的所有共享内存页。shmmax最小一半的物理内存，shmall &gt;= shmmax/4096。</p> <p>oracle的sga（Shared Global Area）使用的就是共享内存，共享内存的优势redhat官方文档（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/tuning_and_optimizing_red_hat_enterprise_linux_for_oracle_9i_and_10g_databases/chap-oracle_9i_and_10g_tuning_guide-setting_shared_memory#sect-Oracle_9i_and_10g_Tuning_Guide-Setting_Shared_Memory-Setting_SHMMAX_Parameter_"  target="_blank" rel="nofollow">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/tuning_and_optimizing_red_hat_enterprise_linux_for_oracle_9i_and_10g_databases/chap-oracle_9i_and_10g_tuning_guide-setting_shared_memory#sect-Oracle_9i_and_10g_Tuning_Guide-Setting_Shared_Memory-Setting_SHMMAX_Parameter_</a> ）中也有提及。直白点说就是多进程使用共享内存交流数据最快。例如：服务器进程从磁盘读取数据到sga的buffer cache，dbwn进程从buffer cache将数据写回到磁盘，操作的是同一片内存区域。如果没有共享内存，那么就需要将服务器进程操作的这片内存复制一份到dbwn所操作的内存中去，来完成读取和写入操作。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6e013e5bdd2f10c3173f7cb2e3a4ec90.jpg" alt="Oracle安装 - shmmax和shmall设置"><br /> Shared memory allows processes to access common structures and data by placing them in shared memory segments. It is the fastest form of inter-process communication available since no kernel involvement occurs when data is passed between the processes. In fact, data does not need to be copied between the processes.<br /> Oracle uses shared memory segments for the Shared Global Area (SGA) which is an area of memory that is shared by Oracle processes. The size of the SGA has a significant impact to Oracle's performance since it holds database buffer cache and much more.</p> <p>从上面的官方文档我们了解了这两个参数的含义，但是oracle只给了shmmax和shmall的最小值。接下来我们就通过实验来看看这两个参数对oracle的影响。</p> <h2 id="三实验">三、实验</h2> <p>我的实验机器物理内存是1877M，设置SGA_TAEGET为1000M。接下来测试几个场景。</p> <h3 id="a-shmmax-200m-shmall-200m">a. shmmax 200M, shmall 200M</h3> <p>将/etc/sysctl.conf参数设置为<br /> kernel.shmmax = 209715200<br /> kernel.shmall = 51200</p> <p>oracle启动直接报错</p> <pre><code>SQL&gt; startup nomount pfile='/home/oracle/test.ora' ORA-27102: out of memory Linux-x86_64 Error: 28: No space left on device Additional information: 209715200 Additional information: 1</code></pre> <h3 id="b-shmmax-1200m-shmall-200m">b. shmmax 1200M, shmall 200M</h3> <p>将/etc/sysctl.conf参数设置为<br /> kernel.shmmax = 1258291200<br /> kernel.shmall = 51200</p> <p>oracle启动报跟上面一样的错</p> <pre><code>SQL&gt; startup nomount pfile='/home/oracle/test.ora'  ORA-27102: out of memory Linux-x86_64 Error: 28: No space left on device Additional information: 1035993088 Additional information: 1</code></pre> <p>从a和b的实验结果来看，oracle是否能够正常启动跟shmmax参数无关，只与shmall有关。shmall不能设置的比SGA_TAEGET小。</p> <h3 id="c-shmmax-200m-shmall-1200m">c. shmmax 200M, shmall 1200M</h3> <p>将/etc/sysctl.conf参数设置为<br /> kernel.shmmax = 209715200<br /> kernel.shmall = 307200</p> <p>数据库能够正常启动</p> <pre><code>SQL&gt; startup nomount pfile='/home/oracle/test.ora' ORACLE instance started.  Total System Global Area 1043886080 bytes Fixed Size                  2259840 bytes Variable Size             327156864 bytes Database Buffers          708837376 bytes Redo Buffers                5632000 bytes</code></pre> <p>查看共享内存的信息</p> <pre><code>[root@oracletest ~]# ipcs -m  ------ Shared Memory Segments -------- key        shmid      owner      perms      bytes      nattch     status       0x00000000 229376     oracle     640        12582912   18                       0x00000000 262145     oracle     640        209715200  18                       0x00000000 294914     oracle     640        209715200  18                       0x00000000 327683     oracle     640        209715200  18                       0x00000000 360452     oracle     640        209715200  18                       0x00000000 393221     oracle     640        197132288  18                       0x276f5044 425990     oracle     640        2097152    18</code></pre> <p>把上面的共享内存段bytes全部加起来（12582912+209715200...+2097152）/1024/1024=1002MB。可以看到oracle分配内存段的时候，单个共享内存段的确没有超过shmmax（209715200）。总的共享内存刚好等于SGA_TAEGET。</p> <h3 id="d-shmmax-1200m-shmall-1200m">d. shmmax 1200M, shmall 1200M</h3> <p>将/etc/sysctl.conf参数设置为<br /> kernel.shmmax = 1258291200<br /> kernel.shmall = 307200</p> <p>数据库同样能够正常启动</p> <pre><code>SQL&gt; startup nomount pfile='/home/oracle/test.ora' ORACLE instance started.  Total System Global Area 1043886080 bytes Fixed Size                  2259840 bytes Variable Size             327156864 bytes Database Buffers          708837376 bytes Redo Buffers                5632000 bytes</code></pre> <p>查看共享内存的信息</p> <pre><code>[root@oracletest ~]# ipcs -m  ------ Shared Memory Segments -------- key        shmid      owner      perms      bytes      nattch     status       0x00000000 557056     oracle     640        12582912   18                       0x00000000 589825     oracle     640        1035993088 18                       0x276f5044 622594     oracle     640        2097152    18</code></pre> <p>把上面的共享内存段bytes全部加起来（12582912+1035993088+2097152）/1024/1024=1002MB。总的共享内存仍然刚好等于SGA_TAEGET。内存段的数量却只有三个，最大的内存段达到1035993088/1024/1024=988M</p> <h3 id="e-shmmax-2400m-shmall-2400m">e. shmmax 2400M, shmall 2400M</h3> <p>将/etc/sysctl.conf参数设置为<br /> kernel.shmmax = 2516582400<br /> kernel.shmall = 614400</p> <pre><code>SQL&gt; startup nomount pfile='/home/oracle/test.ora' ORACLE instance started.  Total System Global Area 1043886080 bytes Fixed Size                  2259840 bytes Variable Size             327156864 bytes Database Buffers          708837376 bytes Redo Buffers                5632000 bytes</code></pre> <pre><code>[root@oracletest ~]# ipcs -m  ------ Shared Memory Segments -------- key        shmid      owner      perms      bytes      nattch     status       0x00000000 688128     oracle     640        12582912   18                       0x00000000 720897     oracle     640        1035993088 18                       0x276f5044 753666     oracle     640        2097152    18</code></pre> <p>可以看到e跟d没啥区别，shmmax这个值你就算设置超过了物理内存也不受影响。因为oracle实际上分配的共享内存不会超过SGA_TAEGET。</p> <h2 id="四总结">四、总结</h2> <ol> <li>为了让共享内存不至于切分成多个段，建议将shmmax设置比SGA_TAEGET大，shmall=shmmax/4096即可。至于大多少，个人认为随意。</li> </ol> <p>++本人水平有限，特别是对于共享内存这块，我仍然有很多疑问，比如共享内存能否被交换出去？多个共享内存段有什么缺点？暂时就先记录到这里，后面了解之后，再来更新此文。如果有专家看到文章错误，还望指正。++</p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2008.htm">设计模式之：享元模式FlyweightPattern的实现</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2010.htm">带你进⼊ OpenAI 的世界</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

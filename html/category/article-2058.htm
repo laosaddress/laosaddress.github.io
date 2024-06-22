@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2058.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SpringBoot自定义控制层参数解析_在线工具 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>SpringBoot自定义控制层参数解析_在线工具</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h1 id="一背景">一、背景</h1> <p>在Spring的Controller中，我们通过<code>@RequestParam</code>或<code>@RequestBody</code>就可以将请求中的参数映射到控制层具体的参数中，那么这个是怎么实现的呢？<strong>如果我现在控制层中的某个参数的值是从<code>Redis</code>中来，那么应该如何实现呢？</strong></p> <h1 id="二参数是如何解析的">二、参数是如何解析的</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/bcf931b003839181229313f45e15b9d4.jpg" alt="SpringBoot自定义控制层参数解析_在线工具"></p> <p>从上图中可以我们的参数最终会通过<code>HandlerMethodArgumentResolver</code>来解析，那么知道了这个后，我们就可以实现自己的参数解析了。</p> <h1 id="三需求">三、需求</h1> <p>如果我们控制层方法的参数中存在<code>@Redis</code>标注，那么此参数的值应该从redis中获取，不用从请求参数中获取。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/61bfa794f56c8431981751eaa480b456.jpg" alt="SpringBoot自定义控制层参数解析_在线工具"></p> <p>从上图中可知<code>@Redis(key = "redisKey") String redisValue</code>这个参数就需要从<code>Redis</code>中获取。</p> <h1 id="四实现">四、实现</h1> <blockquote> <p>此处我们不会真的从<code>Redis</code>中获取值，模拟从Redis中获取值即可。</p> </blockquote> <h2 id="1编写一个redis注解">1、编写一个Redis注解</h2> <pre><code class="language-java">@Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) public @interface Redis {          /**      * redis中的Key      */     String key();      } </code></pre> <p>在控制层的方法上，被此处注解标注的方法参数，都从Redis中获取，都走我们自己定义的参数解析器。</p> <h2 id="2编写参数解析类">2、编写参数解析类</h2> <pre><code class="language-java">package com.huan.study.argument.resolver;  import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.core.MethodParameter; import org.springframework.web.bind.support.WebDataBinderFactory; import org.springframework.web.context.request.NativeWebRequest; import org.springframework.web.method.support.HandlerMethodArgumentResolver; import org.springframework.web.method.support.ModelAndViewContainer;  import javax.servlet.http.HttpServletRequest; import java.util.Random;  /**  * 从redis中获取值放入到参数中  *  */ public class RedisMethodArgumentResolver implements HandlerMethodArgumentResolver {          private static final Logger log = LoggerFactory.getLogger(RedisMethodArgumentResolver.class);          /**      * 处理参数上存在@Redis注解的      */     @Override     public boolean supportsParameter(MethodParameter parameter) {         return parameter.hasParameterAnnotation(Redis.class);     }          /**      * 解析参数       */     @Override     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,                                   WebDataBinderFactory binderFactory) throws Exception {         // 获取http request         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);         log.info("当前请求的路径:[{}]", request.getRequestURI());         // 获取到这个注解         Redis redis = parameter.getParameterAnnotation(Redis.class);         // 获取在redis中的key         String redisKey = redis.key();         // 模拟从redis中获取值         String redisValue = "从redis中获取的值:" + new Random().nextInt(100);         log.info("从redis中获取到的值为:[{}]", redisValue);         // 返回值         return redisValue;     } }  </code></pre> <p>1、通过<code>supportsParameter</code>方法判断我们应该处理哪些参数，此处处理的是参数上存在<code>@Redis</code>注解的。<br /> 2、通过<code>resolveArgument</code>方法，获取到参数的具体的值。比如从Redis中获取，代码中没有真的从Redis中获取，只是模拟从Redis中获取。</p> <h2 id="3配置到spring的上下文中">3、配置到Spring的上下文中</h2> <blockquote> <p>此处我们最好将我们自己的参数解析器放置在第一位，否则可能会有问题。下方提供了2种方式，第一种方式无法达到我们的需求、我们采用第二种方式来实现</p> </blockquote> <h3 id="1通过webmvcconfigurer实现">1、通过WebMvcConfigurer实现</h3> <pre><code class="language-java">@Configuration public class WebMvcConfig implements WebMvcConfigurer {          /**      * 这个地方加载的顺序是在默认的HandlerMethodArgumentResolver之后的      */     @Override     public void addArgumentResolvers(List&lt;HandlerMethodArgumentResolver&gt; resolvers) {         resolvers.add(new RedisMethodArgumentResolver());     } } </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/873c8a6780f6d6e2ea63b2608c66a41c.jpg" alt="SpringBoot自定义控制层参数解析_在线工具"></p> <p><strong>从上图可知，我们自己的参数解析器不是在第一位，这样可能达不到我们想要的效果，此处不考虑这种方式。</strong></p> <h3 id="2通过beanpostprocessor来实现">2、通过BeanPostProcessor来实现</h3> <p><code>BeanPostProcessor</code>可以在一个Bean完全初始化之后来执行一些操作，此处我们通过这种方式，将我们自己的参数解析器放置在第一位。</p> <pre><code class="language-java">@Component static class CustomHandlerMethodArgumentResolverConfig implements BeanPostProcessor {     @Override     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {         if (bean instanceof RequestMappingHandlerAdapter) {             final RequestMappingHandlerAdapter adapter = (RequestMappingHandlerAdapter) bean;             final List&lt;HandlerMethodArgumentResolver&gt; argumentResolvers = Optional.ofNullable(adapter.getArgumentResolvers())                     .orElseGet(ArrayList::new);             final ArrayList&lt;HandlerMethodArgumentResolver&gt; handlerMethodArgumentResolvers = new ArrayList&lt;&gt;(argumentResolvers);             // 将我们自己的参数解析器放置到第一位             handlerMethodArgumentResolvers.add(0, new RedisMethodArgumentResolver());             adapter.setArgumentResolvers(Collections.unmodifiableList(handlerMethodArgumentResolvers));             return adapter;         }         return bean;     } } </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/32d9dd55385dc83769bae1ef486170f6.jpg" alt="SpringBoot自定义控制层参数解析_在线工具"></p> <p><strong>从上图可知，我们自己的参数解析器在第一位，这样就达到我们想要的效果，此处使用这种方式。</strong></p> <h2 id="4编写一个简单的控制层">4、编写一个简单的控制层</h2> <pre><code class="language-java">/**  * @author huan.fu 2021/12/7 - 下午3:36  */ @RestController public class RedisArgumentController {          private static final Logger log = LoggerFactory.getLogger(RedisArgumentController.class);          @GetMapping("redisArgumentResolver")     public void redisArgumentResolver(@RequestParam("hello") String hello,                                       @Redis(key = "redisKey") String redisValue) {         log.info("控制层获取到的参数值: hello:[{}],redisValue:[{}]", hello, redisValue);     } } </code></pre> <p>该控制层比较简单，对外提供来一个简单的api<code>http://localhost:8080/redisArgumentResolver?hello=123</code>。该api存在2个参数<code>hello</code>和<code>redisValue</code>，其中<code>hello</code>参数的值是从请求参数中获取,<code>redisValue</code>的值是从我们自己定义的参数<br /> 解析器中获取。</p> <h1 id="五测试">五、测试</h1> <pre><code class="language-curl">curl http://localhost:8080/redisArgumentResolver?hello=123 </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/23e54f453561568333d6ecb24deee1d2.jpg" alt="SpringBoot自定义控制层参数解析_在线工具"></p> <p>由上图可知我们自己定义的参数解析器工作了。</p> <h1 id="六完整代码">六、完整代码</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/huan1993/spring-cloud-parent/tree/master/springboot/springboot-method-argument-resolver"  target="_blank"  rel="nofollow">完整代码</a></p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2057.htm">VUE element-ui 之table表格第一行插入输入框</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2059.htm">win11系统没有应用商店如何解决</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2182.htm" title="java8 Instant.now()遇到的问题">java8 Instant.now()遇到的问题</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

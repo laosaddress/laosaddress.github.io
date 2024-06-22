@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2228.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>【java算法】二分查找算法详解 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>【java算法】二分查找算法详解</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>hello，大家好！我是磨磨唧唧小蘑菇~</p> <p>最近在努力的复习一些基本的算法，本期就以java的二分查找算法进行详细的概述（之前面试的时候，手写算法被坑过，一把泪啊）。进入正题吧~</p> <blockquote> <p id="main-toc"><strong>目录</strong></p> <p id="%E4%B8%80%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D-toc" style="margin-left:80px;"><a href="#%E4%B8%80%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D" rel="nofollow">一、二分查找算法的介绍</a></p> <p id="%E4%BA%8C%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90-toc" style="margin-left:80px;"><a href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90" rel="nofollow">二、二分查找算法的思路分析</a></p> <p id="%E4%B8%89%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E4%BE%8B-toc" style="margin-left:80px;"><a href="#%E4%B8%89%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E4%BE%8B" rel="nofollow">三、二分查找算法的实例</a></p> </blockquote> <h3 id="%E4%B8%80%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D"><strong>一、二分查找算法的介绍</strong></h3> <p>二分查找，又名折半查找。顾名思义，一半一半去找目标值~</p> <p>对于一个<span style="color:#fe2c24;"><strong>有序的升序</strong></span>列表，将目标值与表中间的值进行对比：</p> <p>1）如果目标值与表中间的值相等，则直接返回表中间的值即可</p> <p>2）如果目标值与表中间的值不相等，则将两者进行大小比较，从而分成两个表：</p> <p>（1）如果目标值小于中间值，说明目标值在中间值往左的表中，故舍弃中间值往右的表，重新二分查找中间值往左的表</p> <p>（2）如果目标值大于中间值，说明目标值在中间值往右的表中，故舍弃中间值往左的表，重新二分查找中间值往右的表</p> <p>最后，重复以上过程，直到找到目标值为止；或直到子表不存在为止，此时为查找不成功</p> <h3 id="%E4%BA%8C%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90">二、二分查找算法的思路分析</h3> <p>1）首先确定有序的升序列表的中间值是多少</p> <p>即：mid = （left+right）/2&nbsp; &nbsp; &nbsp; &nbsp; //中间值的下标</p> <p>2）将目标值target与表中间的值arr[mid]进行比较：</p> <p>即：如果target = arr[mid]，说明目标值与arr[mid]相等，找到了目标值</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;如果target &lt; arr[mid]，说明目标值在arr[mid]的左边，因此需要接着二分查找左边的表</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;如果target &gt; arr[mid]，说明目标值在arr[mid]的右边，因此需要接着二分查找右边的表</p> <p><span style="color:#fe2c24;">Attention：什么时候需要结束呢？</span></p> <p>1）找到目标值就结束</p> <p>2）查找完整个数组，如果依然没有找到目标值，也需要结束</p> <p>3）当left &gt; right，则直接退出</p> <h3 id="%E4%B8%89%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E4%BE%8B">三、二分查找算法的实例</h3> <p>eg：给你一个有序的升序数组，再给你一个目标值，请在数组中找到对应的目标值并返回它的下标</p> <p>1、非递归算法实现：</p> <pre><code>package com.java.basic.array;  /**  * @Author wangchuanmin  * @Date 2021/9/1 17:35  */  import java.util.Arrays; /**  * 二分查找算法  */ public class BinarySearch {     /**      * 二分查找算法第一种：有序数组中没有重复的目标值（目标值是唯一的）---非递归      * @param target      * @param nums      * @return      */     // 非递归实现     public int binarySearch1(int target, int[] nums) {         int left = 0;         int right = nums.length-1;  //取最后一个下标         int mid = 0;         if (left &gt; right || nums.length == 0 || nums == null) { //左下标大于右下标，直接返回-1             return -1;         }         while (left &lt;= right) { //初始化 right 的赋值是 nums.length - 1，即最后一个元素的索引，而不是 nums.length             mid = (left + right)/2; //如果下标之和除以2有小数，则直接去掉0.5             if (target == nums[mid]) {                 return mid; //找到目标值，然后返回             } else if (target &gt; nums[mid]) {    //目标值大于中间值，向右遍历                 left = mid + 1; //所以向右遍历的第一个下标是：中间下标+1             } else if (target &lt; nums[mid]) {    //目标值小于中间值，向左遍历                 right = mid - 1;    //所以向左遍历的最后一个下标是：中间下标-1             }         }         return -1;  //找不到对应目标值，直接返回-1     }       public static void main(String[] args) {         BinarySearch bSearch = new BinarySearch();         int target = 9;         int[] nums = new int[]{9,3,4,6,8};         Arrays.sort(nums);         System.out.println("排序后的nums为：" + Arrays.toString(nums));         int result = bSearch.binarySearch1(target,nuns);         System.out.println("非递归算法，目标" + target + "的下标是：" + result);     } } </code></pre> <p>运行结果如下：</p> <pre><code>排序后的nums为：[3, 4, 6, 8, 9] 非递归算法，目标9的下标是：4  Process finished with exit code 0</code></pre> <p>2、递归算法实现：</p> <pre><code>package com.java.basic.array;  /**  * @Author wangchuanmin  * @Date 2021/9/1 17:35  */  import java.util.Arrays; /**  * 二分查找算法  */ public class BinarySearch {     /**      * 二分查找算法第二种：有序数组中没有重复的目标值（目标值是唯一的）---递归      * @param target      * @param nums      * @param left      * @param right      * @return      */     public int binarySearch2(int target, int[] nums, int left, int right) {         int mid = (left + right)/2;         if (nums.length == 0 || nums == null || left &gt; right) {             return -1;         }         while (left &lt;= right) {             if (target == nums[mid]) {                 return mid;             } else if (target &lt; nums[mid]) {                 return binarySearch2(target, nums, left, mid - 1);             } else if (target &gt; nums[mid]) {                 return binarySearch2(target, nums, mid + 1, right);             }         }         return -1;     }        public static void main(String[] args) {         BinarySearch bSearch = new BinarySearch();         int target = 8;         int[] nums = new int[]{9,3,4,6,8};         Arrays.sort(nums);         System.out.println("排序后的nums为：" + Arrays.toString(nums));         int result1 = bSearch.binarySearch2(target, nums, 0, nums.length-1 );         System.out.println("递归算法，目标" + target + "的下标是：" + result1);     } } </code></pre> <p>运行结果如下：</p> <pre><code>排序后的nums为：[3, 4, 6, 8, 9] 递归算法，目标8的下标是：3  Process finished with exit code 0</code></pre> <p>以上的两种方法，仅适用于“目标值是唯一”。如果相同目标值有多个的话，就不适用啦~（目前还没想明白，如果有多个目标值的时候，该怎么办？）哎，真是苦恼呢QAQ</p> <p>好啦，到这里java的二分查找算法就结束啦~欢迎交流;-)</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2227.htm">电脑无法装机怎么回事 电脑无法装系统怎么办</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2229.htm">Spring Boot 2.3 新特性分层JAR详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2187.htm" title="Window系统，MySQL服务器如何设置开机启动和关闭">Window系统，MySQL服务器如何设置开机启动和关闭</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2066.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Asp.Net Core使用Ocelot结合Consul实现服务注册和发现_实用技巧 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Asp.Net Core使用Ocelot结合Consul实现服务注册和发现_实用技巧</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">1.服务注册与发现（Service Discovery）</a></li> <li><a href="#_label1" rel="nofollow">2.Consul</a></li> <li><a href="#_label2" rel="nofollow">3.Asp.Net Core向Consul注册服务实例</a></li> <li><a href="#_label3" rel="nofollow">4.项目演示</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_0" rel="nofollow">4.1APIGateway项目</a></li> <li><a href="#_lab2_3_1" rel="nofollow">4.2Common项目</a></li> <li><a href="#_lab2_3_2" rel="nofollow">4.3APIServiceA项目</a></li> <li><a href="#_lab2_3_3" rel="nofollow">4.4APIServiceB项目</a></li> <li><a href="#_lab2_3_4" rel="nofollow">4.5项目运行</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>1.服务注册与发现（Service Discovery）</h2> <ul> <li>服务注册：我们通过在每个服务实例写入注册代码，实例在启动的时候会先去注册中心（例如Consul、ZooKeeper、etcd、Eureka）注册一下，那么客户端通过注册中心可以知道每个服务实例的地址，端口号，健康状态等等信息，也可以通过注册中心删除服务实例。这里注册中心相当于是负责维护服务实例的管控中心。</li> <li>服务发现：服务实例在注册中心注册之后，客户端通过注册中心可以了解这些服务实例运行状况。</li> </ul> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>2.Consul</h2> <p>如果要实现服务注册与发现，需要一个注册中心，这里主要介绍是Consul。</p> <p>Consul官网：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.consul.io/"   target="_blank" rel="nofollow">https://www.consul.io/</a>，它主要功能有：服务注册与发现、健康检查、Key/Value、多数据中心。</p> <p>如果在Windows上部署Consul，在consul.exe目录下执行<code>consul.exe agent -dev</code>命令行即可。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>3.Asp.Net Core向Consul注册服务实例</h2> <p>Asp.Net Core向Consul注册服务实例调用过程如下图所示：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/cd33db0e1666bd4167264b39959defbc.jpg"></p> <p>Asp.Net Core向Consul注册服务实例需要在Gateway项目中引用Consul支持的NuGet软件包，安装命令如下：</p> <div class="ay1code"> <pre class="brush:ps;">Install-Package Ocelot.Provider.Consul</pre> </div> <p>然后将以下内容添加到您的ConfigureServices方法中：</p> <div class="ay1code"> <pre class="brush:csharp;">services.AddOcelot().AddConsul();</pre> </div> <p>在Ocelot服务发现项目示例中，通过APIGateway项目GlobalConfiguration选项可以配置服务注册与发现，文件配置具体代码如下：</p> <div class="ay1code"> <pre class="brush:js;">{    "Routes": [      {        "UseServiceDiscovery": true,        "DownstreamPathTemplate": "/{url}",        "DownstreamScheme": "http",        "ServiceName": "MyService",        "LoadBalancerOptions": {          "Type": "RoundRobin"        },        "UpstreamPathTemplate": "/{url}",        "UpstreamHttpMethod": [ "Get" ],        "ReRoutesCaseSensitive": false      }    ],    "GlobalConfiguration": {      //服务发现配置      "ServiceDiscoveryProvider": {        //注册中心Consul地址        "Host": "192.168.113.128",        //注册中心Consul端口号        "Port": 8500,        "Type": "Consul",        //以毫秒为单位，告诉Ocelot多久调用一次Consul来更改服务配置。        "PollingInterval": 100,        //如果你有在Consul上配置key/value，则在这里输入配置key。        "ConfigurationKey": "MyService_AB"      }    }  }</pre> </div> <p>ServiceDiscoveryProvider选项说明：</p> <ul> <li>Host：注册中心Consul地址。</li> <li>Port：注册中心Consul端口号。</li> <li>Type：注册中心类型。</li> <li>PollingInterval：以毫秒为单位，告诉Ocelot多久调用一次Consul来更改服务配置。</li> <li>ConfigurationKey：如果你有在Consul上配置key/value，则在这里输入配置key。</li> </ul> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>4.项目演示</h2> <p class="maodian"><a name="_lab2_3_0" rel="nofollow"></a></p> <h3>4.1APIGateway项目</h3> <p>ConfigureServices添加Ocelot、Consul注入：</p> <div class="ay1code"> <pre class="brush:csharp;">services.AddOcelot().AddConsul();</pre> </div> <p>Configure添加使用Ocelot：</p> <div class="ay1code"> <pre class="brush:csharp;">app.UseOcelot().Wait();</pre> </div> <p>服务发现配置如Ocelot服务发现项目示例一样。</p> <p class="maodian"><a name="_lab2_3_1" rel="nofollow"></a></p> <h3>4.2Common项目</h3> <p>先安装Consul的NuGet软件包，安装命令如下：</p> <div class="ay1code"> <pre class="brush:ps;">Install-Package Consul</pre> </div> <p>在该项目添加一个AppExtensions扩展类，用来对服务APIServiceA、APIServiceB项目在Consul注册实例，为了展示效果，具体代码稍作修改如下：</p> <div class="ay1code"> <pre class="brush:csharp;">public static class AppExtensions  {      public static IServiceCollection AddConsulConfig(this IServiceCollection services, IConfiguration configuration)      {          services.AddSingleton&lt;IConsulClient, ConsulClient&gt;(p =&gt; new ConsulClient(consulConfig =&gt;          {              var address = configuration.GetValue&lt;string&gt;("Consul:Host");              consulConfig.Address = new Uri(address);          }));          return services;      }      public static IApplicationBuilder UseConsul(this IApplicationBuilder app, string host = null, string port = null)      {          //获取consul客户端实例          var consulClient = app.ApplicationServices.GetRequiredService&lt;IConsulClient&gt;();          var logger = app.ApplicationServices.GetRequiredService&lt;ILoggerFactory&gt;().CreateLogger("AppExtensions");          var lifetime = app.ApplicationServices.GetRequiredService&lt;IApplicationLifetime&gt;();            if (!(app.Properties["server.Features"] is FeatureCollection features)) return app;            //var addresses = features.Get&lt;IServerAddressesFeature&gt;();          //var address = addresses.Addresses.FirstOrDefault();          //if (address == null)          //{          //    return app;          //}            var address = host + ":" + port;          if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(port))          {              Console.WriteLine($"host或者port为空！");              return app;          }            Console.WriteLine($"address={address}");          var uri = new Uri(address);          Console.WriteLine($"host={uri.Host},port={uri.Port}");            var registration = new AgentServiceRegistration()          {              ID = $"MyService-{uri.Port}",              Name = "MyService",              Address = $"{uri.Host}",              Port = uri.Port,              Check = new AgentServiceCheck()              {                  DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(5),//服务启动多久后注册                  Interval = TimeSpan.FromSeconds(10),//健康检查时间间隔                  HTTP = $"{address}/HealthCheck",//健康检查地址                  Timeout = TimeSpan.FromSeconds(5)//超时时间              }          };          logger.LogInformation("Registering with Consul");          logger.LogInformation($"Consul RegistrationID:{registration.ID}");          //注销          consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);          //注册          consulClient.Agent.ServiceRegister(registration).ConfigureAwait(true);          //应用程序关闭时候          lifetime.ApplicationStopping.Register(() =&gt;          {              //正在注销              logger.LogInformation("Unregistering from Consul");              consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);          });          //每个服务都需要提供一个用于健康检查的接口，该接口不具备业务功能。服务注册时把这个接口的地址也告诉注册中心，注册中心会定时调用这个接口来检测服务是否正常，如果不正常，则将它移除，这样就保证了服务的可用性。          app.Map("/HealthCheck", s =&gt;          {              s.Run(async context =&gt;              {                  await context.Response.WriteAsync("ok");              });          });          return app;      }  }</pre> </div> <p class="maodian"><a name="_lab2_3_2" rel="nofollow"></a></p> <h3>4.3APIServiceA项目</h3> <p>项目添加一个Get方法，对应APIGateway项目的路由上下游配置，具体代码如下：</p> <div class="ay1code"> <pre class="brush:csharp;">[Route("api/[controller]")]  [ApiController]  public class ValuesController : ControllerBase  {      // GET api/values      [HttpGet]      public ActionResult&lt;IEnumerable&lt;string&gt;&gt; Get()      {          var port = Request.Host.Port;          return new string[] { "value1", "value2", port.Value.ToString() };      }  }</pre> </div> <p>appsettings.json配置加入Consul地址：</p> <div class="ay1code"> <pre class="brush:js;">"Consul": {    "Host": "http://192.168.113.128:8500"  }</pre> </div> <p class="maodian"><a name="_lab2_3_3" rel="nofollow"></a></p> <h3>4.4APIServiceB项目</h3> <p>项目添加一个Get方法，对应APIGateway项目的路由上下游配置，具体代码如下：</p> <div class="ay1code"> <pre class="brush:csharp;">[Route("api/[controller]")]  [ApiController]  public class ValuesController : ControllerBase  {      // GET api/values      [HttpGet]      public ActionResult&lt;IEnumerable&lt;string&gt;&gt; Get()      {          var port = Request.Host.Port;          return new string[] { "value3", "value4", port.Value.ToString() };      }  }</pre> </div> <p>appsettings.json配置加入Consul地址：</p> <div class="ay1code"> <pre class="brush:js;">"Consul": {    "Host": "http://192.168.113.128:8500"  }</pre> </div> <p class="maodian"><a name="_lab2_3_4" rel="nofollow"></a></p> <h3>4.5项目运行</h3> <p>在APIServiceA、APIServiceB项目的ConfigureServices添加Consul配置：</p> <div class="ay1code"> <pre class="brush:csharp;">services.AddConsulConfig(Configuration);</pre> </div> <p>在Configure添加Consul服务注册：</p> <div class="ay1code"> <pre class="brush:csharp;">APIServiceA：app.UseConsul("http://172.168.18.73", "9999");  APIServiceB：app.UseConsul("http://172.168.18.73", "9998");</pre> </div> <p>把APIGateway、APIServiceA、APIServiceB三个项目部署到IIS上：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/b8bbac2bccce86366dd2e6ed31980fe3.jpg"></p> <p>三个项目运行起来后，通过浏览器Consul客户端可以看到MyService节点服务情况：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/2715455cb450327a95c11f091fb86dbf.jpg"></p> <p>点击打开MyService节点可以看到注册到Consul的APIServiceA、APIServiceB服务状况：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/8d1012407eb4cc91061f8621245a09b5.jpg"></p> <p>如果把APIServiceB服务实例站点停掉：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/a0caac9e4ac511d75e4999d9d7056fc4.jpg"></p> <p>通过Consul客户端会看到APIServiceB服务实例已经被剔除了：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/6610e549024b66da2e72fd75dff9bd3d.jpg"></p> <p>如果输入CTRL+C把集群中某一个Consul服务关闭，那么集群会重新选举一个新的leader，负责处理所有服务实例的查询和事务：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/833b582a71a0deacfc48838310204c33.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/6cfb2d7b07a7dfa5b3914e3b0c4333d7.jpg"></p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2065.htm">golang 的panic、defer、recover和error应用方式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2067.htm">在Java中搜索字符串中的字符。</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2183.htm" title="Spring Profiles示例">Spring Profiles示例</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

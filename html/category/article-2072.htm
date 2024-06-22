@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2072.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PHP索引数组详解 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>PHP索引数组详解</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<h2>定义和用法</h2> <p>仅用逗号分隔的值序列，而不是key =&gt; value对。这样的集合中的每个元素都有一个从0开始的唯一位置索引。因此，它称为<strong>&nbsp;索引数组。</strong></p> <p>可以通过<strong>array()</strong>函数初始化索引的Array对象，也可以通过将元素放在方括号<strong>[]中来进行</strong>赋值<strong>。</strong></p> <h2>语法</h2> <pre>//Indexed&nbsp;array&nbsp;using&nbsp;array()&nbsp;function $arr=array(val1,&nbsp;val2,val3,..); //Indexed&nbsp;array&nbsp;using&nbsp;assignment&nbsp;method $arr=[val1,&nbsp;val2,&nbsp;val3,..];</pre> <p>数组中的元素可以是任何PHP类型。我们可以使用以下语法通过数组的索引访问元素：</p> <pre>$arr[index];</pre> <h2>PHP版本</h2> <p>从PHP 5.4开始就可以使用方括号来分配数组</p> <p>以下示例使用方括号创建索引数组</p> <h2>示例</h2> <pre>&lt;?php $arr=[10,&nbsp;"ten",10.0,&nbsp;1.0E1]; var_dump($arr); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>array(4)&nbsp;{ &nbsp;&nbsp;&nbsp;[0]=&gt; &nbsp;&nbsp;&nbsp;int(10) &nbsp;&nbsp;&nbsp;[1]=&gt; &nbsp;&nbsp;&nbsp;string(3)&nbsp;"ten" &nbsp;&nbsp;&nbsp;[2]=&gt; &nbsp;&nbsp;&nbsp;float(10) &nbsp;&nbsp;&nbsp;[3]=&gt; &nbsp;&nbsp;&nbsp;float(10) }</pre> <p>本示例使用array()函数创建索引数组</p> <h2>示例</h2> <pre>&lt;?php $arr=array(10,&nbsp;"ten",10.0,&nbsp;1.0E1); var_dump($arr); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>array(4)&nbsp;{ &nbsp;&nbsp;&nbsp;[0]=&gt; &nbsp;&nbsp;&nbsp;int(10) &nbsp;&nbsp;&nbsp;[1]=&gt; &nbsp;&nbsp;&nbsp;string(3)&nbsp;"ten" &nbsp;&nbsp;&nbsp;[2]=&gt; &nbsp;&nbsp;&nbsp;float(10) &nbsp;&nbsp;&nbsp;[3]=&gt; &nbsp;&nbsp;&nbsp;float(10) }</pre> <p>我们可以使用<strong>foreach</strong>循环以及<strong>for</strong>循环遍历数组元素，如下所示：</p> <h2>示例</h2> <pre>&lt;?php $arr=array(10,&nbsp;"ten",10.0,&nbsp;1.0E1); //using&nbsp;for&nbsp;loop.&nbsp;Use&nbsp;count()&nbsp;function&nbsp;to&nbsp;determine&nbsp;array&nbsp;size. for&nbsp;($i=0;$i&nbsp;&lt;&nbsp;count($arr);&nbsp;$i++){ &nbsp;&nbsp;&nbsp;echo&nbsp;$arr[$i]&nbsp;.&nbsp;"&nbsp;"; } echo&nbsp;"\n"; //using&nbsp;foreach&nbsp;loop foreach($arr&nbsp;as&nbsp;$i){ &nbsp;&nbsp;&nbsp;echo&nbsp;$i&nbsp;.&nbsp;"&nbsp;"; } ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>10&nbsp;ten&nbsp;10&nbsp;10 10&nbsp;ten&nbsp;10&nbsp;10</pre> <p>本示例显示使用方括号在某些索引处修改值。要添加新元素，请保持方括号为空，以便将下一个可用整数用作索引</p> <h2>示例</h2> <pre>&lt;?php $arr=array(10,&nbsp;"ten",10.0,&nbsp;1.0E1); //modify&nbsp;existing&nbsp;element&nbsp;using&nbsp;index $arr[3]="Hello"; //add&nbsp;new&nbsp;element&nbsp;using&nbsp;next&nbsp;index $arr[]=100; for&nbsp;($i=0;&nbsp;$i&lt;&nbsp;count($arr);&nbsp;$i++){ &nbsp;&nbsp;&nbsp;echo&nbsp;$arr[$i]; } ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>10&nbsp;ten&nbsp;10&nbsp;Hello&nbsp;100</pre> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2071.htm">【Android】ListView 控件的简单使用</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2073.htm">gateway聚合swagger3统一管理api文档</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2214.htm" title="Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型">Mybatis中，返回一个多条数据（List）时，resultType的值指定的不是List，而是List中的元素类型</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

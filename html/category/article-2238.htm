@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2238.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DeferredResult异步处理spring mvc Demo - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>DeferredResult异步处理spring mvc Demo</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1 id="一、概述">一、概述</h1> <p>spring mvc同步接口在请求处理过程中一直处于阻塞状态，而异步接口可以启用后台线程去处理耗时任务。简单来说适用场景：<br /> 1.高并发；<br /> 2.高IO耗时操作。</p> <h1 id="二、demo">二、Demo</h1> <p>Spring MVC3.2之后支持异步请求，能够在controller中返回一个Callable或者DeferredResult。<br /> 1.Callable实例</p> <pre><code>@Controller public class CallableController {     @RequestMapping(path = "/async1", method = RequestMethod.GET)     @ResponseBody     public Callable&lt;String&gt; asyncRequest() {         return () -&gt; {             final long currentThread = Thread.currentThread().getId();             final Date requestProcessingStarted = new Date();              Thread.sleep(6000L);              final Date requestProcessingFinished = new Date();              return String.format(                     "request: [threadId: %s, started: %s - finished: %s]"                     , currentThread, requestProcessingStarted, requestProcessingFinished);         };     } } </code></pre> <p>2.DeferredResult使用方式与Callable类似，但在返回结果上不一样，它返回的时候实际结果可能没有生成，实际的结果可能会在另外的线程里面设置到DeferredResult中去，能实现更加复杂的业务场景。</p> <pre><code>@Controller public class DeferredResultController {     private Map&lt;Integer, DeferredResult&lt;String&gt;&gt; deferredResultMap = new HashMap&lt;&gt;();      @ResponseBody     @GetMapping("/get")     public DeferredResult&lt;String&gt; getId(@RequestParam Integer id) throws Exception {         System.out.println("start hello");         DeferredResult&lt;String&gt; deferredResult = new DeferredResult&lt;&gt;();          //先存起来，等待触发         deferredResultMap.put(id, deferredResult);         System.out.println("end hello");         return deferredResult;     }      @ResponseBody     @GetMapping("/set")     public void setId(@RequestParam Integer id) throws Exception {         // 让所有hold住的请求给与响应         if (deferredResultMap.containsKey(id)) {             deferredResultMap.get(id).setResult("hello " + id);         }     } } </code></pre> <p>当从浏览器请求http://localhost:8080/get/1时，页面处于等待状态；当访问http://localhost:8080/set/1，前面的页面会返回"hello 1"。</p> <p>处理过程：</p> <ul> <li>controller 返回一个DeferredResult，我们把它保存到内存里或者List里面（供后续访问）</li> <li>Spring MVC调用request.startAsync()，开启异步处理</li> <li>与此同时将DispatcherServlet里的拦截器、Filter等等都马上退出主线程，但是response仍然保持打开的状态</li> <li>应用通过另外一个线程（可能是MQ消息、定时任务等）给DeferredResult set值。然后Spring MVC会把这个请求再次派发给servlet容器</li> <li>DispatcherServlet再次被调用，然后处理后续的标准流程</li> </ul> <p>3.模拟场景：接口接收请求，推送到队列receiveQueue，后台线程处理完成后推送到resultQueue，监听器监听resultQueue将结果赋值给DeferredResult，接口响应结果。<br /> 首先定义类Task:</p> <pre><code>public class Task&lt;T&gt; {     private DeferredResult&lt;String&gt; result;     private T message;     private Boolean isTimeout; </code></pre> <p>定义MockQueue,用于管理队列及处理数据：</p> <pre><code>@Component public class MockQueue {     /**      * 接收队列      */     private BlockingQueue&lt;Task&lt;String&gt;&gt; receiveQueue = new LinkedBlockingDeque&lt;&gt;(5000);     /**      * 结果队列      */     private BlockingQueue&lt;Task&lt;String&gt;&gt; resultQueue = new LinkedBlockingDeque&lt;&gt;(5000);      public MockQueue() {         this.run();     }      /**      * 接收task      *      * @param task task实体      * @throws InterruptedException      */     public void put(Task&lt;String&gt; task) throws InterruptedException {         receiveQueue.put(task);     }      /**      * 获取结果      *      * @return      * @throws InterruptedException      */     public Task&lt;String&gt; get() throws InterruptedException {         return resultQueue.take();     }      private void run() {         new Thread(() -&gt; {             while (true) {                 try {                     Task&lt;String&gt; task = receiveQueue.take();                     System.out.println("receive data,start process!");                     Thread.sleep(1000);                     task.setMessage("success");                      //任务超时，跳过                     if (task.getIsTimeout()) {                         continue;                     }                      resultQueue.put(task);                     System.out.println("process done!");                 } catch (InterruptedException e) {                     e.printStackTrace();                 }             }         }).start();     } } </code></pre> <p>然后实现Controller异步接口：</p> <pre><code>@Controller public class DeferredResultQueueController {     @Autowired     MockQueue queue;      @ResponseBody     @GetMapping("/test")     public DeferredResult&lt;String&gt; test(@RequestParam Integer id) throws InterruptedException {         System.out.println("start test");         DeferredResult&lt;String&gt; deferredResult = new DeferredResult&lt;&gt;();         Task&lt;String&gt; task = new Task&lt;&gt;(deferredResult, "任务", false);         deferredResult.onTimeout(() -&gt; {             System.out.println("任务超时 id=" + id);             task.setMessage("任务超时");             task.setIsTimeout(true);         });         queue.put(task);         return deferredResult;     } } </code></pre> <p>最后定义监听器，将resultQueue的结果写入DeferredResult。</p> <pre><code>@Component public class QueueResultListener implements ApplicationListener&lt;ContextRefreshedEvent&gt; {     @Autowired     MockQueue mockQueue;      @Override     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {         new Thread(() -&gt; {             try {                 Task&lt;String&gt; task = mockQueue.get();                 task.getResult().setResult(task.getMessage());                 System.out.println("监听器获取到结果：task=" + task);             } catch (InterruptedException e) {                 e.printStackTrace();             }         }).start();     } } </code></pre> <h1 id="三、参考资料">三、参考资料</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.baeldung.com/spring-deferred-result"  rel="nofollow">https://www.baeldung.com/spring-deferred-result</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cloud.tencent.com/developer/article/1497796"  rel="nofollow">https://cloud.tencent.com/developer/article/1497796</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zhuanlan.zhihu.com/p/31223106"  rel="nofollow">https://zhuanlan.zhihu.com/p/31223106</a></p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2237.htm">使用pandas输出完整对齐表格的方法</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2186.htm" title="Vue项目知识点总结，包含基础，Vue2实践揭秘">Vue项目知识点总结，包含基础，Vue2实践揭秘</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                        <li class="py-2"><a href="/html/category/article-2195.htm" title="vue+element+oss实现前端分片上传和断点续传">vue+element+oss实现前端分片上传和断点续传</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2201.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>mybatis 之别名 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>mybatis 之别名</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3 id="在mybatis的映射文件里引用类有三种方式">在mybatis的映射文件里，引用类有三种方式：</h3> <h3 id="一mapper映射文件里写类加包的全名">一、mapper映射文件里写类加包的全名</h3> <pre class="prettyprint"><code class="language-sql hljs">&lt;<span class="hljs-operator"><span class="hljs-keyword">select</span> id=<span class="hljs-string">"getPlatformInvestInfo"</span> parameterType=<span class="hljs-string">"map"</span> resultType=<span class="hljs-string">"com.duanrong.cps.business.bsy.model.InvestByBsy"</span>&gt;<span class="hljs-keyword">select</span> *<span class="hljs-keyword">from</span> invest<span class="hljs-keyword">where</span> id=#{id} &lt;/<span class="hljs-keyword">select</span>&gt;</span></code></pre> <p>此方法缺点在于每次都写类的连包全名比较麻烦</p> <h3 id="二配置文件里-用标签别名">二、配置文件里 用标签别名</h3> <pre class="prettyprint"><code class="language-xml hljs"><span class="hljs-comment">&lt;!-- 1、typeAlias:为某个java类型起别名     type:指定要起别名的类型全类名;默认别名就是类名小写；investByBsy     alias:指定新的别名     typeAliases：别名处理器：可以为我们的java类型起别名              别名不区分大小写  --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">typeAliases</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">typeAlias</span><span class="hljs-attribute">alias</span>=<span class="hljs-value">"investByBsy"</span><span class="hljs-attribute">type</span>=<span class="hljs-value">"com.duanrong.cps.business.bsy.model.InvestByBsy"</span>/&gt;</span><span class="hljs-tag">&lt;/&lt;<span class="hljs-attribute">typeAliases</span>&gt;</span></code></pre> <pre class="prettyprint"><code class="language-sql hljs">&lt;<span class="hljs-operator"><span class="hljs-keyword">select</span> id=<span class="hljs-string">"getPlatformInvestInfo"</span> parameterType=<span class="hljs-string">"map"</span> resultType=<span class="hljs-string">"investByBsy"</span>&gt;<span class="hljs-keyword">select</span> *<span class="hljs-keyword">from</span> invest<span class="hljs-keyword">where</span> id=#{id} &lt;/<span class="hljs-keyword">select</span>&gt;</span></code></pre> <p>这种方法在使用的类比较的多的时候，写起来也是很麻烦</p> <h3 id="三批量起别名package为某个包下的所有类起别名name为包名当前包以下面的每一个子包里的类都起一个默认别名类名小写">三、批量起别名，package为某个包下的所有类起别名，name为包名，当前包以下面的每一个子包里的类都起一个默认别名（类名小写）</h3> <pre class="prettyprint"><code class="language-xml hljs"><span class="hljs-tag">&lt;<span class="hljs-title">typeAliases</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">package</span><span class="hljs-attribute">name</span>=<span class="hljs-value">"com.duanrong.cps.business.bsy.model"</span>/&gt;</span><span class="hljs-tag">&lt;/&lt;<span class="hljs-attribute">typeAliases</span>&gt;</span></code></pre> <p>此方法如果定义的子包里类有重名的，则会报错，所以此时可以使有<strong>@ alias</strong>注解来标记别名。则在要起别名的bean上用@alias标签指定别名。</p> <h3 id="四mybatis已经定义好的别名">四、mybatis已经定义好的别名</h3> <p>1.八种基本数据类型：byte, int, float, double, short, long , char , boolean , 对应的别名为下下划线+基本数据类型名称如：_byte.<br /> 2.引用类型： Byte, Integer, Float, Double, Short, Long, String Boolea , Date, BigDecimal, Object 对应的别名为引用类型小写<br /> 3.其它类型： Map, List, HashMap, ArrayList ,collection, Iterator, 这些对应的别名均为小写形式。如：map, hashmap<br /> eg:</p> <pre class="prettyprint"><code class="language-sql hljs">&lt;<span class="hljs-operator"><span class="hljs-keyword">select</span> id=<span class="hljs-string">"getPlatformInvestInfo"</span> parameterType=<span class="hljs-string">"map"</span> resultType=<span class="hljs-string">"investByBsy"</span>&gt;<span class="hljs-keyword">select</span> *<span class="hljs-keyword">from</span> invest<span class="hljs-keyword">where</span> id=#{id} &lt;/<span class="hljs-keyword">select</span>&gt;</span></code></pre> <p>此处所用的<strong>map</strong> 则为mybatis所定义好的默认别名</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2200.htm">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2202.htm">.NET 6上的WebView2体验_在线工具</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2202.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>.NET 6上的WebView2体验_在线工具 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>.NET 6上的WebView2体验_在线工具</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>上次说为了不想在web端登录博客园，我想着还是继续使用<strong>MarkWord</strong>编写博客，不过在使用的过程中，如果markdown文件的目录中有中文的话，Markdown预览就不能够显示粘贴的图片了，原因是之前.NET Framework的<code>WeBrowser</code>库太老了，应该升级一下。</p> <p>替换WebBrowser的方案很多，在Stackoverflow上有人推荐使用WebView2，我就直接用了，也没有多想，实际上使用的问题还是不少的，简单记录一下。</p> <h2 id="webview2">WebView2</h2> <p>这个东西是微软推出基于Edge或者说是基于chromium内核的浏览器组件，可以提供现代的浏览器体验，用于集成到.NET程序中，实现.NET对web的访问与调用，或者反过来也行。这个东西感觉是<code>CefSharp</code>的有利竞争者呀，虽然我也没咋用过<code>CefSharp</code>。</p> <h2 id="webbrowser-webview2">WebBrowser-&gt;WebView2</h2> <p>迁移的第一步是引用的替换，WebBrowser在System.Windows.Forms.WebBrowser命名空间，如果使用WPF的话，需要使用WindowsFormsHost，这个就体验不是那么好了，WPF下，有Microsoft.Web.WebView2.Wpf，可以提供给WPF原生的访问，赞一个。</p> <h3 id="访问dom">访问DOM</h3> <p>然后就是出现的错误了，最难受的是，WebView2<strong>不提供对DOM的访问权限！</strong>，WebBrowser可以直接通过Document来访问DOM节点，而WebView2只能设置访问的Uri信息，然后控制导航与调用js。</p> <p>为了实现动态的控制预览框的内容，访问DOM是必须的，如果我动态的渲染一个文件，然后随时再构造Uri，再传递到WebView2中，那太啰嗦了。由于这个东西可以直接调用JS，那么我们换一个思路：通过WebView2调用JS，然后使用Js操作DOM，曲线实现控制DOM的目标。废话不多说，直接上代码。</p> <pre><code class="language-csharp">if (winWebDoc.CoreWebView2 == null)     return; var script = "document.body.innerHTML = '" + Markdown.ToHtml(MarkValue, pipeline).Trim() + "'"; winWebDoc.ExecuteScriptAsync(script); </code></pre> <blockquote> <p>之前我也尝试过document.write的方法，发现有点问题，还是不能正常识别。</p> </blockquote> <p>WebView2除了直接在传递js的函数体以外，还可以调用页面中的顶级JS函数，具体使用方法参见后面的参考文献或者园子里面的这篇<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/ColorsWin/archive/2021/02/24/14440412.html"  target="_blank"  rel="nofollow">文章</a>，反正我这么使用之后中文目录的问题就解决了，不过右侧渲染如果有回车换行的话，就经常会卡死，好像是引擎就崩溃了。</p> <h3 id="替换默认换行">替换默认换行</h3> <p>经过debug，发现WebView2在运行的过程中，需要渲染的html内，标签之间不能有\r\n之类的东西，如果有就寄了。而使用CommonMark.CommonMarkConverter.Convert方法转换的markdown文件都会有这个东西...</p> <p>这个库时间也比较久远了，经过简单研究，我换成了Markdig这个库，二者兼容，而且Markdig还提供了更多定制的地方，我这里将所有的换行，替换为空字符。</p> <pre><code class="language-csharp"> private MarkdownPipeline pipeline = new MarkdownPipelineBuilder()                 .ConfigureNewLine("")                 .Build(); </code></pre> <p>这样，换行就没啥问题了，但是在初次使用时，会出现WebView2无法正常渲染的问题。</p> <h3 id="webview2初始化">WebView2初始化</h3> <p>WebView2的初始化和其他的库有点不同，它提供了一个EnsureCoreWebView2Async的方法，对它的操作，请一定等这个方法返回。可以使用await，也可以和我一样，使用TPL。</p> <pre><code class="language-c#"> winWebDoc.EnsureCoreWebView2Async()                     .ContinueWith(t =&gt;                 {                     Dispatcher.Invoke(() =&gt;                     {                         winWebDoc.Source = new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "index.html"));                     });                 }); </code></pre> <p>注意我这里使用加载了一个本地的模板HTML文件，访问本地文件的时候，需要使用Uri的方式访问。</p> <h2 id="结语">结语</h2> <p>经过了一番折腾，终于是能够继续使用MarkWord写博客了，虽然我更换了主题之后，滚动不是很利索了，另外渲染代码换行好像还有点问题，不过好歹能用了，以后再折腾吧。</p> <blockquote> <p>P.S. WebView2可以通过更简单的方法直接访问网页，使用<code>NavigateToString</code>方法可以直接设置全局的document。</p> </blockquote> <h2 id="参考资料">参考资料</h2> <p>非常详细：</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://weblog.west-wind.com/posts/2021/Jan/14/Taking-the-new-Chromium-WebView2-Control-for-a-Spin-in-NET-Part-1"  target="_blank"  rel="nofollow">https://weblog.west-wind.com/posts/2021/Jan/14/Taking-the-new-Chromium-WebView2-Control-for-a-Spin-in-NET-Part-1</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://weblog.west-wind.com/posts/2021/Jan/26/Chromium-WebView2-Control-and-NET-to-JavaScript-Interop-Part-2"  target="_blank"  rel="nofollow">https://weblog.west-wind.com/posts/2021/Jan/26/Chromium-WebView2-Control-and-NET-to-JavaScript-Interop-Part-2</a></li> </ul> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2201.htm">mybatis 之别名</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2203.htm">PHP与JSON的一些常用操作</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2193.htm" title="golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2200.htm" title="python协程编程实例_Python异步IO编程之-asyncio协程应用例子">python协程编程实例_Python异步IO编程之-asyncio协程应用例子</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2198.htm" title="笔记：Linux命令（目录和文件管理）">笔记：Linux命令（目录和文件管理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

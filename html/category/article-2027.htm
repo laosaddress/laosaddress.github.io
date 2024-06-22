@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2027.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Docker 安装 Jenkins_在线工具 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        </head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Docker 安装 Jenkins_在线工具</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>本文将介绍 Jenkins 初学者如何在学习环境使用 Docker 能够快速安装 Jenkins，本文内容不适用于生产环境。</p> <h2 id="1-jenkins-的-docker-镜像">1 Jenkins 的 Docker 镜像</h2> <p>Docker 官方曾经提供了 Docker 镜像的安装镜像，镜像名直接就是 <code>jenkins</code>，但 Docker 官方提供的镜像几年前就不维护了。如果使用 Docker 官方提供的镜像，只能使用老版本的 Jenkins，会导致有些插件不能正常安装。所以，我们应该使用 Jenkins 官方提供了镜像，镜像名 <code>jenkins/jenkins</code>。</p> <p>Jenkins 官方提供的 Docker 镜像仓库地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://hub.docker.com/r/jenkins/jenkins%EF%BC%8C%E9%95%9C%E5%83%8F%E7%9A%84%E6%BA%90%E7%A0%81%E5%92%8C%E7%94%A8%E6%B3%95%E5%9C%A8"  target="_blank"  rel="nofollow">https://hub.docker.com/r/jenkins/jenkins，镜像的源码和用法在</a> Github 上：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/jenkinsci/docker%E3%80%82"  target="_blank"  rel="nofollow">https://github.com/jenkinsci/docker。</a></p> <h2 id="2-运行装有-jenkins-的-docker-容器">2 运行装有 Jenkins 的 Docker 容器</h2> <p>最基本的运行命令如下，它会启动一个安装有最新版本 Jenkins 的 Docker 容器，将宿主机的 8080 端口映射到容器的 8080 端口，宿主机的 5000 端口映射到容器的 5000 端口。</p> <pre><code class="language-docker">docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts </code></pre> <p>但上面这条命令没有将 Jenkins 的数据持久化，关闭容器之后数据就丢失了。因此需要容器中 Jinkins 的数据保存到卷中。如下命令在后台（<code>-d</code>）启动了一个容器，并将容器中 Jenkins 的数据放到卷<code>jenkins_home</code>中；这样，重启容器之后还能够保留数据。</p> <pre><code class="language-docker">docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts </code></pre> <h2 id="3-登录-jenkins">3 登录 Jenkins</h2> <p>Docker 容器启动之后就可以通过浏览器访问 Jenkins 了，访问的地址是：<code>http://localhost:8080</code>，刚才映射的宿主机端口是 <code>8080</code>。Jenkins 在启动时会在控制台打印初始密码，这个密码在首次进入页面时需要用到。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/866cdef153c67c62c039d392a7082345.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>可以通过 Docker Desktop 查看控制台输出。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/d5530418d04a32b6e40fe06d53fb0fd0.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>使用密码进入之后，提示安装初始插件。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/b11dfffd20b6c0d57b0ab7ac5608386d.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>根据需要选择安装推荐插件（左边）或者自己选择要安装的插件（右边）即可。下图为选择安装推荐插件之后的结果。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/ba29e029a2262f2fd326da2a2a9a2e0f.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>插件安装成功之后自动进入设置 Admin 密码页面，按照提示设置密码等信息。最终进入到如下页面，此时可以添加程序了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/5a00494d8d0056d47c1e93832d962fa7.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <h2 id="4-运行-hello-world">4 运行 Hello World</h2> <p>点击 [Create a Job]，进入如下页面，填入管道名称 "hello-world"，选择 "Pipeline"，点击 [ok]，进入管道配置页面。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/dcf331f2abe05b9bcbe307b2e7fce556.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>在管道配置页面的 "Pipeline" 框中填入如下内容，然后点击 [Save]，保存配置并进入 <code>hello-world</code> 管道页面。</p> <pre><code class="language-groovy">pipeline{     agent any     stages{         stage('Print Hello World'){             steps{                 echo 'Hello, beautiful Wolrd.'             }         }     } } </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/bca750f951936f2246deef35df3a2ad5.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>配置完成之后就可以运行管道了。在 <code>hello-world</code> 管道页面点击 [Build Now] 运行管道。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/54537d45c825264cb46d37c193ee20e4.jpg" alt="Docker 安装 Jenkins_在线工具"></p> <p>因为管道任务很短，管道很快就能运行完成，可以通过点击 [Console Output] 看到输出的内容。</p> <pre><code>Started by user Roots Running in Durability level: MAX_SURVIVABILITY [Pipeline] Start of Pipeline [Pipeline] node Running on Jenkins in /var/jenkins_home/workspace/hello-world [Pipeline] { [Pipeline] stage [Pipeline] { (Print Hello World) [Pipeline] echo Hello, beautiful Wolrd. [Pipeline] } [Pipeline] // stage [Pipeline] } [Pipeline] // node [Pipeline] End of Pipeline Finished: SUCCESS </code></pre> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2026.htm">Go后端项目服务器一站式部署笔记(Gin+MySQL+Nginx)</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2028.htm">Spring Cloud Gateway系列 配置Gateway详解</a></p>
+                                                    </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2185.htm" title="css实现文本垂直居中水平居中的几种方法">css实现文本垂直居中水平居中的几种方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
