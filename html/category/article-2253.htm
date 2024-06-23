@@ -2,10 +2,10 @@
 <html>
 
 <head>
-        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2158.htm" />
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2253.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VsCode调试docker中的NodeJS程序 - Laos Address</title>
+    <title>最小删除以在C ++中制作有效的括号 - Laos Address</title>
         <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -68,7 +68,7 @@ var _hmt = _hmt || [];
     <!-- Hero Section-->
     <section class="hero">
         <div class="container text-center">
-            <h1>VsCode调试docker中的NodeJS程序</h1>
+            <h1>最小删除以在C ++中制作有效的括号</h1>
             <nav aria-label="breadcrumb" class="d-flex justify-content-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
@@ -82,10 +82,29 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<p>最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。</p> <p>首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化debug的工作。</p> <p>由于VsCode 已将调试工具内置，所以只需要增加调试配置。应遵循以下步骤：</p> <p>第一步：单击首选项 -&gt; 设置，打开设置选项卡。如下面的屏幕截图。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6aefb490fd9dc633c0e3836a644710d4.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>第二步：在搜索输入中搜索“node debug”，你会看到Debug&gt; JavaScript:Auto Attach Filter选项，选择“smart”作为选项的值。它将启用nodeJs的调试。</p> <p><span id="docs-internal-guid-26a7aeba-7fff-377d-209d-c7868a6196b3"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220509/6542dc4b4b4fa9674eb797a84823b939.jpg" alt="VsCode调试docker中的NodeJS程序" width="477" height="226"/></span></p> <p>第三步： 单击左侧工具栏上的调试图标，如图所示<span id="docs-internal-guid-e97b3309-7fff-a295-de34-334772f7f76a"><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5bc55200c77b69cca9b3126c6438add2.jpg" alt="VsCode调试docker中的NodeJS程序" width="68" height="63"/></span>。然后单击运行和调试按钮，并添加配置。</p> <p>点击Add Configuration将跳转到一个名为 launch.json(./vscode/launch.json) 的文件，编写后的完整配置如下所示。</p> <div class="cnblogs_Highlighter"> <pre class="brush:javascript;gutter:true;">{  // Use IntelliSense to learn about possible attributes.  // Hover to view descriptions of existing attributes.  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387  "version": "0.2.0",  "configurations": [    {      "type": "node",      "request": "attach",      "name": "Debug super api in docker",      "restart": true,      "port": 7676,      "address": "localhost",      "localRoot": "${workspaceFolder}",      "remoteRoot": "/super-api",      "protocol": "inspector"    }  ] }</pre> </div> <p>对上面的配置，我简单介绍一下。由于docker中的容器是被宿主机挂载进来的，所以要单独配置一个remoteRoot配置项，它的值就是实际项目在容器中的目录路径。</p> <p>而port填写的不是项目运行的端口号，而是node命令中--inspect设置的端口号，在我的项目中我在运行该容器的时候会把这个7676的端口暴露给宿主机（真实电脑）</p> <p>编辑好这个配置文件后，就可以设置一下断点，然后点击start debug按钮即可开始debug了。</p> <p>运行的效果，如图所示。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/835046846589e603aad9de1f6cf8dd3a.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>&nbsp;可以看到Variables面板里面有显示运行到断点处的相关变量情况，而CALL STACK部分记录调用堆，方便我们追踪整个程序的调用层级和过程。左边最下面显示的是我们设置的所有断点（breakpoint），标记红色的是被执行到的断点。</p> <p>一句话总结：<strong>一个后端程序员最基本的修养是能断点调试程序。</strong></p> 			                        <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-2157.htm">Vue组件之间传值/调用方法的几种方式</a></p>
-                                                        <p>下一个：<a href="/html/category/article-2159.htm">pyenv与pyenv-virtualenv的安装和使用（Mac）</a></p>
+                          				  				  				<p>假设我们有一个字符串s'（'，'）'和小写英文字符。我们必须删除最小括号（在任何位置的'（'或'）'），以便得到的括号字符串有效并返回任何有效字符串。当满足所有这些条件时，括号字符串有效-</p> <ul class="list-paddingleft-2"> <li> <p>它是空字符串，仅包含小写字符，或者</p> </li> <li> <p>它可以写为AB（A与B串联）的形式，其中A和B是有效字符串，或者</p> </li> <li> <p>它可以以(A)的形式编写，其中A是有效字符串。</p> </li> </ul> <p>因此，如果输入类似于“ a）b(c)d”，那么输出将为“ ab(c)d”</p> <p>为了解决这个问题，我们将遵循以下步骤-</p> <ul class="list-paddingleft-2"> <li> <p>定义一个堆栈st</p> </li> <li> <p>对于范围从0到s的i</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>如果堆栈不为空，则从堆栈弹出，否则s [i] ='*'</p> </li> <li> <p>如果s [i] ='（'，则将i插入st</p> </li> <li> <p>否则，当s [i]为'）'时，</p> </li> </ul> <ul class="list-paddingleft-2" style="list-style-type: square;"></ul> <li> <p>虽然st不为空，</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>s [堆栈的顶部元素] ='*'</p> </li> <li> <p>从堆栈弹出</p> </li> </ul> <li> <p>ans：=空字符串</p> </li> <li> <p>当我的范围是0到s的大小– 1</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>如果s [i]不是'*'，则ans：= ans + s [i]</p> </li> </ul> <li> <p>返回ans</p> </li> </ul> <p>让我们看下面的实现以更好地理解-</p> <h2>示例</h2> <pre>#include&nbsp;&lt;bits/stdc++.h&gt; using&nbsp;namespace&nbsp;std; class&nbsp;Solution&nbsp;{ &nbsp;&nbsp;&nbsp;public: &nbsp;&nbsp;&nbsp;string&nbsp;minRemoveToMakeValid(string&nbsp;s)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stack&nbsp;&lt;int&gt;&nbsp;st; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;s.size();&nbsp;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(s[i]&nbsp;==&nbsp;'(')st.push(i); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(s[i]&nbsp;==&nbsp;')'){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!st.empty())st.pop(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;s[i]&nbsp;=&nbsp;'*'; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(!st.empty()){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[st.top()]&nbsp;=&nbsp;'*'; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st.pop(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;ans&nbsp;=&nbsp;""; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;s.size();&nbsp;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(s[i]&nbsp;!=&nbsp;'*')ans&nbsp;+=&nbsp;s[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ans; &nbsp;&nbsp;&nbsp;} }; main(){ &nbsp;&nbsp;&nbsp;Solution&nbsp;ob; &nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;(ob.minRemoveToMakeValid("a)b(c)d")); }</pre> <h2>输入值</h2> <pre>"a)b(c)d"</pre> <p>输出结果</p> <pre>ab(c)d</pre> <div></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2238.htm">DeferredResult异步处理spring mvc Demo</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2254.htm">有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法</a></p>
                                                     </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2238.htm">DeferredResult异步处理spring mvc Demo</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2228.htm">【java算法】二分查找算法详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2225.htm">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2189.htm">CONCAT()和CONCAT_WS()函数有什么区别？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2129.htm">vue在安装时 node-sass报错</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2108.htm">Bootstrap Blazor 实战 Menu 导航菜单使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2104.htm">Redis内存淘汰机制</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2095.htm">阿里云IoT流转到postgresql数据库方案_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2059.htm">win11系统没有应用商店如何解决</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2050.htm">【TypeScript】TypeScript 与 JavaScript 有何不同？</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
                                         </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -94,16 +113,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
-                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
-                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
-                        <li class="py-2"><a href="/html/category/article-2181.htm" title="SpringBoot 如何统一后端返回格式">SpringBoot 如何统一后端返回格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
                         <li class="py-2"><a href="/html/category/article-2194.htm" title="TensorFlow之张量的形状相关操作">TensorFlow之张量的形状相关操作</a></li>
-                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
-                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2188.htm" title="tensorflow中变量和张量连接起来">tensorflow中变量和张量连接起来</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
                         <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
                         <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
-                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2190.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
                     </ul>
     </div>
 </div>
