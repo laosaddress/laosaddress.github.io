@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2543.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>rancher安装redis集群 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>rancher安装redis集群</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>基于上一篇：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/Smy_0114/article/details/117410695"  rel="nofollow">docker安装rancher_RT_0114的博客-CSDN博客</a></p> <p>之前也安装过redis集群只不过是用docker单机装的。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/Smy_0114/article/details/116800727"  rel="nofollow">docker搭建redis集群_RT_0114的博客-CSDN博客</a></p> <p>来，记录一下rancher安装redis集群。机器防火墙全部是关闭的。</p> <p>对还是三台机器，master、mode1、node2，master不部署redis只是用来共享redis的配置文件，node1和node2分别部署3台redis共计6台redis。</p> <blockquote> <p>进入master主机创建文件夹：</p> </blockquote> <pre><code class="language-bash">mkdir -p /water/runfile/docker_volume/redis_cluster/7001/data mkdir -p /water/runfile/docker_volume/redis_cluster/7002/data mkdir -p /water/runfile/docker_volume/redis_cluster/7003/data mkdir -p /water/runfile/docker_volume/redis_cluster/7004/data mkdir -p /water/runfile/docker_volume/redis_cluster/7005/data mkdir -p /water/runfile/docker_volume/redis_cluster/7006/data</code></pre> <blockquote> <p>在master上安装nfs：</p> </blockquote> <pre><code>cd /water/runfile/docker_volume/redis_cluster rpc.nfsd 8 rpc.mountd  exportfs -r #使配置生效  exportfs #可以查看到已经ok</code></pre> <blockquote> <p>执行过程：</p> </blockquote> <pre><code class="language-bash">[root@CSS-app-SG1 7006]# cd /water/runfile/docker_volume/redis_cluster [root@CSS-app-SG1 redis_cluster]# exportfs /water/runfile/docker_volume                 172.21.168.195/24 [root@CSS-app-SG1 redis_cluster]#</code></pre> <blockquote> <p>创建配置文件：</p> </blockquote> <pre><code>vi /water/runfile/docker_volume/redis_cluster/7001/redis.conf vi /water/runfile/docker_volume/redis_cluster/7002/redis.conf vi /water/runfile/docker_volume/redis_cluster/7003/redis.conf vi /water/runfile/docker_volume/redis_cluster/7004/redis.conf vi /water/runfile/docker_volume/redis_cluster/7005/redis.conf vi /water/runfile/docker_volume/redis_cluster/7006/redis.conf</code></pre> <blockquote> <p>修改：6个文件只是端口不一样其他都一样</p> </blockquote> <pre><code>#bind 127.0.0.1 port 7001  #端口 cluster-enabled yes #启用集群模式 cluster-config-file /data/nodes.conf cluster-node-timeout 5000 #超时时间 logfile "/data/redis.log" #输出日志 appendonly yes daemonize no #是否后台运行，这里不能改成yes，不然docker运行就关闭了 protected-mode no #非保护模式 pidfile  /var/run/redis.pid</code></pre> <blockquote> <p>在default空间下创建pv</p> </blockquote> <blockquote> <p>nfs-redisclutser-pv<br /> NFS-Share 10<br /> /water/runfile/docker_volume 172.21.168.195<br /> 是否只读：否<br /> 多主机读写</p> </blockquote> <p><img fetchpriority="high" decoding="async" alt="" height="340" src="http://img.555519.xyz/uploads3/20220609/ffa5048c4c4abe2c377d1703330a5385.jpg"></p> <blockquote> <p>过程：</p> </blockquote> <p><img decoding="async" alt="" height="557" src="http://img.555519.xyz/uploads3/20220609/3405d7074d19e948e81cb2645c4550c3.jpg"></p> <blockquote> <p>在default空间下创建pvc</p> </blockquote> <blockquote> <p>工作负载-负载均衡-服务发现-PVC(勾)-流水线<br /> 选择添加pvc<br /> nfs-redisclutser-pvc 命名空间:选择刚创建的redis-cluster<br /> 持久卷(PV) 选择：nfs-redisclutser-pv<br /> 自定义： 多主机读写</p> </blockquote> <p><img decoding="async" alt="" height="336" src="http://img.555519.xyz/uploads3/20220609/6fd99f3f46518f4274ae204af01d4e75.jpg"></p> <blockquote> <p>过程：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="576" src="http://img.555519.xyz/uploads3/20220609/ce85bee579cf22185400ffa66594da76.jpg"></p> <blockquote> <p>部署redis：先手动拉取redis镜像。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="503" src="http://img.555519.xyz/uploads3/20220609/84c205976699ec3363a55d0b44be1f0b.jpg"></p> <blockquote> <p>主机调度：指定</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="218" src="http://img.555519.xyz/uploads3/20220609/50fd76573411abbc019fa85760a8977d.jpg"></p> <blockquote> <p>数据卷：pvc里面配置到了/water/runfile/docker_volume因此下面配置的时候只需要配置下级目录即可</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="471" src="http://img.555519.xyz/uploads3/20220609/42e5027e20a423a647683b23793e16b7.jpg"></p> <blockquote> <p>入口/命令：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="480" src="http://img.555519.xyz/uploads3/20220609/e8c4b817a9af05321d0c3fb69898a34c.jpg"></p> <blockquote> <p>网络：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="339" src="http://img.555519.xyz/uploads3/20220609/48e3a0db7ed532e94504c88e912b1c28.jpg"></p> <blockquote> <p>点记确定即可。</p> </blockquote> <blockquote> <p>再复制5份，分别把端口和数据卷的端口文件夹改一下，调度的主机也改一下一台机器3台redis。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="449" src="http://img.555519.xyz/uploads3/20220609/da0e827e780f364d20be2b776900c6ca.jpg"></p> <blockquote> <p>进入任意一台redis：</p> </blockquote> <blockquote> <p>执行：点击yes，完成，3主3从。</p> </blockquote> <pre><code>redis-cli --cluster create 172.21.168.197:7001 172.21.168.197:7002 172.21.168.197:7005 172.21.168.199:7003 172.21.168.199:7004 172.21.168.199:7006 --cluster-replicas 1</code></pre> <blockquote> <p>cluster nodes &nbsp;查看集群节点</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="174" src="http://img.555519.xyz/uploads3/20220609/eea88e8925e9b809b822a6b15604118e.jpg"></p> <blockquote> <p>cluster info:查看集群信息</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="305" src="http://img.555519.xyz/uploads3/20220609/d707e89b832264fb34812152fb5ff0ab.jpg"></p> <blockquote> <p>尝试用一下：就这简单不，搞一遍就会了，没什么难度。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="337" src="http://img.555519.xyz/uploads3/20220609/a8179f2ea3b1be976b668ed1b487bec0.jpg"></p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2254.htm">有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2544.htm">C#开发Winform实现学生管理系统_C#教程</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2171.htm">vue通过定时器实现垂直滚动公告_vue.js</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2155.htm">Docker拉取镜像失败报错Error response from daemon: Get https://registry-1.docker.io解决办法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2149.htm">WebSocket使用（C++环境）（一） &#8212; websocket++库的安装与使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2141.htm">使用maven命令直接打包war项目</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2138.htm">IDEA SpringBoot-Mybatis-plus 实现增删改查(CRUD)</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2096.htm">Metalama简介3.自定义.NET项目中的代码分析</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2090.htm">C程序中编译时错误和运行时错误之间的区别</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2066.htm">Asp.Net Core使用Ocelot结合Consul实现服务注册和发现_实用技巧</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2051.htm">ViewPager倒序并分页功能的显示</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1985.htm">MaxCompute SQL函数详解 ODPS SQL函数详解之日期相关函数</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2187.htm" title="Window系统，MySQL服务器如何设置开机启动和关闭">Window系统，MySQL服务器如何设置开机启动和关闭</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2196.htm" title="Parquet列式文件存储格式">Parquet列式文件存储格式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2206.htm" title="c++语法拾遗，一些细节与特性">c++语法拾遗，一些细节与特性</a></li>
+                        <li class="py-2"><a href="/html/category/article-2233.htm" title="k8s 部署Redis集群">k8s 部署Redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2207.htm" title="详解盒子模型和div布局">详解盒子模型和div布局</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
