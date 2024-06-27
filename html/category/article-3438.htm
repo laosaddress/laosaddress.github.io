@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-3438.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>java使用es中三种查询用法from size、search after、scroll - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>java使用es中三种查询用法from size、search after、scroll</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>一、三者之间的区别</h1> <ol> <li> <h2>from size：</h2> <ol> <li>深度分页或者size特别大的情况，会出现deep pagination问题。且es的自保机制max_result_window是10000，当查询数量超过一万就会报错</li> <li>该查询的实现原理类似于mysql中的limit，比如查询第10001条数据，那么需要将前面的1000条都拿出来，进行过滤，最终才得到数据。（性能较差，实现简单，适用于少量数据）</li> </ol> </li> <li> <h2>search after</h2> <ol> <li>search_after缺点是不能够随机跳转分页，只能是一页一页的向后翻（当有新数据进来，也能实时查询到），并且需要至少指定一个唯一不重复字段来排序（一般是_id和时间字段）</li> <li>当使用search_after时，from值必须设置为0或者-1</li> <li>可以查询10000条以上数据</li> </ol> </li> <li> <h2>scroll</h2> <ol> <li>高效进行滚动查询，首次查询会在内存中保存一个历史快照以及游标（scroll_id）,记录当前消息查询的终止位置，下次查询的时候将基于游标进行消费（性能良好，不具备实时性，一般是用于大量数据导出或者索引重建）</li> <li>可以查询10000条以上数据</li> </ol> </li> </ol> <h1>二、代码测试类</h1> <ol> <li> <h2>from size</h2> </li> </ol> <pre><code class="language-java">package com.example.es.test;  import org.apache.http.HttpHost; import org.elasticsearch.action.search.SearchRequest; import org.elasticsearch.action.search.SearchResponse; import org.elasticsearch.client.RequestOptions; import org.elasticsearch.client.RestClient; import org.elasticsearch.client.RestHighLevelClient; import org.elasticsearch.search.SearchHit; import org.elasticsearch.search.builder.SearchSourceBuilder; import org.elasticsearch.search.sort.SortBuilders; import org.elasticsearch.search.sort.SortOrder; import org.slf4j.Logger; import org.slf4j.LoggerFactory;  import java.util.ArrayList; import java.util.List; import java.util.Map;  /**  * @author   * @Description  es的from-size用法  * @date 2022/01/26 10:04  */ public class ESTest_from_size {      public static final Logger logger = LoggerFactory.getLogger(ESTest_searchAfter.class);      public static void main(String[] args) throws Exception{         long startTime = System.currentTimeMillis();         // 创建ES客户端         RestHighLevelClient esClient = new RestHighLevelClient(                 RestClient.builder(new HttpHost("localhost", 9200, "http"))         );         // 1、创建searchRequest         SearchRequest searchRequest = new SearchRequest("audit2");         // 2、指定查询条件         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();//必须加上track_total_hits，不然就只显示10000         // 页面上的第一页等同于在es中的 0         sourceBuilder.from(0);         // 每页多少条数据         sourceBuilder.size(1000);         // 设置唯一排序值定位         sourceBuilder.sort(SortBuilders.fieldSort("operationtime").order(SortOrder.DESC));         //将sourceBuilder对象添加到搜索请求中         searchRequest.source(sourceBuilder);         // 发送请求         SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);         SearchHit[] hits = searchResponse.getHits().getHits();         List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;&gt;();         if (hits != null &amp;&amp; hits.length &gt; 0) {             for (SearchHit hit : hits) {                 // 获取需要数据                 Map&lt;String, Object&gt; sourceAsMap = hit.getSourceAsMap();                 result.add(sourceAsMap);             }         }         logger.info("查询出来的数据个数为：{}", result.size());         // 关闭客户端         esClient.close();         logger.info("运行时间: " + (System.currentTimeMillis() - startTime) + "ms");     } }</code></pre> <p>运行结果：</p> <pre><code class="language-java">10:08:40.466 [main] INFO com.example.es.test.ESTest_searchAfter - 查询出来的数据个数为：1000 10:08:40.474 [main] INFO com.example.es.test.ESTest_searchAfter - 运行时间: 1506ms</code></pre> <p>现象：</p> <p>如果from size 查询的数据超过10000条，会报错误</p> <h2>2、search after</h2> <pre><code class="language-java">package com.example.es.test;  import org.apache.http.HttpHost; import org.elasticsearch.action.search.SearchRequest; import org.elasticsearch.action.search.SearchResponse; import org.elasticsearch.client.RequestOptions; import org.elasticsearch.client.RestClient; import org.elasticsearch.client.RestHighLevelClient; import org.elasticsearch.search.SearchHit; import org.elasticsearch.search.builder.SearchSourceBuilder; import org.elasticsearch.search.sort.SortBuilders; import org.elasticsearch.search.sort.SortOrder; import org.slf4j.Logger; import org.slf4j.LoggerFactory;  import java.util.ArrayList; import java.util.List; import java.util.Map;  /**  * @author  * @Description  es 的search_after方法  * @date 2022/01/11 14:04  */ public class ESTest_searchAfter {      public static final Logger logger = LoggerFactory.getLogger(ESTest_searchAfter.class);      public static void main(String[] args) throws Exception{         long startTime = System.currentTimeMillis();         // 创建ES客户端         RestHighLevelClient esClient = new RestHighLevelClient(                 RestClient.builder(new HttpHost("localhost", 9200, "http"))         );         // 1、创建searchRequest         SearchRequest searchRequest = new SearchRequest("audit2");         // 2、指定查询条件         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder().trackTotalHits(true);//必须加上track_total_hits，不然就只显示10000         //设置每页查询的数据个数         sourceBuilder.size(1000);         // 设置唯一排序值定位         sourceBuilder.sort(SortBuilders.fieldSort("operationtime").order(SortOrder.DESC));//多条件查询         //将sourceBuilder对象添加到搜索请求中         searchRequest.source(sourceBuilder);         // 发送请求         SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);         SearchHit[] hits1 = searchResponse.getHits().getHits();         List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;&gt;();         if (hits1 != null &amp;&amp; hits1.length &gt; 0) {             do {                 for (SearchHit hit : hits1) {                     // 获取需要数据                     Map&lt;String, Object&gt; sourceAsMap = hit.getSourceAsMap();                     result.add(sourceAsMap);                 }                 // 取得最后得排序值sort，用于记录下次将从这个地方开始取数                 SearchHit[] hits = searchResponse.getHits().getHits();                 Object[] lastNum = hits[hits.length - 1].getSortValues();                 // 设置searchAfter的最后一个排序值                 sourceBuilder.searchAfter(lastNum);                 searchRequest.source(sourceBuilder);                 // 进行下次查询                 searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);             } while (searchResponse.getHits().getHits().length != 0);         }         logger.info("查询出来的数据个数为：{}", result.size());         // 关闭客户端         esClient.close();         logger.info("运行时间: " + (System.currentTimeMillis() - startTime) + "ms");     }  }</code></pre> <p>运行结果：</p> <pre><code class="language-java">16:11:44.057 [main] INFO com.example.es.test.ESTest_searchAfter - 查询出来的数据个数为：64000 16:11:44.061 [main] INFO com.example.es.test.ESTest_searchAfter - 运行时间: 20979ms</code></pre> <p>现象：audit2该索引里面总共就69873条数据，控制台打印的信息是每1000条的查询打印出来，最终查询出来64000条记录，还有5873条数据丢失了。还有size如果超过10000，也会报错。</p> <p>我自己的疑问：search after既然不能跳页查询，只能一页一页的查询出来，那前端调用这个接口后端不是还是返回全部的数据吗。那如果前端设置成向下滚动查询，然后滚轮向下几页后端就返回几页数据，后端不是会更省查询的时间吗。现在search after还是一次性将数据查询出来，只是内部它是一页一页查询出来的，最终展示出来的还是全部的数据。这个我有疑问，我应该怎么与前端对接这个接口。</p> <h2>3、scroll</h2> <pre><code class="language-java">package com.example.es.test;  import org.apache.http.HttpHost; import org.elasticsearch.action.search.*; import org.elasticsearch.client.RequestOptions; import org.elasticsearch.client.RestClient; import org.elasticsearch.client.RestHighLevelClient; import org.elasticsearch.common.unit.TimeValue; import org.elasticsearch.index.query.QueryBuilders; import org.elasticsearch.search.SearchHit; import org.elasticsearch.search.builder.SearchSourceBuilder; import org.elasticsearch.search.sort.SortBuilders; import org.elasticsearch.search.sort.SortOrder; import org.slf4j.Logger; import org.slf4j.LoggerFactory;  import java.util.ArrayList; import java.util.List; import java.util.Map;   /**  * @author   * @Description  java 实现scroll滚动查询  * @date 2021/12/08 14:09  */ public class ESTest_Scroll {      public static final Logger logger = LoggerFactory.getLogger(ESTest_Scroll.class);      public static void main(String[] args) throws Exception{         long startTime = System.currentTimeMillis();         // 创建ES客户端         RestHighLevelClient esClient = new RestHighLevelClient(                 RestClient.builder(new HttpHost("localhost", 9200, "http"))         );         // 1、创建searchRequest         SearchRequest searchRequest = new SearchRequest("audit2");         // 2、指定scroll信息         searchRequest.scroll(TimeValue.timeValueMinutes(1L));         // 3、指定查询条件         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();         searchSourceBuilder.size(1000);         searchSourceBuilder.sort(SortBuilders.fieldSort("operationtime").order(SortOrder.DESC));//多条件查询         searchRequest.source(searchSourceBuilder);         //4、获取返回结果scrollId，source         SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT); //通过发送初始搜索请求来初始化搜索上下文         String scrollId = searchResponse.getScrollId();         SearchHit[] searchHits = searchResponse.getHits().getHits();         List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;&gt;();         for (SearchHit hit: searchHits) {             result.add(hit.getSourceAsMap());         }         // java也是一样要查询两次，先把我们的首页给查询出来         // 查询出来之后我们要获取他的id         // 然后利用他的id去查询他的下一页         while (true) {             //5、循环  -  创建 SearchScrollRequest  创建一个新的搜索滚动请求，保存最后返回的滚动标识符和滚动间隔             // 获取 scrollId 去查询下一页             SearchScrollRequest scrollRequest = new SearchScrollRequest(scrollId);             //6、指定scrollId的生存时间             scrollRequest.scroll(TimeValue.timeValueMinutes(1L));             //7、执行查询获取返回结果             SearchResponse scrollResp = esClient.scroll(scrollRequest, RequestOptions.DEFAULT);             //8、判断是否查询到了数据，输出             SearchHit[] hits = scrollResp.getHits().getHits();             //循环输出下一页             if (hits != null &amp;&amp; hits.length &gt; 0) {                 for (SearchHit hit : hits) {                     result.add(hit.getSourceAsMap());                 }             } else {                 //9、判断没有查询到数据，退出循环                 break;             }         }         //查完之后我们把存进缓存的id给删除  完成滚动后，清除滚动上下文         //10、创建ClearScrollRequest         ClearScrollRequest clearScrollRequest = new ClearScrollRequest();         //11、指定scrollId         clearScrollRequest.addScrollId(scrollId);         //12、删除scrollId         ClearScrollResponse clearScrollResponse = esClient.clearScroll(clearScrollRequest, RequestOptions.DEFAULT);         //13、输出结果         boolean succeeded = clearScrollResponse.isSucceeded();         logger.info("删除scrollId：{}", succeeded);         logger.info("查询总个数：{}", result.size());         // 关闭客户端         esClient.close();         logger.info("运行时间: " + (System.currentTimeMillis() - startTime) + "ms");     }  }</code></pre> <p>运行结果：</p> <pre><code class="language-java">16:20:54.794 [main] INFO com.example.es.test.ESTest_Scroll - 删除scrollId：true 16:20:54.795 [main] INFO com.example.es.test.ESTest_Scroll - 查询总个数：69873 16:20:54.797 [main] INFO com.example.es.test.ESTest_Scroll - 运行时间: 5716ms</code></pre> <p>现象：</p> <p>audit2该索引里面总共就69873条数据，最终查询出来69873条记录，一条记录都没有丢失。还有size如果超过10000，也会报错。很奇怪，search after会丢失数据，而scroll一条记录没有丢失。</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-3437.htm">vue如何实现关闭对话框后刷新列表_vue.js</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2838.htm">使用vue v-for循环图片路径方式_vue.js</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2237.htm">使用pandas输出完整对齐表格的方法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2201.htm">mybatis 之别名</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2140.htm">服务器使用Nginx部署Springboot项目（jar包）</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2113.htm">springboot集成elasticsearch7.2</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2068.htm">Pandas 如何处理超大规模数据</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2042.htm">Vue组件跨层级通信详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2036.htm">CUDA02 &#8211; 访存优化和Unified Memory</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2012.htm">CSS阴影进阶，实现更加的立体的阴影效果</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1969.htm">PHP goto声明详解</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
+                        <li class="py-2"><a href="/html/category/article-2210.htm" title="pytorch: 计算ConvTranspose1d输出特征大小">pytorch: 计算ConvTranspose1d输出特征大小</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-2543.htm" title="rancher安装redis集群">rancher安装redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2544.htm" title="C#开发Winform实现学生管理系统_C#教程">C#开发Winform实现学生管理系统_C#教程</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-2208.htm" title="分库分表实现方式Client和Proxy，性能和维护性该怎么选？">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>

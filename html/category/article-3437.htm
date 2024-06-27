@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-3437.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue如何实现关闭对话框后刷新列表_vue.js - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>vue如何实现关闭对话框后刷新列表_vue.js</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">关闭对话框后刷新列表</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">父窗口代码</a></li> <li><a href="#_lab2_0_1" rel="nofollow">子窗口代码</a></li> </ul> <li><a href="#_label1" rel="nofollow">关闭打开的窗口后刷新父页面</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_2" rel="nofollow">解决办法</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>关闭对话框后刷新列表</h2> <p>有些场景需要实现用户弹窗确定后自动刷新列表，父窗口绑定fevent即可</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>父窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;       &lt;div&gt;   &lt;el-button @click="$refs.editform.dialogFormVisible = true" &gt;编辑用户&lt;/el-button&gt;   &lt;editform  @fevent="update_table" ref="editform"&gt;   &lt;/editform&gt;       &lt;/div&gt;   &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import editform from './editform.vue'  export default {    components: {      editform    },    methods: {      update_table () {        console.log('列表框被刷新了')      }    }  }  &lt;/script&gt;</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>子窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;         &lt;el-dialog title="编辑用户"  :visible.sync="dialogFormVisible"&gt;             &lt;el-button @click="delete_user"&gt;删除用户&lt;/el-button&gt;      &lt;/el-dialog&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  export default {    data () {      return {        dialogFormVisible: false      }    },    methods: {      delete_user () {           this.$emit('fevent')           this.$message.success('删除成功')           this.dialogFormVisible = false      }    }  }  &lt;/script&gt;</pre> </div> <p>附加上自己的业务代码，即可实现列表自动刷新</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>关闭打开的窗口后刷新父页面</h2> <p><strong>背景：</strong>在做页面的过程中需要在页面列表里面添加数据，但是添加之后需要手动刷新页面才会出现添加的数据。</p> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>解决办法</h3> <p>可在添加成功之后添加代码 </p> <div class="ay1code"> <pre class="brush:js;">parent.location.reload();</pre> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-3136.htm">使用类在C ++中实现矢量数量</a></p>
+                                                        <p>下一个：<a href="/html/category/article-3438.htm">java使用es中三种查询用法from size、search after、scroll</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2543.htm">rancher安装redis集群</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2193.htm">golang学习七:异常处理:error接口, panic函数, 延时调用defer, recover</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2177.htm">inner join 和 exists 效率_19条效率至少提高3倍的MySQL技巧</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2176.htm">如何使用正则表达式验证IP地址</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2135.htm">远程访问服务器Jupyter Notebook (浏览器访问和pycharm访问)</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2112.htm">JS实现数码时钟</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2095.htm">阿里云IoT流转到postgresql数据库方案_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2076.htm">Unsafe类学习</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2074.htm">ansible容器学习环境搭建教程</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2049.htm">Redis和Mysql如何保证数据一致性</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-3437.htm" title="vue如何实现关闭对话框后刷新列表_vue.js">vue如何实现关闭对话框后刷新列表_vue.js</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
