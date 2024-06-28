@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-3743.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>K8S 将 pod 调度到指定 nodes 上运行 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>K8S 将 pod 调度到指定 nodes 上运行</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3><a id="K8Spodnodes_0" rel="nofollow"></a>K8S将pod调度到指定nodes上运行</h3> <h4><a id="_1" rel="nofollow"></a>两种方式</h4> <h4><a id="1_2" rel="nofollow"></a>方式1：强制固定</h4> <h5><a id="yamlnode_3" rel="nofollow"></a>编写yaml，添加参数（node节点名）</h5> <pre><code class="prism language-groovy">vim text<span class="token punctuation">.</span>yaml nodeName<span class="token punctuation">:</span> worker01  #添加节点名参数</code></pre> <h5><a id="yaml_9" rel="nofollow"></a>具体yaml</h5> <pre><code class="prism language-groovy">apiVersion<span class="token punctuation">:</span> v1 kind<span class="token punctuation">:</span> Pod metadata<span class="token punctuation">:</span>   name<span class="token punctuation">:</span> text   namespace<span class="token punctuation">:</span> text spec<span class="token punctuation">:</span>   nodeName<span class="token punctuation">:</span> worker01   #添加节点名参数   containers<span class="token punctuation">:</span><span class="token operator">-</span> name<span class="token punctuation">:</span> hello     image<span class="token punctuation">:</span> centos<span class="token punctuation">:</span><span class="token number">7</span>     imagePullPolicy<span class="token punctuation">:</span> IfNotPresent     command<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"bash"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"--"</span><span class="token punctuation">]</span>     args<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"while true; do sleep 3;done;"</span><span class="token punctuation">]</span></code></pre> <h5><a id="pod_26" rel="nofollow"></a>创建该pod</h5> <pre><code class="prism language-groovy">kubectl create<span class="token operator">-</span>f text<span class="token punctuation">.</span>yaml</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/9f182b815089fd6815e6384a1c07ae24.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="pod_31" rel="nofollow"></a>查看pod，运行成功</h5> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/26e3347311f977855527a0d0af773b45.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="worker01_33" rel="nofollow"></a>查看是否在worker01上运行</h5> <pre><code class="prism language-groovy">kubectl describe pod text<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/2358c4fee1050aee19e95fd01d210f12.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h4><a id="2labelselector_38" rel="nofollow"></a>方式2：使用标签选择器（label-selector）</h4> <h5><a id="_39" rel="nofollow"></a>给节点添加标签</h5> <pre><code class="prism language-groovy">kubectl label nodes worker03 type<span class="token operator">=</span>node_type</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/fa731fccea59b10503963b63f57cd549.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="_44" rel="nofollow"></a>查看标签是否添加成功</h5> <pre><code class="prism language-groovy">kubectl get node<span class="token operator">--</span>show<span class="token operator">-</span>labels   #获取所有节点的标签，得到worker03设置的标签</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/7e112fba5fba9ed4a7572103f43caf86.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="yamlpod_50" rel="nofollow"></a>编写yaml创建pod，添加标签选择器参数</h5> <pre><code class="prism language-groovy">vim text1<span class="token punctuation">.</span>yaml</code></pre> <h5><a id="_54" rel="nofollow"></a>内容如下</h5> <pre><code class="prism language-groovy">apiVersion<span class="token punctuation">:</span> v1 kind<span class="token punctuation">:</span> Pod metadata<span class="token punctuation">:</span>   name<span class="token punctuation">:</span> text1   namespace<span class="token punctuation">:</span> text spec<span class="token punctuation">:</span>   nodeSelector<span class="token punctuation">:</span>    #标签选择器参数     type<span class="token punctuation">:</span> node_type #刚刚添加的类型   containers<span class="token punctuation">:</span><span class="token operator">-</span> name<span class="token punctuation">:</span> hello1     image<span class="token punctuation">:</span> centos<span class="token punctuation">:</span><span class="token number">7</span>     imagePullPolicy<span class="token punctuation">:</span> IfNotPresent     command<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"bash"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"--"</span><span class="token punctuation">]</span>     args<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"while true; do sleep 3;done;"</span><span class="token punctuation">]</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/203677eae70ddc98e2b3c459a365ac49.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="_72" rel="nofollow"></a>查看是否运行</h5> <pre><code class="prism language-groovy">kubectl get pod<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/56cdd192ad91e2608853357b055a98c4.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="worker03_78" rel="nofollow"></a>查看是否成功在worker03上运行</h5> <pre><code class="prism language-groovy">kubectl describe pod text1<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/6a9c47da052fcd7e812a1e769940a2f4.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"><br /> 原文链接：http://www.hainiubl.com/topics/75623</p> </div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-3438.htm">java使用es中三种查询用法from size、search after、scroll</a></p>
+                                                        <p>下一个：<a href="/html/category/article-3744.htm">SpringSecurity之OAuth2 令牌accessToken的生成过程</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2231.htm">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2164.htm">termux使用教程python-Termux 入门教程：架设手机 Server 下载文件</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2146.htm">SpringBoot线程池参数搜一堆资料还是不会配，我花一天测试换你此生明白。_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2137.htm">MKL库矩阵乘法(cblas_dgemm)</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2131.htm">程序员需要知道的API接口开发常识_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2117.htm">Android 深色模式适配总结</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2082.htm">一篇文章带你彻底吃透Spring</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2072.htm">PHP索引数组详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2022.htm">DDT数据驱动性能测试(一)</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1984.htm">快速入门kotlin-标准函数与静态方法</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-3136.htm" title="使用类在C ++中实现矢量数量">使用类在C ++中实现矢量数量</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3438.htm" title="java使用es中三种查询用法from size、search after、scroll">java使用es中三种查询用法from size、search after、scroll</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2212.htm" title="Pandas读取文件时报错Initializing from file failed">Pandas读取文件时报错Initializing from file failed</a></li>
+                        <li class="py-2"><a href="/html/category/article-2197.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2192.htm" title="Java 超详细讲解数据结构的应用_java">Java 超详细讲解数据结构的应用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2191.htm" title="vue动态控制样式">vue动态控制样式</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">56</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
