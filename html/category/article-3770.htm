@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-3770.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Java 使用 Maven BOM 统一管理版本号_在线工具 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Java 使用 Maven BOM 统一管理版本号_在线工具</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<p>一个中大型的 Java 基础框架项目往往包含许多 JAR 包，如果将这些 JAR 包单独发布给业务开发使用，这些不同版本 JAR 包间的兼容性维护将变得十分麻烦。为了解决这个问题，可以让一个特殊的模块引用这些 JAR 包，将一组 JAR 包兼容的版本号定义在这个模块中，对外发布时只发布这个特殊模块。这个特殊模块就是 BOM(Bill Of Materials)。</p> <p>著名的 Spring Boot 就使用了这种方式来管理版本号，这个模块就是 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-dependencies"  target="_blank"  rel="nofollow">spring-boot-dependencies</a>，用户在使用 Spring Boot Starter 相关依赖时引入特定版本的 spring-boot-dependencies，然后在引入其它依赖时只需要声明 group 和 name 即可，不需要再指定版本号了。当然，在 Gradle 中使用 Spring Boot 插件，或者在 Maven 中使用 spring-boot-starter-parent 作为父模块也能够达到类似的效果。</p> <p>本文将介绍如何通过 Gradle 来制作一个 BOM 以及如何在 Gradle 中使用 BOM。作为 Maven 中的一个概念，也可以使用 Maven 也可以制作和使用 BOM，但本文不涉及。</p> <h2 id="1-bom-介绍">1. BOM 介绍</h2> <p>BOM (Bill Of Material) 是 Maven 仓库中的一个概念，它本质也是一个可被引用的包，但不包含代码，只是声明了一系列其它包。例如：Maven 中央仓库中的 spring-boot-dependencies](<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dependencies/2.4.4/"  target="_blank"  rel="nofollow">https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dependencies/2.4.4/</a>) 包。它只有一个 <code>.pom</code> 文件。</p> <p>下面是 Maven 官网上的一个简单的 BOM 的 <code>.pom</code> 文件：</p> <pre><code class="language-xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;   &lt;groupId&gt;com.test&lt;/groupId&gt;   &lt;artifactId&gt;bom&lt;/artifactId&gt;   &lt;version&gt;1.0.0&lt;/version&gt;   &lt;packaging&gt;pom&lt;/packaging&gt;   &lt;properties&gt;     &lt;project1Version&gt;1.0.0&lt;/project1Version&gt;     &lt;project2Version&gt;1.0.0&lt;/project2Version&gt;   &lt;/properties&gt;     &lt;dependencyManagement&gt;     &lt;dependencies&gt;       &lt;dependency&gt;         &lt;groupId&gt;com.test&lt;/groupId&gt;         &lt;artifactId&gt;project1&lt;/artifactId&gt;         &lt;version&gt;${project1Version}&lt;/version&gt;       &lt;/dependency&gt;       &lt;dependency&gt;         &lt;groupId&gt;com.test&lt;/groupId&gt;         &lt;artifactId&gt;project2&lt;/artifactId&gt;         &lt;version&gt;${project2Version}&lt;/version&gt;       &lt;/dependency&gt;     &lt;/dependencies&gt;   &lt;/dependencyManagement&gt;     &lt;modules&gt;     &lt;module&gt;parent&lt;/module&gt;   &lt;/modules&gt; &lt;/project&gt; </code></pre> <p>这个文件声明了两个包（project1 和 project2）及其版本号，和一般 .pom 文件中的声明不同的是，<dependencies> 节点外面还包含了一层 <dependencymanagement> 节点。以上就是 BOM 包中最核心的文件的基本结构了；基于 Gradle 发布 BOM 包的本质就是生成这样的一个文件。</dependencymanagement></dependencies></p> <h2 id="2-使用-gradle-制作一个-bom">2. 使用 Gradle 制作一个 BOM</h2> <p>这里我们假定要创建一个 BOM，用来统一管理三方 Java 包，其它业务模块通过引用这个 BOM 来间接引用需要使用的第三方 Java 包。工程完整代码：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Robothy/gradle-bom-example"  target="_blank"  rel="nofollow">https://github.com/Robothy/gradle-bom-example</a></p> <h3 id="21-创建-bom-工程">2.1 创建 BOM 工程</h3> <p>Gradle 中的 BOM 工程需要使用 <code>java-platform</code> 插件，这样的工程是一个不包含源代码，只包含包声明的特殊的组件，也被称为平台（platform）。</p> <p>build.gradle 部分代码</p> <pre><code class="language-groovy"> plugins {     id 'java-platform' }  dependencies {     constraints {         // 声明一些三方包及其版本号         api "org.apache.kafka:kafka-clients:2.6.0"         api "redis.clients:jedis:3.5.2"     } } </code></pre> <p>上面代码中，三方包的声明没有放在 dependencies 中，而是放在了 constraints 里面。这表示如果使用了其中的包，优先使用 constraints 中声明的版本。</p> <p>BOM 项目中声明包的方式有两种：</p> <ul> <li> <p><code>api</code> 表示包在编译期可见。</p> </li> <li> <p><code>runtime</code> 表示包在运行期间可见。</p> </li> </ul> <h3 id="22-bom-的发布">2.2 BOM 的发布</h3> <p>BOM 的发布需要使用 <code>maven-publish</code> 插件，其发布配置如下：</p> <pre><code class="language-groovy">publishing {     publications {         thirdPartPlatform(MavenPublication){             from components.javaPlatform             artifactId = "third-part-dependencies"         }     }      repositories {         mavenLocal()     } } </code></pre> <p>BOM 的命名一般以 <code>-dependencies</code> 结尾，这里我们取名为 <code>third-part-dependnecies</code>。</p> <p>执行 <code>./gradlew.bat publish</code> 就可以将 BOM 发布到本地的 Maven 仓库了。发布的 artifacts 包含两个主要文件（.pom 和 .module）和若干校验文件。其中 .pom 的文件内容为 Maven 官方定义的 BOM 的标准格式，而 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/gradle/gradle/blob/master/subprojects/docs/src/docs/design/gradle-module-metadata-latest-specification.md"  target="_blank"  rel="nofollow">.module 文件</a>内容是 Gradle 描述元数据的一种格式。</p> <h3 id="23-bom-的使用">2.3 BOM 的使用</h3> <p>普通的 Java 应用或者 Java 库使用 BOM 的时候需要先添加 BOM 依赖，然后使用其它的库。例如：</p> <pre><code class="language-groovy">// 引入 BOM implementation platform("org.example:third-part-dependencies:1.0")  // 引入包，这时不需要再指定版本号 implementation "org.apache.kafka:kafka-clients" </code></pre> <p>当然，BOM 工程或者说 platform 工程也可以使用 BOM。</p> <p>使用的时候需要在 dependencies 下面引入 BOM，然后在 constraints 下面声明要使用的库，声明的时候无须指定版本。另外，需要在 configurations 中调用 <code>javaPlatform.allowDependencies()</code>，否则会报错。</p> <pre><code class="language-groovy">configurations{     javaPlatform.allowDependencies() }  dependencies {     api platform("org.springframework.boot:spring-boot-dependencies:2.4.4")     constraints {         api "org.apache.kafka:kafka-clients:2.6.0"         api "redis.clients:jedis:3.5.2"         api "org.springframework.batch:spring-batch-core"     } } </code></pre> <h2 id="3-参考">3 参考</h2> <p>[1] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html"  target="_blank"  rel="nofollow">Introduction to the Dependency Mechanism<br /></a></p> <p>[2] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/userguide/java_platform_plugin.html"  target="_blank"  rel="nofollow">The Java Platform Plugin</a></p> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-3769.htm">发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2231.htm">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2230.htm">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2176.htm">如何使用正则表达式验证IP地址</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2146.htm">SpringBoot线程池参数搜一堆资料还是不会配，我花一天测试换你此生明白。_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2128.htm">MySQL 优化：explain 执行计划详解与示例分析</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2108.htm">Bootstrap Blazor 实战 Menu 导航菜单使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2074.htm">ansible容器学习环境搭建教程</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1992.htm">Swagger在SpringBoot中的的一些详细配置</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1990.htm">Vue 引入外部css样式两种方式 import 和link ； mixin.js的使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1970.htm">Maven安装与配置，Idea配置Maven</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3136.htm" title="使用类在C ++中实现矢量数量">使用类在C ++中实现矢量数量</a></li>
+                        <li class="py-2"><a href="/html/category/article-2223.htm" title="Python实现数据透视表">Python实现数据透视表</a></li>
+                        <li class="py-2"><a href="/html/category/article-3437.htm" title="vue如何实现关闭对话框后刷新列表_vue.js">vue如何实现关闭对话框后刷新列表_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2204.htm" title="什么是Java 9中的Project Jigsaw">什么是Java 9中的Project Jigsaw</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2228.htm" title="【java算法】二分查找算法详解">【java算法】二分查找算法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
