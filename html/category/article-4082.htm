@@ -2,10 +2,10 @@
 <html>
 
 <head>
-        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-2236.htm" />
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-4082.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PHP布尔数据类型详解 - Laos Address</title>
+    <title>【Vue.js】兄弟组件之间调用对方的方法 - Laos Address</title>
         <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -68,7 +68,7 @@ var _hmt = _hmt || [];
     <!-- Hero Section-->
     <section class="hero">
         <div class="container text-center">
-            <h1>PHP布尔数据类型详解</h1>
+            <h1>【Vue.js】兄弟组件之间调用对方的方法</h1>
             <nav aria-label="breadcrumb" class="d-flex justify-content-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
@@ -82,10 +82,28 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<h2>定义和用法</h2> <p>这是PHP中的标量数据类型之一。布尔数据可以是TRUE或FALSE。这些是PHP中的预定义常量。当分配为TRUE或FALSE时，该变量将成为布尔变量。</p> <h2>语法</h2> <pre>&lt;?php //将布尔值的文字分配给变量 $var=TRUE; ?&gt;</pre> <p>回显TRUE值的结果显示为1，而对于FALSE，则不显示任何结果。使用var_dump()函数将布尔值显示为带值的类型</p> <p>布尔常量不区分大小写。这意味着TRUE等同于True，FALSE类似于False</p> <p>逻辑运算符返回布尔值</p> <pre>&lt;?php $gender="Male"; echo&nbsp;($gender=="Male"); ?&gt;</pre> <h2>铸件</h2> <p>可以使用强制转换运算符(bool)或(boolean)将任何数据类型显式转换为boolean，尽管在大多数情况下，转换会在需要时自动完成。</p> <h2>PHP版本</h2> <p>此描述适用于所有版本的PHP。</p> <p>以下示例显示了使用echo和var_dump()来显示布尔值</p> <h2>示例</h2> <pre>&lt;?php $var=TRUE; echo&nbsp;$var&nbsp;.&nbsp;"\n"; var_dump($var); $var1=false; echo&nbsp;$var1; var_dump($var1); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>1 bool(true) bool(false)</pre> <p>示例显示逻辑表达式的布尔结果</p> <h2>示例</h2> <pre>&lt;?php $var=10; var_dump($var&gt;10); var_dump($var==true); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>bool(false) bool(true)</pre> <p>示例显示了使用强制转换运算符</p> <h2>示例</h2> <pre>&lt;?php $var=10; $var1=(bool)$var; var_dump($var1); //0和-0返回false- $var=0; $var1=(bool)$var; var_dump($var1); //空字符串返回false- $var="PHP"; $var1=(bool)$var; var_dump($var1); $var=""; $var1=(bool)$var; var_dump($var1); //空数组是假的情况 $var=array(1,2,3); $var1=(bool)$var; var_dump($var1); $var=array(); $var1=(bool)$var; var_dump($var1); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>bool(true) bool(false) bool(true) bool(false) bool(true) bool(false)</pre> <div></div> 			                        <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-2235.htm">JavaScript 编写猜拳游戏</a></p>
-                                                        <p>下一个：<a href="/html/category/article-2237.htm">使用pandas输出完整对齐表格的方法</a></p>
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <blockquote> <p>参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://my.oschina.net/u/3547207/blog/1644994"  rel="nofollow">Vue兄弟组件之间如何调用对方的方法</a></p> </blockquote> <h1 id="概述">概述</h1> <p>兄弟组件之间的通讯有一个方法是通过父组件进行交互，那么解决的思路就是子组件调用父组件的方法，然后父组件调用另一个子组件的方法，这样就实现了兄弟组件的交互功能。</p> <h1 id="父组件调用子组件方法">父组件调用子组件方法</h1> <ol> <li>首先被父组件调用的子组件方法定义一下</li> </ol> <pre class="prettyprint"><code class="hljs livecodeserver">appendToTree({<!-- --><span class="hljs-built_in">param</span>}){    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'这是子组件tree的方法'</span>) },</code></pre> <ol> <li>父组件parent.vue中的子组件加一个ref属性，就相当于给这个子组件取了一个别名。注意，这个是加在需要调用的子组件上的。</li> </ol> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">treeModel</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">"tree"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">treeModel</span>&gt;</span></code></pre> <ol> <li>父组件的方法中通过this.$refs的方式来调用子组件的方法</li> </ol> <pre class="prettyprint"><code class="hljs mel"><span class="hljs-comment">//这个是父组件的方法，名字随便定义</span> childTreeFn({param}){     console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'参数'</span>,param)     <span class="hljs-comment">//因为要调用的是别名为tree的子组件中定义的appendToTree方法，所以就这么写</span>     this.<span class="hljs-variable">$refs</span>.tree.appendToTree({param}); }</code></pre> <h1 id="子组件调用父组件方法">子组件调用父组件方法</h1> <ol> <li>在子组件上添加一个事件（或者别名？对前端的专业术语不了解），名字随便取，值是准备调用的父组件方法</li> </ol> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">child</span> @<span class="hljs-attribute">parentFn</span>=<span class="hljs-value">"childTreeFn"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">child</span> &gt;</span></code></pre> <ol> <li>在子组件中通过$.emit方法来调用父组件的方法</li> </ol> <pre class="prettyprint"><code class="hljs cs"><span class="hljs-comment">//子组件的方法名，随便取</span> submit() {     <span class="hljs-comment">//因为要调用的是事件为parentFn，后面跟上参数</span>     <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">'parentFn'</span>,{param:<span class="hljs-keyword">this</span>.argument}); },</code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-4081.htm">Java程序从两个排序的数组中查找最接近的一对</a></p>
                                                     </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-2219.htm">使用VS  新建C++项目</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2166.htm">SpringBoot+Lombok+Builder实现任意个数属性的对象构造</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2162.htm">纯JS 全屏滚动 / 整屏翻页</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2102.htm">idea配置本地maven仓库</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2096.htm">Metalama简介3.自定义.NET项目中的代码分析</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2095.htm">阿里云IoT流转到postgresql数据库方案_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2071.htm">【Android】ListView 控件的简单使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2065.htm">golang 的panic、defer、recover和error应用方式</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2055.htm">C++ 程序编译过程</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2027.htm">Docker 安装 Jenkins_在线工具</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
                                         </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -94,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
-                        <li class="py-2"><a href="/html/category/article-3136.htm" title="使用类在C ++中实现矢量数量">使用类在C ++中实现矢量数量</a></li>
-                        <li class="py-2"><a href="/html/category/article-2221.htm" title="使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。">使用react-router-dom@6,如何完成路由守卫这样的功能——使用高阶组件的包裹。</a></li>
-                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
                         <li class="py-2"><a href="/html/category/article-2837.htm" title="i2c调试工具分享">i2c调试工具分享</a></li>
-                        <li class="py-2"><a href="/html/category/article-2213.htm" title="ElasticSearch SpringBoot集成ES">ElasticSearch SpringBoot集成ES</a></li>
-                        <li class="py-2"><a href="/html/category/article-2205.htm" title="PHP如何通过引用传递">PHP如何通过引用传递</a></li>
+                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
+                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/html/category/article-3438.htm" title="java使用es中三种查询用法from size、search after、scroll">java使用es中三种查询用法from size、search after、scroll</a></li>
                         <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-2215.htm" title="python3操作hdfs库中报错问题总结">python3操作hdfs库中报错问题总结</a></li>
-                        <li class="py-2"><a href="/html/category/article-2543.htm" title="rancher安装redis集群">rancher安装redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3743.htm" title="K8S 将 pod 调度到指定 nodes 上运行">K8S 将 pod 调度到指定 nodes 上运行</a></li>
                     </ul>
     </div>
 </div>
