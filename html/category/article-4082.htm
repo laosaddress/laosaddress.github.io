@@ -84,6 +84,7 @@ var _hmt = _hmt || [];
                 <div class="col-md-9">
                           				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <blockquote> <p>参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://my.oschina.net/u/3547207/blog/1644994"  rel="nofollow">Vue兄弟组件之间如何调用对方的方法</a></p> </blockquote> <h1 id="概述">概述</h1> <p>兄弟组件之间的通讯有一个方法是通过父组件进行交互，那么解决的思路就是子组件调用父组件的方法，然后父组件调用另一个子组件的方法，这样就实现了兄弟组件的交互功能。</p> <h1 id="父组件调用子组件方法">父组件调用子组件方法</h1> <ol> <li>首先被父组件调用的子组件方法定义一下</li> </ol> <pre class="prettyprint"><code class="hljs livecodeserver">appendToTree({<!-- --><span class="hljs-built_in">param</span>}){    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'这是子组件tree的方法'</span>) },</code></pre> <ol> <li>父组件parent.vue中的子组件加一个ref属性，就相当于给这个子组件取了一个别名。注意，这个是加在需要调用的子组件上的。</li> </ol> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">treeModel</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">"tree"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">treeModel</span>&gt;</span></code></pre> <ol> <li>父组件的方法中通过this.$refs的方式来调用子组件的方法</li> </ol> <pre class="prettyprint"><code class="hljs mel"><span class="hljs-comment">//这个是父组件的方法，名字随便定义</span> childTreeFn({param}){     console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'参数'</span>,param)     <span class="hljs-comment">//因为要调用的是别名为tree的子组件中定义的appendToTree方法，所以就这么写</span>     this.<span class="hljs-variable">$refs</span>.tree.appendToTree({param}); }</code></pre> <h1 id="子组件调用父组件方法">子组件调用父组件方法</h1> <ol> <li>在子组件上添加一个事件（或者别名？对前端的专业术语不了解），名字随便取，值是准备调用的父组件方法</li> </ol> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">child</span> @<span class="hljs-attribute">parentFn</span>=<span class="hljs-value">"childTreeFn"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">child</span> &gt;</span></code></pre> <ol> <li>在子组件中通过$.emit方法来调用父组件的方法</li> </ol> <pre class="prettyprint"><code class="hljs cs"><span class="hljs-comment">//子组件的方法名，随便取</span> submit() {     <span class="hljs-comment">//因为要调用的是事件为parentFn，后面跟上参数</span>     <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">'parentFn'</span>,{param:<span class="hljs-keyword">this</span>.argument}); },</code></pre> </p></div> 			                        <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-4081.htm">Java程序从两个排序的数组中查找最接近的一对</a></p>
+                                                        <p>下一个：<a href="/html/category/article-4109.htm">实现 ResponseBodyAdvice 定制化JSON 返回字段</a></p>
                                                     </div>
                                                 <div class="panel panel-default mt-5">
                             <div class="panel-heading">
@@ -112,16 +113,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2837.htm" title="i2c调试工具分享">i2c调试工具分享</a></li>
-                        <li class="py-2"><a href="/html/category/article-2203.htm" title="PHP与JSON的一些常用操作">PHP与JSON的一些常用操作</a></li>
-                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
-                        <li class="py-2"><a href="/html/category/article-2211.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
-                        <li class="py-2"><a href="/html/category/article-3438.htm" title="java使用es中三种查询用法from size、search after、scroll">java使用es中三种查询用法from size、search after、scroll</a></li>
-                        <li class="py-2"><a href="/html/category/article-2209.htm" title="Feign客户端的使用方法详解">Feign客户端的使用方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3437.htm" title="vue如何实现关闭对话框后刷新列表_vue.js">vue如何实现关闭对话框后刷新列表_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
+                        <li class="py-2"><a href="/html/category/article-4109.htm" title="实现 ResponseBodyAdvice 定制化JSON 返回字段">实现 ResponseBodyAdvice 定制化JSON 返回字段</a></li>
                         <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
-                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
-                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-3743.htm" title="K8S 将 pod 调度到指定 nodes 上运行">K8S 将 pod 调度到指定 nodes 上运行</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-2254.htm" title="有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法">有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2201.htm" title="mybatis 之别名">mybatis 之别名</a></li>
+                        <li class="py-2"><a href="/html/category/article-2202.htm" title=".NET 6上的WebView2体验_在线工具">.NET 6上的WebView2体验_在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -132,6 +133,9 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>

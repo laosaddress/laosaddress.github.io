@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="canonical" href="https://laosaddress.github.io/html/category/article-4109.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>实现 ResponseBodyAdvice 定制化JSON 返回字段 - Laos Address</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/laosaddress/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/assets/addons/xcblog/css/laosaddress/custom.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a08ccaf1644b67c8d98a3563104919a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                                <a href="/" class="navbar-brand">
+                    Laos Address
+                </a>
+                
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/" class="nav-link">首页</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="/html/category/" class="nav-link">文章分类</a></li>
+                                                <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">关于</a></li>
+                        <!-- Link-->
+                        <li class="nav-item"> <a href="#" class="nav-link">联系</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>实现 ResponseBodyAdvice 定制化JSON 返回字段</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="animsition-link">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/html/category/" class="animsition-link">文章分类</a></li>
+                    <li aria-current="page" class="breadcrumb-item active">正文</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row" id="list">
+                <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp;细粒度定制化JSON返回字段，精确控制每一个接口方法返回的字段</p> <p>1. 创建注解CustomReturnJson 标注在controller 的方法上。 示例：</p> <pre class="has"><code class="language-java">    @RequestMapping("/testJson")     @ResponseBody     @CustomReturnJson(include = {"id","topicName","topicImg"})     public Object testJson(@RequestParam("name")String name){         Topic topic = topicService.getByTopicName(name);         return ResultVO.success(topic);     }</code></pre> <p>只返回 id topicName,topicImg 字段</p> <pre class="has"><code class="language-java">import java.lang.annotation.*;  /**  * @author XXX  * Date: 2019/4/11  * Description:该注解配合 @ResponseBody 一起使用来细粒度定制返回的json @see {CustomReturnResponseBody.class}  */ @Target({ElementType.METHOD}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface CustomReturnJson {      /**      * 返回的json包含哪些字段      */     String[] include() default {};  } </code></pre> <p>&nbsp;2.核心逻辑就是实现 ResponseBodyAdvice&nbsp; 方法beforeBodyWrite ，在json返回前处理</p> <pre class="has"><code class="language-java">import com.alibaba.druid.support.json.JSONUtils; import com.alibaba.fastjson.JSON; import com.alibaba.fastjson.serializer.BeanContext; import com.alibaba.fastjson.serializer.ContextValueFilter; import com.linktime.unitimes.annotation.CustomReturnJson; import com.linktime.unitimes.vo.ResultVO; import lombok.extern.slf4j.Slf4j; import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty; import org.springframework.core.MethodParameter; import org.springframework.http.MediaType; import org.springframework.http.server.ServerHttpRequest; import org.springframework.http.server.ServerHttpResponse; import org.springframework.lang.Nullable; import org.springframework.web.bind.annotation.ControllerAdvice; import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;  import java.util.ArrayList; import java.util.Arrays; import java.util.List; import java.util.stream.Collectors;  /**  * @author liuxun  * Date: 2019/4/11  * Description: 用来控制定制化json 返回  */ @ControllerAdvice @ConditionalOnProperty(name = "CUSTOM_RETURN_JSON_ADVICE",havingValue = "true") @Slf4j public class CustomReturnJsonAdvice implements ResponseBodyAdvice {      @Override     public boolean supports(MethodParameter methodParameter, Class aClass) {         return methodParameter.getMethodAnnotation(CustomReturnJson.class) != null;     }      @Nullable     @Override     public Object beforeBodyWrite(@Nullable Object body, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest request, ServerHttpResponse response) {          if(body != null &amp;&amp; body instanceof ResultVO){             try {                  ResultVO vo = (ResultVO) body;                 Object data = vo.getData();                  CustomReturnJson methodAnnotation = methodParameter.getMethodAnnotation(CustomReturnJson.class);                 String[] include = methodAnnotation.include();                 List&lt;String&gt; collect = Arrays.stream(include).collect(Collectors.toList());                  ContextValueFilter valueFilter = new ContextValueFilter () {                     @Override                     public Object process(BeanContext context, Object object, String name, Object value) {                         if(collect.contains(name)){                             if(value == null){                                 return "";                             }                             return value;                         }else {                             return null;                         }                     }                 };                 String jsonOutput = JSON.toJSONString(data,valueFilter);                 Object parse = JSONUtils.parse(jsonOutput);                 vo.setData(parse);                 return vo;             } catch (Exception e) {                 log.error("CustomReturnResponseBody方法出错",e);                 // 如果出错,原样返回。(就当该不存在这个流程)             }         }          return body;     }  }</code></pre> <p>&nbsp;</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-4082.htm">【Vue.js】兄弟组件之间调用对方的方法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-4110.htm">SpringBoot之自定义Starter及AutoConfiguration</a></p>
+                                                    </div>
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-4081.htm">Java程序从两个排序的数组中查找最接近的一对</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2208.htm">分库分表实现方式Client和Proxy，性能和维护性该怎么选？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2158.htm">VsCode调试docker中的NodeJS程序</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2154.htm">Spark-submit提交任务到集群</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2129.htm">vue在安装时 node-sass报错</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2070.htm">vue路由自动加载、按组件异步载入vuex以及dll优化</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2055.htm">C++ 程序编译过程</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-2017.htm">HTML页面的加载顺序</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1989.htm">Metalama简介4.使用Fabric操作项目或命名空间</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1968.htm">c语言之字符串旋转</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                        </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2219.htm" title="使用VS  新建C++项目">使用VS  新建C++项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-2199.htm" title="JavaScript编写字符串函数来替换字符的第k个外观方法详解">JavaScript编写字符串函数来替换字符的第k个外观方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2224.htm" title="杨氏矩阵详解">杨氏矩阵详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4110.htm" title="SpringBoot之自定义Starter及AutoConfiguration">SpringBoot之自定义Starter及AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-3743.htm" title="K8S 将 pod 调度到指定 nodes 上运行">K8S 将 pod 调度到指定 nodes 上运行</a></li>
+                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
+                        <li class="py-2"><a href="/html/category/article-3438.htm" title="java使用es中三种查询用法from size、search after、scroll">java使用es中三种查询用法from size、search after、scroll</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="main-footer">
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center text-lg-left">
+                        <p class="copyrights-text mb-3 mb-lg-0">
+                          Laos Address 版权所有 Powered by WordPress
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript files-->
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery/jquery.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/lightbox2/js/lightbox.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/laosaddress/front.js"></script>
+</body>
+
+</html>
