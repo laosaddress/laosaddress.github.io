@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1> <a id="VMware_0" rel="nofollow"></a>VMware安装虚拟机并配置网络</h1> <h2> <a id="1vmware_1" rel="nofollow"></a>1.下载并安装vmware</h2> <h2> <a id="2root_NAT_2" rel="nofollow"></a>2.新建虚拟机并安装设置root密码 --NAT模式</h2> <h2> <a id="3_3" rel="nofollow"></a>3.查看配置</h2> <p>选择编辑-虚拟网络编辑器-NAT模式-NAT设置 --来查看网关IP（我这是192.168.200.2）<img decoding="async" src="http://img.555519.xyz/uploads/20230118/90a6d705754ac91799d478b2ae6ba770.jpg" alt="VMware安装虚拟机并配置网络"><img decoding="async" src="http://img.555519.xyz/uploads/20230118/329cad864bda845c4f0255ae3474e646.jpg" alt="VMware安装虚拟机并配置网络"></p> <h2> <a id="4ens33_6" rel="nofollow"></a>4.进入ens33网卡的配置文件</h2> <pre><code class="prism language-xml">vi /etc/sysconfig/network-scripts/ifcfg-ens33 </code></pre> <p>按i键进入输入模式，修改文件中BOOTPROTO字段为static后，后IP就固定为了IPADDR的值</p> <pre><code class="prism language-xml">BOOTPROTO=static #原来值是dhcp，就是动态获取ip的一个协议 </code></pre> <p>增加一下配置（）</p> <pre><code class="prism language-xml">IPADDR=192.168.200.100 # 设置IP -前面三个ip网段与网关一致，最后一个大于网关小于255即可，比如我是100 NETMASK=225.225.225.0 #子网掩码固定格式 GATEWAY=192.168.200.2 #网关 -第三步查出来的网关ip DNS1=8.8.8.8 # DNS服务器地址 </code></pre> <p>按ESC再按：再按wq回车即可保存</p> <h2> <a id="5_22" rel="nofollow"></a>5.重启网络</h2> <pre><code class="prism language-xml">systemctl stop firewalld.service #关闭防火墙 systemctl disable firewalld.service #永久关闭防火墙 systemctl restart network </code></pre> <p>查看ip</p> <pre><code class="prism language-xml">ip addr </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c2d08d4ad34e75c778dd58c898401dda.jpg" alt="VMware安装虚拟机并配置网络"><br /> 完成</p> </p></div> 			                        <div class="col-md-12 mt-5">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1> VMware安装虚拟机并配置网络</h1> <h2> 1.下载并安装vmware</h2> <h2> 2.新建虚拟机并安装设置root密码 --NAT模式</h2> <h2> 3.查看配置</h2> <p>选择编辑-虚拟网络编辑器-NAT模式-NAT设置 --来查看网关IP（我这是192.168.200.2）<img decoding="async" src="http://img.555519.xyz/uploads/20230118/90a6d705754ac91799d478b2ae6ba770.jpg" alt="VMware安装虚拟机并配置网络"><img decoding="async" src="http://img.555519.xyz/uploads/20230118/329cad864bda845c4f0255ae3474e646.jpg" alt="VMware安装虚拟机并配置网络"></p> <h2> 4.进入ens33网卡的配置文件</h2> <pre><code class="prism language-xml">vi /etc/sysconfig/network-scripts/ifcfg-ens33 </code></pre> <p>按i键进入输入模式，修改文件中BOOTPROTO字段为static后，后IP就固定为了IPADDR的值</p> <pre><code class="prism language-xml">BOOTPROTO=static #原来值是dhcp，就是动态获取ip的一个协议 </code></pre> <p>增加一下配置（）</p> <pre><code class="prism language-xml">IPADDR=192.168.200.100 # 设置IP -前面三个ip网段与网关一致，最后一个大于网关小于255即可，比如我是100 NETMASK=225.225.225.0 #子网掩码固定格式 GATEWAY=192.168.200.2 #网关 -第三步查出来的网关ip DNS1=8.8.8.8 # DNS服务器地址 </code></pre> <p>按ESC再按：再按wq回车即可保存</p> <h2> 5.重启网络</h2> <pre><code class="prism language-xml">systemctl stop firewalld.service #关闭防火墙 systemctl disable firewalld.service #永久关闭防火墙 systemctl restart network </code></pre> <p>查看ip</p> <pre><code class="prism language-xml">ip addr </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c2d08d4ad34e75c778dd58c898401dda.jpg" alt="VMware安装虚拟机并配置网络"><br /> 完成</p> </p></div> 			                        <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-2019.htm">springBoot过滤器、拦截器配置使用</a></p>
                                                         <p>下一个：<a href="/html/category/article-2021.htm">Java和JavaScript之间的区别。</a></p>
                                                     </div>
@@ -94,16 +94,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2216.htm" title="Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档">Spring Boot教程 | 第八篇：Spring Boot整合knife4j（swagger-bootstrap-ui）实现自动API文档</a></li>
-                        <li class="py-2"><a href="/html/category/article-4456.htm" title="宠物粮食批发市场在哪 宠物粮食批发市场在哪里">宠物粮食批发市场在哪 宠物粮食批发市场在哪里</a></li>
+                        <li class="py-2"><a href="/html/category/article-2227.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-4306.htm" title="欧阳娜娜翟子路 图片（不要告诉别人）欧阳娜娜翟子路微博，轩辕剑如烟，邱非，">欧阳娜娜翟子路 图片（不要告诉别人）欧阳娜娜翟子路微博，轩辕剑如烟，邱非，</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4493.htm" title="食材_鱼香肉丝最简单做法步骤窍门(鱼香肉丝的做法 最正宗的做法视频)">食材_鱼香肉丝最简单做法步骤窍门(鱼香肉丝的做法 最正宗的做法视频)</a></li>
+                        <li class="py-2"><a href="/html/category/article-4082.htm" title="【Vue.js】兄弟组件之间调用对方的方法">【Vue.js】兄弟组件之间调用对方的方法</a></li>
                         <li class="py-2"><a href="/html/category/article-2543.htm" title="rancher安装redis集群">rancher安装redis集群</a></li>
-                        <li class="py-2"><a href="/html/category/article-2837.htm" title="i2c调试工具分享">i2c调试工具分享</a></li>
-                        <li class="py-2"><a href="/html/category/article-2222.htm" title="C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院">C++笔记 第六十三课 C语言异常处理&#8212;狄泰学院</a></li>
-                        <li class="py-2"><a href="/html/category/article-4529.htm" title="瑞鹏宠物医院在线咨询免费（瑞鹏宠物医院客服电话）">瑞鹏宠物医院在线咨询免费（瑞鹏宠物医院客服电话）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2238.htm" title="DeferredResult异步处理spring mvc Demo">DeferredResult异步处理spring mvc Demo</a></li>
+                        <li class="py-2"><a href="/html/category/article-2225.htm" title="vue+Element ui实现照片墙效果_vue.js_">vue+Element ui实现照片墙效果_vue.js_</a></li>
                         <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
-                        <li class="py-2"><a href="/html/category/article-4457.htm" title="动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）">动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/html/category/article-4417.htm" title="开宠物食品店需要多少钱 开宠物食品店需要多少钱一个月">开宠物食品店需要多少钱 开宠物食品店需要多少钱一个月</a></li>
                     </ul>
     </div>
 </div>
@@ -115,7 +115,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

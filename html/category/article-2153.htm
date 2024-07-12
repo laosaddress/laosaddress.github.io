@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-dracula"> <p>离线安装nginx，摸索了一天的成果，怕自己忘记，也分享给大家，有问题请指出。</p> <h1><a id="_2" rel="nofollow"></a>安装环境</h1> <pre><code>	操作系统：centos7 	联网状态：无互联网-内网</code></pre> <h1><a id="_5" rel="nofollow"></a>准备工作</h1> <pre><code>			一、准备环境包gcc gcc-c++ 			二、准备准备离线安装包 					openssl 					zlib 					pcre 					nginx</code></pre> <h1><a id="_13" rel="nofollow"></a>下载安装包</h1> <p>推荐大家下载包的网站：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://rpmfind.net/linux/rpm2html/search.php"  rel="nofollow">http://rpmfind.net/linux/rpm2html/search.php</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://centos.pkgs.org/"  rel="nofollow">https://centos.pkgs.org/</a><br /> 这两个网站都可以下载所需要的安装包，不同的就是版本差异，大家各取所取。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/bffbb5e294bb2e2d38fdf5dba23db5e7.jpg" alt="linux Centos7离线安装nginx"></p> <h2><a id="_20" rel="nofollow"></a>安装</h2> <p>开始安装</p> <ol> <li>把包放在一个文件夹中，然后运行命令：rpm -Uvh *.rpm --nodeps --force；</li> <li>安装pcre：<br /> tar -zxvf pcre-8.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令；</li> <li>安装openssl：<br /> tar -zxvf openssl-1.0.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令<br /> 注意，这个包安装的时候一定要进文件夹看清楚文件的名称大小写，如果上面命令的不行，就换config；</li> <li>安装zlib：<br /> tar -zxvf zlib-1.2.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令，同上；</li> <li>安装nginx：<br /> tar -zxvf nginx-1.15.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令；</li> <li>执行 nginx命令：<br /> cd /usr/local/nginx/sbin<br /> ./nginx；</li> <li>浏览器已可访问nginx，打开浏览器访问此机器的 IP，如果浏览器出现 Welcome to nginx! 则表示 Nginx 安装并运行成功。；</li> <li>部分命令如下：<br /> 重启：<br /> /usr/local/nginx/sbin/nginx –s reload<br /> 停止：<br /> /usr/local/nginx/sbin/nginx –s stop<br /> 测试配置文件是否正常：<br /> /usr/local/nginx/sbin/nginx –t<br /> 强制关闭：<br /> pkill nginx</li> </ol> <h2><a id="_67" rel="nofollow"></a>完成</h2> <pre><code>	以上就是我在内网搭建nginx的方法，希望能帮助到大家，如果有误的话请告知我，我及时改正，谢谢！ 	这是我整理的包： 	https://download.csdn.net/download/weixin_44245604/11341357</code></pre> </div> 			                        <div class="col-md-12 mt-5">
+                          				  				  				<div id="content_views" class="markdown_views prism-dracula"> <p>离线安装nginx，摸索了一天的成果，怕自己忘记，也分享给大家，有问题请指出。</p> <h1>安装环境</h1> <pre><code>	操作系统：centos7 	联网状态：无互联网-内网</code></pre> <h1>准备工作</h1> <pre><code>			一、准备环境包gcc gcc-c++ 			二、准备准备离线安装包 					openssl 					zlib 					pcre 					nginx</code></pre> <h1>下载安装包</h1> <p>推荐大家下载包的网站：<br />http://rpmfind.net/linux/rpm2html/search.php<br />https://centos.pkgs.org/<br /> 这两个网站都可以下载所需要的安装包，不同的就是版本差异，大家各取所取。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/bffbb5e294bb2e2d38fdf5dba23db5e7.jpg" alt="linux Centos7离线安装nginx"></p> <h2>安装</h2> <p>开始安装</p> <ol> <li>把包放在一个文件夹中，然后运行命令：rpm -Uvh *.rpm --nodeps --force；</li> <li>安装pcre：<br /> tar -zxvf pcre-8.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令；</li> <li>安装openssl：<br /> tar -zxvf openssl-1.0.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令<br /> 注意，这个包安装的时候一定要进文件夹看清楚文件的名称大小写，如果上面命令的不行，就换config；</li> <li>安装zlib：<br /> tar -zxvf zlib-1.2.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令，同上；</li> <li>安装nginx：<br /> tar -zxvf nginx-1.15.**.tar.gz<br /> ./configure<br /> make<br /> make install<br /> 大家根据自己的版本修改命令；</li> <li>执行 nginx命令：<br /> cd /usr/local/nginx/sbin<br /> ./nginx；</li> <li>浏览器已可访问nginx，打开浏览器访问此机器的 IP，如果浏览器出现 Welcome to nginx! 则表示 Nginx 安装并运行成功。；</li> <li>部分命令如下：<br /> 重启：<br /> /usr/local/nginx/sbin/nginx –s reload<br /> 停止：<br /> /usr/local/nginx/sbin/nginx –s stop<br /> 测试配置文件是否正常：<br /> /usr/local/nginx/sbin/nginx –t<br /> 强制关闭：<br /> pkill nginx</li> </ol> <h2>完成</h2> <pre><code>	以上就是我在内网搭建nginx的方法，希望能帮助到大家，如果有误的话请告知我，我及时改正，谢谢！ 	这是我整理的包： 	https://download.csdn.net/download/weixin_44245604/11341357</code></pre> </div> 			                        <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-2152.htm">学习JVM-虚拟机栈，程序计数器和本地方法接口与本地方法栈</a></p>
                                                         <p>下一个：<a href="/html/category/article-2154.htm">Spark-submit提交任务到集群</a></p>
                                                     </div>
@@ -94,16 +94,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-3744.htm" title="SpringSecurity之OAuth2 令牌accessToken的生成过程">SpringSecurity之OAuth2 令牌accessToken的生成过程</a></li>
-                        <li class="py-2"><a href="/html/category/article-4528.htm" title="极速青春大结局怎么样了（极速青春电视剧）">极速青春大结局怎么样了（极速青春电视剧）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2253.htm" title="最小删除以在C ++中制作有效的括号">最小删除以在C ++中制作有效的括号</a></li>
-                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
-                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-4492.htm" title="贵州领养猫咪（贵州领养宠物）">贵州领养猫咪（贵州领养宠物）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2218.htm" title="kotlin增加静态扩展函数">kotlin增加静态扩展函数</a></li>
-                        <li class="py-2"><a href="/html/category/article-4138.htm" title="在VS2015下配置websocket++,并用C++搭建一个简单的客户端">在VS2015下配置websocket++,并用C++搭建一个简单的客户端</a></li>
-                        <li class="py-2"><a href="/html/category/article-4383.htm" title="动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）">动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4336.htm" title="千王之王重出江湖国语版（不要告诉别人）千王之王全集40国语版1，山崎敬一，龙四，">千王之王重出江湖国语版（不要告诉别人）千王之王全集40国语版1，山崎敬一，龙四，</a></li>
+                        <li class="py-2"><a href="/html/category/article-4110.htm" title="SpringBoot之自定义Starter及AutoConfiguration">SpringBoot之自定义Starter及AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/html/category/article-2543.htm" title="rancher安装redis集群">rancher安装redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-4457.htm" title="动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）">动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2226.htm" title="Springboot2整合activemq">Springboot2整合activemq</a></li>
                         <li class="py-2"><a href="/html/category/article-4137.htm" title="python 元组传参 *args 字典传参 **kwargs 的用法">python 元组传参 *args 字典传参 **kwargs 的用法</a></li>
+                        <li class="py-2"><a href="/html/category/article-4417.htm" title="开宠物食品店需要多少钱 开宠物食品店需要多少钱一个月">开宠物食品店需要多少钱 开宠物食品店需要多少钱一个月</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2232.htm" title="vue中v-model的三种修饰符:lazy,numer,trim">vue中v-model的三种修饰符:lazy,numer,trim</a></li>
+                        <li class="py-2"><a href="/html/category/article-4493.htm" title="食材_鱼香肉丝最简单做法步骤窍门(鱼香肉丝的做法 最正宗的做法视频)">食材_鱼香肉丝最简单做法步骤窍门(鱼香肉丝的做法 最正宗的做法视频)</a></li>
                     </ul>
     </div>
 </div>
@@ -115,7 +115,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

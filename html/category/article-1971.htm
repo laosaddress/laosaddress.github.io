@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<h1 id="一背景">一、背景</h1> <p>我们在开发的过程中，经常会引入别人写的jar包实现某些功能。而别人的jar包一般都自动注入Spring容器中，假设别人都是通过<code>@Bean</code>或<code>@Component</code>注入的，并且没有加入<code>@ConditionalXXX</code>等注解，导致自己无法替换掉别人的实现，假设这个时候我就是想替换掉，那么该如何实现呢？</p> <h1 id="二需求">二、需求</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/6f894b7b4cd8778046f76792db7d13da.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"><br /><strong>由上图可知，我们的需求为：</strong></p> <p>使用我们自己定义的 <code>BananaProductService</code>替换掉框架自带的<code>AppleProductService</code>并加入到Spring容器中，同时保证全局只有一个<code>ProductService</code>的实现。</p> <h1 id="三实现思路">三、实现思路</h1> <p>我们在系统中根据 <code>@Bean</code>或通过 <code>@Component</code> 定义的Bean对象在Spring中都会转换成一个个的<code>BeanDefinition</code>对象，如果我们在Spring创建这些对象加入到Spring容器之前，将不想要的<code>BeanDefinition</code>对象删除，而加入我们自己想要的<code>BeanDefinition</code>对象是不是就可以实现了？而Spring提供的<code>BeanDefinitionRegistryPostProcessor</code>接口正好可以帮助我们实现这个功能。</p> <p><code>BeanDefinitionRegistryPostProcessor</code> 是在系统加载完所有的BeanDefinition对象来进行回调。</p> <h1 id="四实现步骤">四、实现步骤</h1> <h2 id="1模拟第三方jar包实现并加入spring容器中">1、模拟第三方jar包实现并加入Spring容器中</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/d78bc2596384b602f9680fd6e7d16d6c.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="2自己提供一个实现">2、自己提供一个实现</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/428f489113389a07220c8eb25d1aac04.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="3替换掉jar包默认的实现">3、替换掉jar包默认的实现</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/e8d6bcac0ba4e6b023b53adac07f813d.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="4进行测试">4、进行测试</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/f3dc2ea8a13f9631e0359696de5fec3b.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h1 id="五完整代码">五、完整代码</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/huan1993/spring-cloud-parent/tree/master/springboot/springboot-override-exists-bean"  target="_blank"  rel="nofollow">https://gitee.com/huan1993/spring-cloud-parent/tree/master/springboot/springboot-override-exists-bean</a></p> 			                        <div class="col-md-12 mt-5">
+                          				  				  				<h1 id="一背景">一、背景</h1> <p>我们在开发的过程中，经常会引入别人写的jar包实现某些功能。而别人的jar包一般都自动注入Spring容器中，假设别人都是通过<code>@Bean</code>或<code>@Component</code>注入的，并且没有加入<code>@ConditionalXXX</code>等注解，导致自己无法替换掉别人的实现，假设这个时候我就是想替换掉，那么该如何实现呢？</p> <h1 id="二需求">二、需求</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/6f894b7b4cd8778046f76792db7d13da.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"><br /><strong>由上图可知，我们的需求为：</strong></p> <p>使用我们自己定义的 <code>BananaProductService</code>替换掉框架自带的<code>AppleProductService</code>并加入到Spring容器中，同时保证全局只有一个<code>ProductService</code>的实现。</p> <h1 id="三实现思路">三、实现思路</h1> <p>我们在系统中根据 <code>@Bean</code>或通过 <code>@Component</code> 定义的Bean对象在Spring中都会转换成一个个的<code>BeanDefinition</code>对象，如果我们在Spring创建这些对象加入到Spring容器之前，将不想要的<code>BeanDefinition</code>对象删除，而加入我们自己想要的<code>BeanDefinition</code>对象是不是就可以实现了？而Spring提供的<code>BeanDefinitionRegistryPostProcessor</code>接口正好可以帮助我们实现这个功能。</p> <p><code>BeanDefinitionRegistryPostProcessor</code> 是在系统加载完所有的BeanDefinition对象来进行回调。</p> <h1 id="四实现步骤">四、实现步骤</h1> <h2 id="1模拟第三方jar包实现并加入spring容器中">1、模拟第三方jar包实现并加入Spring容器中</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/d78bc2596384b602f9680fd6e7d16d6c.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="2自己提供一个实现">2、自己提供一个实现</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/428f489113389a07220c8eb25d1aac04.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="3替换掉jar包默认的实现">3、替换掉jar包默认的实现</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/e8d6bcac0ba4e6b023b53adac07f813d.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h2 id="4进行测试">4、进行测试</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/f3dc2ea8a13f9631e0359696de5fec3b.jpg" alt="替换Spring容器中已经存在的Bean_在线工具"></p> <h1 id="五完整代码">五、完整代码</h1> <p>https://gitee.com/huan1993/spring-cloud-parent/tree/master/springboot/springboot-override-exists-bean</p> 			                        <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-1970.htm">Maven安装与配置，Idea配置Maven</a></p>
                                                         <p>下一个：<a href="/html/category/article-1972.htm">@DateTimeFormat和@JsonFormat浅解</a></p>
                                                     </div>
@@ -94,16 +94,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-3770.htm" title="Java 使用 Maven BOM 统一管理版本号_在线工具">Java 使用 Maven BOM 统一管理版本号_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-3135.htm" title="Spring 源码BeanFactoryPostProcessor是如何执行的">Spring 源码BeanFactoryPostProcessor是如何执行的</a></li>
-                        <li class="py-2"><a href="/html/category/article-2235.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
-                        <li class="py-2"><a href="/html/category/article-4529.htm" title="瑞鹏宠物医院在线咨询免费（瑞鹏宠物医院客服电话）">瑞鹏宠物医院在线咨询免费（瑞鹏宠物医院客服电话）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
-                        <li class="py-2"><a href="/html/category/article-2838.htm" title="使用vue v-for循环图片路径方式_vue.js">使用vue v-for循环图片路径方式_vue.js</a></li>
-                        <li class="py-2"><a href="/html/category/article-4564.htm" title="兽药前三十强（兽药前十名）">兽药前三十强（兽药前十名）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4307.htm" title="宠物猫疫苗价格表图片及价格（宠物疫苗多少钱一针猫咪）">宠物猫疫苗价格表图片及价格（宠物疫苗多少钱一针猫咪）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2231.htm" title="antd组件upload上传xlsx文件，并读取文件内容">antd组件upload上传xlsx文件，并读取文件内容</a></li>
-                        <li class="py-2"><a href="/html/category/article-2237.htm" title="使用pandas输出完整对齐表格的方法">使用pandas输出完整对齐表格的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-3769.htm" title="发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包">发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</a></li>
+                        <li class="py-2"><a href="/html/category/article-2236.htm" title="PHP布尔数据类型详解">PHP布尔数据类型详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4383.htm" title="动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）">动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2254.htm" title="有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法">有关vue3中vuex mapStates、mapMutations 和 mapActions的自定义方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-2543.htm" title="rancher安装redis集群">rancher安装redis集群</a></li>
+                        <li class="py-2"><a href="/html/category/article-4457.htm" title="动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）">动物医院申请条件及流程怎么写的啊图片（动物医院诊疗许可证办理）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4528.htm" title="极速青春大结局怎么样了（极速青春电视剧）">极速青春大结局怎么样了（极速青春电视剧）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4336.htm" title="千王之王重出江湖国语版（不要告诉别人）千王之王全集40国语版1，山崎敬一，龙四，">千王之王重出江湖国语版（不要告诉别人）千王之王全集40国语版1，山崎敬一，龙四，</a></li>
                     </ul>
     </div>
 </div>
@@ -115,7 +115,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

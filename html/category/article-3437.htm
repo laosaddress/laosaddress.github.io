@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="row" id="list">
                 <div class="col-md-9">
-                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">关闭对话框后刷新列表</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">父窗口代码</a></li> <li><a href="#_lab2_0_1" rel="nofollow">子窗口代码</a></li> </ul> <li><a href="#_label1" rel="nofollow">关闭打开的窗口后刷新父页面</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_2" rel="nofollow">解决办法</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>关闭对话框后刷新列表</h2> <p>有些场景需要实现用户弹窗确定后自动刷新列表，父窗口绑定fevent即可</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>父窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;       &lt;div&gt;   &lt;el-button @click="$refs.editform.dialogFormVisible = true" &gt;编辑用户&lt;/el-button&gt;   &lt;editform  @fevent="update_table" ref="editform"&gt;   &lt;/editform&gt;       &lt;/div&gt;   &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import editform from './editform.vue'  export default {    components: {      editform    },    methods: {      update_table () {        console.log('列表框被刷新了')      }    }  }  &lt;/script&gt;</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>子窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;         &lt;el-dialog title="编辑用户"  :visible.sync="dialogFormVisible"&gt;             &lt;el-button @click="delete_user"&gt;删除用户&lt;/el-button&gt;      &lt;/el-dialog&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  export default {    data () {      return {        dialogFormVisible: false      }    },    methods: {      delete_user () {           this.$emit('fevent')           this.$message.success('删除成功')           this.dialogFormVisible = false      }    }  }  &lt;/script&gt;</pre> </div> <p>附加上自己的业务代码，即可实现列表自动刷新</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>关闭打开的窗口后刷新父页面</h2> <p><strong>背景：</strong>在做页面的过程中需要在页面列表里面添加数据，但是添加之后需要手动刷新页面才会出现添加的数据。</p> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>解决办法</h3> <p>可在添加成功之后添加代码 </p> <div class="ay1code"> <pre class="brush:js;">parent.location.reload();</pre> </div> 			                        <div class="col-md-12 mt-5">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li>关闭对话框后刷新列表</li> <ul class="second_class_ul"> <li>父窗口代码</li> <li>子窗口代码</li> </ul> <li>关闭打开的窗口后刷新父页面</li> <ul class="second_class_ul"> <li>解决办法</li> </ul> </ul> </div> <p class="maodian"></p> <h2>关闭对话框后刷新列表</h2> <p>有些场景需要实现用户弹窗确定后自动刷新列表，父窗口绑定fevent即可</p> <p class="maodian"></p> <h3>父窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;"><template>       <div>   <el-button @click="$refs.editform.dialogFormVisible = true" >编辑用户</el-button>   <editform  @fevent="update_table" ref="editform">   </editform>       </div>   </template></pre> </div> <div class="ay1code"> <pre class="brush:js;"><script>  import editform from './editform.vue'  export default {    components: {      editform    },    methods: {      update_table () {        console.log('列表框被刷新了')      }    }  }  </script></pre> </div> <p class="maodian"></p> <h3>子窗口代码</h3> <div class="ay1code"> <pre class="brush:xhtml;"><template>         <el-dialog title="编辑用户"  :visible.sync="dialogFormVisible">             <el-button @click="delete_user">删除用户</el-button>      </el-dialog>  </template></pre> </div> <div class="ay1code"> <pre class="brush:js;"><script>  export default {    data () {      return {        dialogFormVisible: false      }    },    methods: {      delete_user () {           this.$emit('fevent')           this.$message.success('删除成功')           this.dialogFormVisible = false      }    }  }  </script></pre> </div> <p>附加上自己的业务代码，即可实现列表自动刷新</p> <p class="maodian"></p> <h2>关闭打开的窗口后刷新父页面</h2> <p><strong>背景：</strong>在做页面的过程中需要在页面列表里面添加数据，但是添加之后需要手动刷新页面才会出现添加的数据。</p> <p class="maodian"></p> <h3>解决办法</h3> <p>可在添加成功之后添加代码 </p> <div class="ay1code"> <pre class="brush:js;">parent.location.reload();</pre> </div> 			                        <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-3136.htm">使用类在C ++中实现矢量数量</a></p>
                                                         <p>下一个：<a href="/html/category/article-3438.htm">java使用es中三种查询用法from size、search after、scroll</a></p>
                                                     </div>
@@ -113,16 +113,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2217.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
-                        <li class="py-2"><a href="/html/category/article-4563.htm" title="北京宠物行业薪资（北京宠物店招聘）">北京宠物行业薪资（北京宠物店招聘）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2230.htm" title="当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？">当我们更改小于当前序列号的AUTO_INCREMENT值时，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-4137.htm" title="python 元组传参 *args 字典传参 **kwargs 的用法">python 元组传参 *args 字典传参 **kwargs 的用法</a></li>
+                        <li class="py-2"><a href="/html/category/article-3135.htm" title="Spring 源码BeanFactoryPostProcessor是如何执行的">Spring 源码BeanFactoryPostProcessor是如何执行的</a></li>
+                        <li class="py-2"><a href="/html/category/article-4528.htm" title="极速青春大结局怎么样了（极速青春电视剧）">极速青春大结局怎么样了（极速青春电视剧）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4082.htm" title="【Vue.js】兄弟组件之间调用对方的方法">【Vue.js】兄弟组件之间调用对方的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-3769.htm" title="发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包">发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</a></li>
+                        <li class="py-2"><a href="/html/category/article-2229.htm" title="Spring Boot 2.3 新特性分层JAR详解">Spring Boot 2.3 新特性分层JAR详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2234.htm" title="CI框架源码解析十九之分页类文件Pagination.php">CI框架源码解析十九之分页类文件Pagination.php</a></li>
                         <li class="py-2"><a href="/html/category/article-4110.htm" title="SpringBoot之自定义Starter及AutoConfiguration">SpringBoot之自定义Starter及AutoConfiguration</a></li>
-                        <li class="py-2"><a href="/html/category/article-4307.htm" title="宠物猫疫苗价格表图片及价格（宠物疫苗多少钱一针猫咪）">宠物猫疫苗价格表图片及价格（宠物疫苗多少钱一针猫咪）</a></li>
-                        <li class="py-2"><a href="/html/category/article-3770.htm" title="Java 使用 Maven BOM 统一管理版本号_在线工具">Java 使用 Maven BOM 统一管理版本号_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-4564.htm" title="兽药前三十强（兽药前十名）">兽药前三十强（兽药前十名）</a></li>
-                        <li class="py-2"><a href="/html/category/article-3136.htm" title="使用类在C ++中实现矢量数量">使用类在C ++中实现矢量数量</a></li>
-                        <li class="py-2"><a href="/html/category/article-2220.htm" title="按值致电与按引用致电之间的区别">按值致电与按引用致电之间的区别</a></li>
-                        <li class="py-2"><a href="/html/category/article-2837.htm" title="i2c调试工具分享">i2c调试工具分享</a></li>
+                        <li class="py-2"><a href="/html/category/article-4382.htm" title="动物疫苗经营交什么税 动物疫苗经营交什么税费">动物疫苗经营交什么税 动物疫苗经营交什么税费</a></li>
+                        <li class="py-2"><a href="/html/category/article-4383.htm" title="动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）">动物注射疫苗属于什么免疫方式（动物打疫苗获得的免疫称为）</a></li>
                     </ul>
     </div>
 </div>
@@ -134,7 +134,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
